@@ -14,7 +14,6 @@ import type { StateCreator, StoreMutatorIdentifier } from 'zustand';
 // Forms & Validation
 import type { UseFormReturn, FieldValues } from 'react-hook-form';
 import type { ZodSchema } from 'zod';
-import type { Resolver } from '@hookform/resolvers';
 
 // Utilities
 import type { ClassValue } from 'clsx';
@@ -41,9 +40,6 @@ export type VerifyTypes = {
 
   // Zod
   zodSchema: ZodSchema;
-
-  // @hookform/resolvers
-  resolver: Resolver;
 
   // clsx
   classValue: ClassValue;
