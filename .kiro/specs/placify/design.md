@@ -70,6 +70,7 @@ app/
 ```
 
 **Key Architectural Decisions:**
+
 - Server Components for initial data loading (improved performance)
 - Client Components for interactive features (roadmap, charts)
 - Server Actions for mutations (simplified data flow)
@@ -92,6 +93,7 @@ Flow Diagram:
 ```
 
 **Implementation Details:**
+
 - Supabase Auth handles OAuth (Google, GitHub) and email/password
 - Middleware checks auth status for protected routes
 - Server Actions verify authentication before mutations
@@ -117,6 +119,7 @@ Components:
 ### 2.1 Core Tables
 
 #### users (managed by Supabase Auth)
+
 ```sql
 CREATE TABLE auth.users (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
@@ -129,6 +132,7 @@ CREATE TABLE auth.users (
 ```
 
 #### profiles
+
 ```sql
 CREATE TABLE public.profiles (
   id UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
@@ -148,6 +152,7 @@ CREATE POLICY "Users can update own profile" ON profiles FOR UPDATE USING (auth.
 ```
 
 #### target_profiles
+
 ```sql
 CREATE TABLE public.target_profiles (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
@@ -174,6 +179,7 @@ CREATE POLICY "Users can manage own target profile" ON target_profiles FOR ALL U
 ```
 
 #### skills
+
 ```sql
 CREATE TABLE public.skills (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
@@ -194,6 +200,7 @@ CREATE POLICY "Users can manage own skills" ON skills FOR ALL USING (auth.uid() 
 ```
 
 #### roadmaps
+
 ```sql
 CREATE TABLE public.roadmaps (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
@@ -220,6 +227,7 @@ CREATE POLICY "Users can manage own roadmaps" ON roadmaps FOR ALL USING (auth.ui
 ```
 
 #### roadmap_nodes
+
 ```sql
 CREATE TABLE public.roadmap_nodes (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
@@ -250,13 +258,14 @@ CREATE INDEX idx_roadmap_nodes_status ON roadmap_nodes(status);
 
 -- RLS Policies
 ALTER TABLE roadmap_nodes ENABLE ROW LEVEL SECURITY;
-CREATE POLICY "Users can view own roadmap nodes" ON roadmap_nodes FOR SELECT 
+CREATE POLICY "Users can view own roadmap nodes" ON roadmap_nodes FOR SELECT
   USING (EXISTS (SELECT 1 FROM roadmaps WHERE roadmaps.id = roadmap_nodes.roadmap_id AND roadmaps.user_id = auth.uid()));
 CREATE POLICY "Users can update own roadmap nodes" ON roadmap_nodes FOR UPDATE
   USING (EXISTS (SELECT 1 FROM roadmaps WHERE roadmaps.id = roadmap_nodes.roadmap_id AND roadmaps.user_id = auth.uid()));
 ```
 
 #### companies
+
 ```sql
 CREATE TABLE public.companies (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
@@ -285,6 +294,7 @@ CREATE POLICY "Anyone can view companies" ON companies FOR SELECT USING (true);
 ```
 
 #### resumes
+
 ```sql
 CREATE TABLE public.resumes (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
@@ -307,6 +317,7 @@ CREATE POLICY "Users can manage own resumes" ON resumes FOR ALL USING (auth.uid(
 ```
 
 #### resume_analyses
+
 ```sql
 CREATE TABLE public.resume_analyses (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
@@ -334,6 +345,7 @@ CREATE POLICY "Users can view own analyses" ON resume_analyses FOR SELECT USING 
 ```
 
 #### mock_interviews
+
 ```sql
 CREATE TABLE public.mock_interviews (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
@@ -361,6 +373,7 @@ CREATE POLICY "Users can manage own interviews" ON mock_interviews FOR ALL USING
 ```
 
 #### interview_exchanges
+
 ```sql
 CREATE TABLE public.interview_exchanges (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
@@ -380,11 +393,12 @@ CREATE INDEX idx_interview_exchanges_interview_id ON interview_exchanges(intervi
 
 -- RLS Policies
 ALTER TABLE interview_exchanges ENABLE ROW LEVEL SECURITY;
-CREATE POLICY "Users can view own exchanges" ON interview_exchanges FOR SELECT 
+CREATE POLICY "Users can view own exchanges" ON interview_exchanges FOR SELECT
   USING (EXISTS (SELECT 1 FROM mock_interviews WHERE mock_interviews.id = interview_exchanges.interview_id AND mock_interviews.user_id = auth.uid()));
 ```
 
 #### daily_tasks
+
 ```sql
 CREATE TABLE public.daily_tasks (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
@@ -412,6 +426,7 @@ CREATE POLICY "Users can manage own tasks" ON daily_tasks FOR ALL USING (auth.ui
 ```
 
 #### weekly_reviews
+
 ```sql
 CREATE TABLE public.weekly_reviews (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
@@ -444,6 +459,7 @@ CREATE POLICY "Users can view own reviews" ON weekly_reviews FOR SELECT USING (a
 ```
 
 #### projects
+
 ```sql
 CREATE TABLE public.projects (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
@@ -475,6 +491,7 @@ CREATE POLICY "Users can manage own projects" ON projects FOR ALL USING (auth.ui
 ```
 
 #### study_sessions
+
 ```sql
 CREATE TABLE public.study_sessions (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
@@ -496,6 +513,7 @@ CREATE POLICY "Users can manage own sessions" ON study_sessions FOR ALL USING (a
 ```
 
 #### notifications
+
 ```sql
 CREATE TABLE public.notifications (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
@@ -520,6 +538,7 @@ CREATE POLICY "Users can manage own notifications" ON notifications FOR ALL USIN
 ```
 
 #### ai_conversations
+
 ```sql
 CREATE TABLE public.ai_conversations (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
@@ -538,6 +557,7 @@ CREATE POLICY "Users can manage own conversations" ON ai_conversations FOR ALL U
 ```
 
 #### ai_messages
+
 ```sql
 CREATE TABLE public.ai_messages (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
@@ -552,11 +572,12 @@ CREATE INDEX idx_ai_messages_conversation_id ON ai_messages(conversation_id);
 
 -- RLS Policies
 ALTER TABLE ai_messages ENABLE ROW LEVEL SECURITY;
-CREATE POLICY "Users can view own messages" ON ai_messages FOR SELECT 
+CREATE POLICY "Users can view own messages" ON ai_messages FOR SELECT
   USING (EXISTS (SELECT 1 FROM ai_conversations WHERE ai_conversations.id = ai_messages.conversation_id AND ai_conversations.user_id = auth.uid()));
 ```
 
 #### analytics_events
+
 ```sql
 CREATE TABLE public.analytics_events (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
@@ -580,6 +601,7 @@ CREATE POLICY "Users can insert own events" ON analytics_events FOR INSERT WITH 
 ### 2.2 Database Functions and Triggers
 
 #### Auto-update timestamps
+
 ```sql
 CREATE OR REPLACE FUNCTION update_updated_at_column()
 RETURNS TRIGGER AS $$
@@ -600,19 +622,20 @@ CREATE TRIGGER update_target_profiles_updated_at BEFORE UPDATE ON target_profile
 ```
 
 #### Update roadmap completion
+
 ```sql
 CREATE OR REPLACE FUNCTION update_roadmap_completion()
 RETURNS TRIGGER AS $$
 BEGIN
   UPDATE roadmaps
-  SET 
+  SET
     completed_nodes = (
-      SELECT COUNT(*) FROM roadmap_nodes 
+      SELECT COUNT(*) FROM roadmap_nodes
       WHERE roadmap_id = NEW.roadmap_id AND status = 'completed'
     ),
     completion_percentage = (
       SELECT (COUNT(*) FILTER (WHERE status = 'completed')::DECIMAL / NULLIF(COUNT(*), 0) * 100)
-      FROM roadmap_nodes 
+      FROM roadmap_nodes
       WHERE roadmap_id = NEW.roadmap_id
     )
   WHERE id = NEW.roadmap_id;
@@ -620,12 +643,13 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER update_roadmap_on_node_change 
+CREATE TRIGGER update_roadmap_on_node_change
   AFTER INSERT OR UPDATE OF status ON roadmap_nodes
   FOR EACH ROW EXECUTE FUNCTION update_roadmap_completion();
 ```
 
 #### Create profile on user signup
+
 ```sql
 CREATE OR REPLACE FUNCTION handle_new_user()
 RETURNS TRIGGER AS $$
@@ -652,34 +676,34 @@ CREATE TRIGGER on_auth_user_created
 ```typescript
 // lib/types/database.types.ts
 
-export type Json = string | number | boolean | null | { [key: string]: Json | undefined } | Json[]
+export type Json = string | number | boolean | null | { [key: string]: Json | undefined } | Json[];
 
 export interface Database {
   public: {
     Tables: {
       profiles: {
-        Row: Profile
-        Insert: ProfileInsert
-        Update: ProfileUpdate
-      }
+        Row: Profile;
+        Insert: ProfileInsert;
+        Update: ProfileUpdate;
+      };
       target_profiles: {
-        Row: TargetProfile
-        Insert: TargetProfileInsert
-        Update: TargetProfileUpdate
-      }
+        Row: TargetProfile;
+        Insert: TargetProfileInsert;
+        Update: TargetProfileUpdate;
+      };
       roadmaps: {
-        Row: Roadmap
-        Insert: RoadmapInsert
-        Update: RoadmapUpdate
-      }
+        Row: Roadmap;
+        Insert: RoadmapInsert;
+        Update: RoadmapUpdate;
+      };
       roadmap_nodes: {
-        Row: RoadmapNode
-        Insert: RoadmapNodeInsert
-        Update: RoadmapNodeUpdate
-      }
+        Row: RoadmapNode;
+        Insert: RoadmapNodeInsert;
+        Update: RoadmapNodeUpdate;
+      };
       // ... other tables
-    }
-  }
+    };
+  };
 }
 ```
 
@@ -689,94 +713,94 @@ export interface Database {
 // lib/types/models.ts
 
 export interface Profile {
-  id: string
-  full_name: string
-  avatar_url: string | null
-  onboarding_completed: boolean
-  theme_preference: 'dark' | 'light'
-  notification_preferences: NotificationPreferences
-  created_at: string
-  updated_at: string
+  id: string;
+  full_name: string;
+  avatar_url: string | null;
+  onboarding_completed: boolean;
+  theme_preference: 'dark' | 'light';
+  notification_preferences: NotificationPreferences;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface NotificationPreferences {
-  email: boolean
-  inApp: boolean
-  reminders: boolean
-  weeklyReview: boolean
-  milestones: boolean
+  email: boolean;
+  inApp: boolean;
+  reminders: boolean;
+  weeklyReview: boolean;
+  milestones: boolean;
 }
 
 export interface TargetProfile {
-  id: string
-  user_id: string
-  target_role: string
-  target_package_min: number
-  target_package_max: number
-  currency: string
-  target_companies: string[]
-  available_hours_per_day: number
-  timeline_weeks: number
-  start_date: string
-  expected_end_date: string
-  created_at: string
-  updated_at: string
+  id: string;
+  user_id: string;
+  target_role: string;
+  target_package_min: number;
+  target_package_max: number;
+  currency: string;
+  target_companies: string[];
+  available_hours_per_day: number;
+  timeline_weeks: number;
+  start_date: string;
+  expected_end_date: string;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface Skill {
-  id: string
-  user_id: string
-  skill_name: string
-  proficiency_level: number
-  category: 'technical' | 'soft' | 'domain'
-  created_at: string
-  updated_at: string
+  id: string;
+  user_id: string;
+  skill_name: string;
+  proficiency_level: number;
+  category: 'technical' | 'soft' | 'domain';
+  created_at: string;
+  updated_at: string;
 }
 ```
 
 export interface Roadmap {
-  id: string
-  user_id: string
-  target_profile_id: string
-  title: string
-  description: string | null
-  status: RoadmapStatus
-  total_nodes: number
-  completed_nodes: number
-  completion_percentage: number
-  layout_data: ReactFlowLayoutData | null
-  created_at: string
-  updated_at: string
+id: string
+user_id: string
+target_profile_id: string
+title: string
+description: string | null
+status: RoadmapStatus
+total_nodes: number
+completed_nodes: number
+completion_percentage: number
+layout_data: ReactFlowLayoutData | null
+created_at: string
+updated_at: string
 }
 
 export type RoadmapStatus = 'draft' | 'active' | 'completed' | 'archived'
 
 export interface ReactFlowLayoutData {
-  nodes: Array<{ id: string; position: { x: number; y: number } }>
-  viewport?: { x: number; y: number; zoom: number }
+nodes: Array<{ id: string; position: { x: number; y: number } }>
+viewport?: { x: number; y: number; zoom: number }
 }
 
 export interface RoadmapNode {
-  id: string
-  roadmap_id: string
-  node_id: string
-  title: string
-  description: string | null
-  content: string | null
-  node_type: NodeType
-  status: NodeStatus
-  estimated_hours: number
-  actual_hours: number | null
-  difficulty_level: DifficultyLevel
-  required_skills: string[]
-  resources: Resource[]
-  dependencies: string[]
-  position_x: number
-  position_y: number
-  started_at: string | null
-  completed_at: string | null
-  created_at: string
-  updated_at: string
+id: string
+roadmap_id: string
+node_id: string
+title: string
+description: string | null
+content: string | null
+node_type: NodeType
+status: NodeStatus
+estimated_hours: number
+actual_hours: number | null
+difficulty_level: DifficultyLevel
+required_skills: string[]
+resources: Resource[]
+dependencies: string[]
+position_x: number
+position_y: number
+started_at: string | null
+completed_at: string | null
+created_at: string
+updated_at: string
 }
 
 export type NodeType = 'learning' | 'project' | 'assessment' | 'milestone'
@@ -784,11 +808,12 @@ export type NodeStatus = 'locked' | 'available' | 'in_progress' | 'completed'
 export type DifficultyLevel = 'beginner' | 'intermediate' | 'advanced'
 
 export interface Resource {
-  type: 'article' | 'video' | 'course' | 'documentation' | 'book'
-  title: string
-  url: string
-  duration?: string
+type: 'article' | 'video' | 'course' | 'documentation' | 'book'
+title: string
+url: string
+duration?: string
 }
+
 ```
 
 export interface MockInterview {
@@ -865,81 +890,82 @@ export interface Recommendation {
 ```
 
 export interface DailyTask {
-  id: string
-  user_id: string
-  title: string
-  description: string | null
-  scheduled_date: string
-  scheduled_time: string | null
-  duration_minutes: number | null
-  priority: TaskPriority
-  status: TaskStatus
-  roadmap_node_id: string | null
-  completed_at: string | null
-  created_at: string
-  updated_at: string
+id: string
+user_id: string
+title: string
+description: string | null
+scheduled_date: string
+scheduled_time: string | null
+duration_minutes: number | null
+priority: TaskPriority
+status: TaskStatus
+roadmap_node_id: string | null
+completed_at: string | null
+created_at: string
+updated_at: string
 }
 
 export type TaskPriority = 'low' | 'medium' | 'high'
 export type TaskStatus = 'pending' | 'in_progress' | 'completed' | 'cancelled'
 
 export interface WeeklyReview {
-  id: string
-  user_id: string
-  week_start_date: string
-  week_end_date: string
-  total_study_hours: number
-  nodes_completed: number
-  tasks_completed: number
-  tasks_total: number
-  completion_rate: number
-  progress_percentage: number
-  week_over_week_change: number
-  top_strengths: string[]
-  areas_for_improvement: string[]
-  recommendations: string[]
-  timeline_adjustment_needed: boolean
-  estimated_completion_date: string | null
-  ai_insights: string
-  created_at: string
+id: string
+user_id: string
+week_start_date: string
+week_end_date: string
+total_study_hours: number
+nodes_completed: number
+tasks_completed: number
+tasks_total: number
+completion_rate: number
+progress_percentage: number
+week_over_week_change: number
+top_strengths: string[]
+areas_for_improvement: string[]
+recommendations: string[]
+timeline_adjustment_needed: boolean
+estimated_completion_date: string | null
+ai_insights: string
+created_at: string
 }
 
 export interface Project {
-  id: string
-  user_id: string
-  title: string
-  description: string | null
-  difficulty_level: DifficultyLevel
-  estimated_duration_hours: number | null
-  technologies: string[]
-  requirements: string[]
-  implementation_phases: ProjectPhase[]
-  evaluation_criteria: EvaluationCriterion[]
-  status: ProjectStatus
-  roadmap_node_id: string | null
-  github_url: string | null
-  demo_url: string | null
-  started_at: string | null
-  completed_at: string | null
-  created_at: string
-  updated_at: string
+id: string
+user_id: string
+title: string
+description: string | null
+difficulty_level: DifficultyLevel
+estimated_duration_hours: number | null
+technologies: string[]
+requirements: string[]
+implementation_phases: ProjectPhase[]
+evaluation_criteria: EvaluationCriterion[]
+status: ProjectStatus
+roadmap_node_id: string | null
+github_url: string | null
+demo_url: string | null
+started_at: string | null
+completed_at: string | null
+created_at: string
+updated_at: string
 }
 
 export type ProjectStatus = 'suggested' | 'in_progress' | 'completed' | 'dismissed'
 
 export interface ProjectPhase {
-  phase_number: number
-  title: string
-  description: string
-  tasks: string[]
-  estimated_hours: number
+phase_number: number
+title: string
+description: string
+tasks: string[]
+estimated_hours: number
 }
 
 export interface EvaluationCriterion {
-  criterion: string
-  description: string
-  weight: number
+criterion: string
+description: string
+weight: number
 }
+
 ```
 
 export interface Company {
@@ -1036,36 +1062,41 @@ export interface AIMessage {
 
 ```typescript
 // lib/validations/schemas.ts
-import { z } from 'zod'
+import { z } from 'zod';
 
-export const targetProfileSchema = z.object({
-  target_role: z.string().min(1, 'Target role is required'),
-  target_package_min: z.number().positive('Minimum package must be positive'),
-  target_package_max: z.number().positive('Maximum package must be positive'),
-  currency: z.string().default('USD'),
-  target_companies: z.array(z.string()).min(1, 'Select at least one company'),
-  available_hours_per_day: z.number().min(1).max(24),
-  timeline_weeks: z.number().min(1).max(52)
-}).refine(data => data.target_package_max >= data.target_package_min, {
-  message: 'Maximum package must be greater than or equal to minimum package',
-  path: ['target_package_max']
-})
+export const targetProfileSchema = z
+  .object({
+    target_role: z.string().min(1, 'Target role is required'),
+    target_package_min: z.number().positive('Minimum package must be positive'),
+    target_package_max: z.number().positive('Maximum package must be positive'),
+    currency: z.string().default('USD'),
+    target_companies: z.array(z.string()).min(1, 'Select at least one company'),
+    available_hours_per_day: z.number().min(1).max(24),
+    timeline_weeks: z.number().min(1).max(52),
+  })
+  .refine((data) => data.target_package_max >= data.target_package_min, {
+    message: 'Maximum package must be greater than or equal to minimum package',
+    path: ['target_package_max'],
+  });
 
 export const skillSchema = z.object({
   skill_name: z.string().min(1, 'Skill name is required'),
   proficiency_level: z.number().min(1).max(10),
-  category: z.enum(['technical', 'soft', 'domain'])
-})
+  category: z.enum(['technical', 'soft', 'domain']),
+});
 
 export const dailyTaskSchema = z.object({
   title: z.string().min(1, 'Title is required').max(200),
   description: z.string().max(1000).optional(),
   scheduled_date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
-  scheduled_time: z.string().regex(/^\d{2}:\d{2}$/).optional(),
+  scheduled_time: z
+    .string()
+    .regex(/^\d{2}:\d{2}$/)
+    .optional(),
   duration_minutes: z.number().min(5).max(480).optional(),
   priority: z.enum(['low', 'medium', 'high']).default('medium'),
-  roadmap_node_id: z.string().uuid().optional()
-})
+  roadmap_node_id: z.string().uuid().optional(),
+});
 
 export const profileUpdateSchema = z.object({
   full_name: z.string().min(1).max(100),
@@ -1075,9 +1106,9 @@ export const profileUpdateSchema = z.object({
     inApp: z.boolean(),
     reminders: z.boolean(),
     weeklyReview: z.boolean(),
-    milestones: z.boolean()
-  })
-})
+    milestones: z.boolean(),
+  }),
+});
 ```
 
 ## 4. Component Architecture
@@ -1183,18 +1214,20 @@ App
 ### 4.2 Key Component Specifications
 
 #### Button Component
+
 ```typescript
 // components/ui/button.tsx
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'ghost' | 'danger'
-  size?: 'sm' | 'md' | 'lg'
-  isLoading?: boolean
-  leftIcon?: React.ReactNode
-  rightIcon?: React.ReactNode
+  variant?: 'primary' | 'secondary' | 'ghost' | 'danger';
+  size?: 'sm' | 'md' | 'lg';
+  isLoading?: boolean;
+  leftIcon?: React.ReactNode;
+  rightIcon?: React.ReactNode;
 }
 ```
 
 **Features:**
+
 - Framer Motion animations on hover/press
 - Soft glow effect matching design system
 - Loading state with spinner
@@ -1202,39 +1235,43 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 - Accessible (keyboard navigation, ARIA labels)
 
 #### Card Component
+
 ```typescript
 // components/ui/card.tsx
 interface CardProps {
-  variant?: 'default' | 'glass' | 'outlined'
-  hoverable?: boolean
-  clickable?: boolean
-  onClick?: () => void
-  children: React.ReactNode
-  className?: string
+  variant?: 'default' | 'glass' | 'outlined';
+  hoverable?: boolean;
+  clickable?: boolean;
+  onClick?: () => void;
+  children: React.ReactNode;
+  className?: string;
 }
 ```
 
 **Features:**
+
 - Glass morphism effect with backdrop blur
 - Hover animations
 - Border gradients (blue/purple)
 - Responsive padding
 
 #### Modal Component
+
 ```typescript
 // components/ui/modal.tsx
 interface ModalProps {
-  isOpen: boolean
-  onClose: () => void
-  title?: string
-  size?: 'sm' | 'md' | 'lg' | 'xl' | 'full'
-  children: React.ReactNode
-  showCloseButton?: boolean
-  closeOnOverlayClick?: boolean
+  isOpen: boolean;
+  onClose: () => void;
+  title?: string;
+  size?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
+  children: React.ReactNode;
+  showCloseButton?: boolean;
+  closeOnOverlayClick?: boolean;
 }
 ```
 
 **Features:**
+
 - AnimatePresence for smooth enter/exit
 - Backdrop blur
 - Focus trap
@@ -1243,18 +1280,20 @@ interface ModalProps {
 - Scroll lock
 
 #### RoadmapCanvas Component
+
 ```typescript
 // components/roadmap/roadmap-canvas.tsx
 interface RoadmapCanvasProps {
-  roadmapId: string
-  nodes: RoadmapNode[]
-  onNodeClick: (node: RoadmapNode) => void
-  onNodeUpdate: (nodeId: string, updates: Partial<RoadmapNode>) => void
-  onLayoutChange: (layout: ReactFlowLayoutData) => void
+  roadmapId: string;
+  nodes: RoadmapNode[];
+  onNodeClick: (node: RoadmapNode) => void;
+  onNodeUpdate: (nodeId: string, updates: Partial<RoadmapNode>) => void;
+  onLayoutChange: (layout: ReactFlowLayoutData) => void;
 }
 ```
 
 **Features:**
+
 - React Flow integration
 - Custom node types for different node_type values
 - Status-based styling (locked, available, in_progress, completed)
@@ -1265,23 +1304,26 @@ interface RoadmapCanvasProps {
 - Touch gestures for mobile
 
 **Node Styling:**
+
 - Locked: Grayscale, no glow
 - Available: Blue glow, clickable
 - In Progress: Purple glow, pulsing animation
 - Completed: Green checkmark, success glow
 
 #### ChatInterface Component
+
 ```typescript
 // components/mentor/chat-interface.tsx
 interface ChatInterfaceProps {
-  conversationId: string
-  messages: AIMessage[]
-  onSendMessage: (content: string) => Promise<void>
-  isLoading?: boolean
+  conversationId: string;
+  messages: AIMessage[];
+  onSendMessage: (content: string) => Promise<void>;
+  isLoading?: boolean;
 }
 ```
 
 **Features:**
+
 - Streaming AI responses
 - Markdown rendering for formatted responses
 - Code syntax highlighting
@@ -1464,63 +1506,63 @@ placify/
 ```
 
 ├── lib/
-│   ├── supabase/
-│   │   ├── client.ts
-│   │   ├── server.ts
-│   │   ├── middleware.ts
-│   │   └── types.ts
-│   ├── openai/
-│   │   ├── client.ts
-│   │   ├── chat.ts
-│   │   ├── analysis.ts
-│   │   └── generation.ts
-│   ├── actions/
-│   │   ├── auth.actions.ts
-│   │   ├── profile.actions.ts
-│   │   ├── roadmap.actions.ts
-│   │   ├── tasks.actions.ts
-│   │   ├── interview.actions.ts
-│   │   ├── resume.actions.ts
-│   │   └── analytics.actions.ts
-│   ├── hooks/
-│   │   ├── use-auth.ts
-│   │   ├── use-roadmap.ts
-│   │   ├── use-tasks.ts
-│   │   ├── use-notifications.ts
-│   │   ├── use-realtime.ts
-│   │   └── use-media-query.ts
-│   ├── stores/
-│   │   ├── auth.store.ts
-│   │   ├── user.store.ts
-│   │   ├── roadmap.store.ts
-│   │   ├── planner.store.ts
-│   │   └── notifications.store.ts
-│   ├── utils/
-│   │   ├── cn.ts
-│   │   ├── date.ts
-│   │   ├── format.ts
-│   │   ├── validation.ts
-│   │   └── api.ts
-│   ├── types/
-│   │   ├── database.types.ts
-│   │   ├── models.ts
-│   │   ├── api.ts
-│   │   └── index.ts
-│   └── validations/
-│       ├── schemas.ts
-│       └── rules.ts
+│ ├── supabase/
+│ │ ├── client.ts
+│ │ ├── server.ts
+│ │ ├── middleware.ts
+│ │ └── types.ts
+│ ├── openai/
+│ │ ├── client.ts
+│ │ ├── chat.ts
+│ │ ├── analysis.ts
+│ │ └── generation.ts
+│ ├── actions/
+│ │ ├── auth.actions.ts
+│ │ ├── profile.actions.ts
+│ │ ├── roadmap.actions.ts
+│ │ ├── tasks.actions.ts
+│ │ ├── interview.actions.ts
+│ │ ├── resume.actions.ts
+│ │ └── analytics.actions.ts
+│ ├── hooks/
+│ │ ├── use-auth.ts
+│ │ ├── use-roadmap.ts
+│ │ ├── use-tasks.ts
+│ │ ├── use-notifications.ts
+│ │ ├── use-realtime.ts
+│ │ └── use-media-query.ts
+│ ├── stores/
+│ │ ├── auth.store.ts
+│ │ ├── user.store.ts
+│ │ ├── roadmap.store.ts
+│ │ ├── planner.store.ts
+│ │ └── notifications.store.ts
+│ ├── utils/
+│ │ ├── cn.ts
+│ │ ├── date.ts
+│ │ ├── format.ts
+│ │ ├── validation.ts
+│ │ └── api.ts
+│ ├── types/
+│ │ ├── database.types.ts
+│ │ ├── models.ts
+│ │ ├── api.ts
+│ │ └── index.ts
+│ └── validations/
+│ ├── schemas.ts
+│ └── rules.ts
 ├── public/
-│   ├── images/
-│   ├── icons/
-│   └── fonts/
+│ ├── images/
+│ ├── icons/
+│ └── fonts/
 ├── styles/
-│   └── animations.css
+│ └── animations.css
 ├── supabase/
-│   ├── migrations/
-│   │   ├── 001_initial_schema.sql
-│   │   ├── 002_rls_policies.sql
-│   │   └── 003_functions_triggers.sql
-│   └── seed.sql
+│ ├── migrations/
+│ │ ├── 001_initial_schema.sql
+│ │ ├── 002_rls_policies.sql
+│ │ └── 003_functions_triggers.sql
+│ └── seed.sql
 ├── .env.local
 ├── .env.example
 ├── .eslintrc.json
@@ -1530,7 +1572,8 @@ placify/
 ├── tsconfig.json
 ├── package.json
 └── README.md
-```
+
+````
 
 ## 6. State Management
 
@@ -1547,7 +1590,7 @@ interface AuthState {
   session: Session | null
   isLoading: boolean
   isAuthenticated: boolean
-  
+
   // Actions
   setUser: (user: User | null) => void
   setSession: (session: Session | null) => void
@@ -1562,53 +1605,54 @@ export const useAuthStore = create<AuthState>()(
       session: null,
       isLoading: true,
       isAuthenticated: false,
-      
-      setUser: (user) => set({ 
-        user, 
+
+      setUser: (user) => set({
+        user,
         isAuthenticated: !!user,
-        isLoading: false 
+        isLoading: false
       }),
-      
+
       setSession: (session) => set({ session }),
-      
+
       signOut: async () => {
         // Sign out logic
         set({ user: null, session: null, isAuthenticated: false })
       },
-      
+
       refreshSession: async () => {
         // Refresh session logic
       }
     }),
     {
       name: 'auth-storage',
-      partialize: (state) => ({ 
+      partialize: (state) => ({
         user: state.user,
-        session: state.session 
+        session: state.session
       })
     }
   )
 )
-```
+````
 
 #### Roadmap Store
+
 ```typescript
 // lib/stores/roadmap.store.ts
-import { create } from 'zustand'
+import { create } from 'zustand';
 
 interface RoadmapState {
-  currentRoadmap: Roadmap | null
-  nodes: RoadmapNode[]
-  selectedNode: RoadmapNode | null
-  isLoading: boolean
-  
+  currentRoadmap: Roadmap | null;
+  nodes: RoadmapNode[];
+  selectedNode: RoadmapNode | null;
+  isLoading: boolean;
+
   // Actions
-  setRoadmap: (roadmap: Roadmap) => void
-  setNodes: (nodes: RoadmapNode[]) => void
-  selectNode: (node: RoadmapNode | null) => void
-  updateNodeStatus: (nodeId: string, status: NodeStatus) => void
-  addNode: (node: RoadmapNode) => void
-  removeNode: (nodeId: string) => void
+  setRoadmap: (roadmap: Roadmap) => void;
+  setNodes: (nodes: RoadmapNode[]) => void;
+  selectNode: (node: RoadmapNode | null) => void;
+  updateNodeStatus: (nodeId: string, status: NodeStatus) => void;
+  addNode: (node: RoadmapNode) => void;
+  removeNode: (nodeId: string) => void;
 }
 
 export const useRoadmapStore = create<RoadmapState>((set) => ({
@@ -1616,76 +1660,83 @@ export const useRoadmapStore = create<RoadmapState>((set) => ({
   nodes: [],
   selectedNode: null,
   isLoading: false,
-  
+
   setRoadmap: (roadmap) => set({ currentRoadmap: roadmap }),
-  
+
   setNodes: (nodes) => set({ nodes }),
-  
+
   selectNode: (node) => set({ selectedNode: node }),
-  
-  updateNodeStatus: (nodeId, status) => set((state) => ({
-    nodes: state.nodes.map(node =>
-      node.node_id === nodeId ? { ...node, status } : node
-    )
-  })),
-  
-  addNode: (node) => set((state) => ({
-    nodes: [...state.nodes, node]
-  })),
-  
-  removeNode: (nodeId) => set((state) => ({
-    nodes: state.nodes.filter(node => node.node_id !== nodeId)
-  }))
-}))
+
+  updateNodeStatus: (nodeId, status) =>
+    set((state) => ({
+      nodes: state.nodes.map((node) => (node.node_id === nodeId ? { ...node, status } : node)),
+    })),
+
+  addNode: (node) =>
+    set((state) => ({
+      nodes: [...state.nodes, node],
+    })),
+
+  removeNode: (nodeId) =>
+    set((state) => ({
+      nodes: state.nodes.filter((node) => node.node_id !== nodeId),
+    })),
+}));
 ```
 
 #### Notifications Store
+
 ```typescript
 // lib/stores/notifications.store.ts
-import { create } from 'zustand'
+import { create } from 'zustand';
 
 interface NotificationsState {
-  notifications: Notification[]
-  unreadCount: number
-  
+  notifications: Notification[];
+  unreadCount: number;
+
   // Actions
-  setNotifications: (notifications: Notification[]) => void
-  addNotification: (notification: Notification) => void
-  markAsRead: (notificationId: string) => void
-  markAllAsRead: () => void
-  removeNotification: (notificationId: string) => void
+  setNotifications: (notifications: Notification[]) => void;
+  addNotification: (notification: Notification) => void;
+  markAsRead: (notificationId: string) => void;
+  markAllAsRead: () => void;
+  removeNotification: (notificationId: string) => void;
 }
 
 export const useNotificationsStore = create<NotificationsState>((set) => ({
   notifications: [],
   unreadCount: 0,
-  
-  setNotifications: (notifications) => set({ 
-    notifications,
-    unreadCount: notifications.filter(n => !n.is_read).length
-  }),
-  
-  addNotification: (notification) => set((state) => ({
-    notifications: [notification, ...state.notifications],
-    unreadCount: notification.is_read ? state.unreadCount : state.unreadCount + 1
-  })),
-  
-  markAsRead: (notificationId) => set((state) => ({
-    notifications: state.notifications.map(n =>
-      n.id === notificationId ? { ...n, is_read: true } : n
-    ),
-    unreadCount: Math.max(0, state.unreadCount - 1)
-  })),
-  
-  markAllAsRead: () => set((state) => ({
-    notifications: state.notifications.map(n => ({ ...n, is_read: true })),
-    unreadCount: 0
-  })),
-  
-  removeNotification: (notificationId) => set((state) => ({
-    notifications: state.notifications.filter(n => n.id !== notificationId)
-  }))
-}))
+
+  setNotifications: (notifications) =>
+    set({
+      notifications,
+      unreadCount: notifications.filter((n) => !n.is_read).length,
+    }),
+
+  addNotification: (notification) =>
+    set((state) => ({
+      notifications: [notification, ...state.notifications],
+      unreadCount: notification.is_read ? state.unreadCount : state.unreadCount + 1,
+    })),
+
+  markAsRead: (notificationId) =>
+    set((state) => ({
+      notifications: state.notifications.map((n) =>
+        n.id === notificationId ? { ...n, is_read: true } : n
+      ),
+      unreadCount: Math.max(0, state.unreadCount - 1),
+    })),
+
+  markAllAsRead: () =>
+    set((state) => ({
+      notifications: state.notifications.map((n) => ({ ...n, is_read: true })),
+      unreadCount: 0,
+    })),
+
+  removeNotification: (notificationId) =>
+    set((state) => ({
+      notifications: state.notifications.filter((n) => n.id !== notificationId),
+    })),
+}));
 ```
 
 ### 6.2 Server State Management
@@ -1703,43 +1754,45 @@ export const useNotificationsStore = create<NotificationsState>((set) => ({
 
 ```typescript
 // lib/actions/roadmap.actions.ts
-'use server'
+'use server';
 
-import { createServerClient } from '@/lib/supabase/server'
-import { revalidatePath } from 'next/cache'
+import { createServerClient } from '@/lib/supabase/server';
+import { revalidatePath } from 'next/cache';
 
 export async function updateNodeStatus(
   nodeId: string,
   status: NodeStatus
 ): Promise<{ success: boolean; error?: string }> {
   try {
-    const supabase = createServerClient()
-    
+    const supabase = createServerClient();
+
     // Get authenticated user
-    const { data: { user } } = await supabase.auth.getUser()
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
     if (!user) {
-      return { success: false, error: 'Unauthorized' }
+      return { success: false, error: 'Unauthorized' };
     }
-    
+
     // Update node
     const { error } = await supabase
       .from('roadmap_nodes')
-      .update({ 
+      .update({
         status,
         ...(status === 'in_progress' && { started_at: new Date().toISOString() }),
-        ...(status === 'completed' && { completed_at: new Date().toISOString() })
+        ...(status === 'completed' && { completed_at: new Date().toISOString() }),
       })
-      .eq('id', nodeId)
-    
-    if (error) throw error
-    
+      .eq('id', nodeId);
+
+    if (error) throw error;
+
     // Revalidate the roadmap page
-    revalidatePath('/dashboard/roadmap')
-    
-    return { success: true }
+    revalidatePath('/dashboard/roadmap');
+
+    return { success: true };
   } catch (error) {
-    console.error('Update node status error:', error)
-    return { success: false, error: 'Failed to update node status' }
+    console.error('Update node status error:', error);
+    return { success: false, error: 'Failed to update node status' };
   }
 }
 
@@ -1747,30 +1800,32 @@ export async function createDailyTask(
   data: DailyTaskInput
 ): Promise<{ success: boolean; task?: DailyTask; error?: string }> {
   try {
-    const supabase = createServerClient()
-    
-    const { data: { user } } = await supabase.auth.getUser()
+    const supabase = createServerClient();
+
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
     if (!user) {
-      return { success: false, error: 'Unauthorized' }
+      return { success: false, error: 'Unauthorized' };
     }
-    
+
     // Validate with Zod
-    const validated = dailyTaskSchema.parse(data)
-    
+    const validated = dailyTaskSchema.parse(data);
+
     const { data: task, error } = await supabase
       .from('daily_tasks')
       .insert({ ...validated, user_id: user.id })
       .select()
-      .single()
-    
-    if (error) throw error
-    
-    revalidatePath('/dashboard/planner')
-    
-    return { success: true, task }
+      .single();
+
+    if (error) throw error;
+
+    revalidatePath('/dashboard/planner');
+
+    return { success: true, task };
   } catch (error) {
-    console.error('Create task error:', error)
-    return { success: false, error: 'Failed to create task' }
+    console.error('Create task error:', error);
+    return { success: false, error: 'Failed to create task' };
   }
 }
 ```
@@ -1778,89 +1833,92 @@ export async function createDailyTask(
 ### 7.2 API Routes (For Complex Operations)
 
 #### AI Chat Stream
+
 ```typescript
 // app/api/ai/chat/route.ts
-import { OpenAIStream, StreamingTextResponse } from 'ai'
-import { openai } from '@/lib/openai/client'
-import { createServerClient } from '@/lib/supabase/server'
+import { OpenAIStream, StreamingTextResponse } from 'ai';
+import { openai } from '@/lib/openai/client';
+import { createServerClient } from '@/lib/supabase/server';
 
-export const runtime = 'edge'
+export const runtime = 'edge';
 
 export async function POST(req: Request) {
   try {
-    const { messages, conversationId } = await req.json()
-    
-    const supabase = createServerClient()
-    const { data: { user } } = await supabase.auth.getUser()
-    
+    const { messages, conversationId } = await req.json();
+
+    const supabase = createServerClient();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
     if (!user) {
-      return new Response('Unauthorized', { status: 401 })
+      return new Response('Unauthorized', { status: 401 });
     }
-    
+
     // Get user context (target profile, current progress)
     const { data: targetProfile } = await supabase
       .from('target_profiles')
       .select('*')
       .eq('user_id', user.id)
-      .single()
-    
+      .single();
+
     // Create system prompt with context
-    const systemPrompt = `You are an AI career mentor helping ${user.email} prepare for ${targetProfile?.target_role}...`
-    
+    const systemPrompt = `You are an AI career mentor helping ${user.email} prepare for ${targetProfile?.target_role}...`;
+
     const response = await openai.chat.completions.create({
       model: 'gpt-4-turbo-preview',
       stream: true,
-      messages: [
-        { role: 'system', content: systemPrompt },
-        ...messages
-      ],
+      messages: [{ role: 'system', content: systemPrompt }, ...messages],
       temperature: 0.7,
-      max_tokens: 1000
-    })
-    
+      max_tokens: 1000,
+    });
+
     const stream = OpenAIStream(response, {
       onCompletion: async (completion) => {
         // Save message to database
         await supabase.from('ai_messages').insert({
           conversation_id: conversationId,
           role: 'assistant',
-          content: completion
-        })
-      }
-    })
-    
-    return new StreamingTextResponse(stream)
+          content: completion,
+        });
+      },
+    });
+
+    return new StreamingTextResponse(stream);
   } catch (error) {
-    console.error('Chat API error:', error)
-    return new Response('Internal Server Error', { status: 500 })
+    console.error('Chat API error:', error);
+    return new Response('Internal Server Error', { status: 500 });
   }
 }
 ```
 
 #### Resume Analysis
+
 ```typescript
 // app/api/ai/resume-analysis/route.ts
-import { openai } from '@/lib/openai/client'
-import { createServerClient } from '@/lib/supabase/server'
+import { openai } from '@/lib/openai/client';
+import { createServerClient } from '@/lib/supabase/server';
 
 export async function POST(req: Request) {
   try {
-    const { resumeId, resumeContent } = await req.json()
-    
-    const supabase = createServerClient()
-    const { data: { user } } = await supabase.auth.getUser()
-    
+    const { resumeId, resumeContent } = await req.json();
+
+    const supabase = createServerClient();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
     if (!user) {
-      return Response.json({ error: 'Unauthorized' }, { status: 401 })
+      return Response.json({ error: 'Unauthorized' }, { status: 401 });
     }
-    
+
     // Get target profile for context
     const { data: targetProfile } = await supabase
       .from('target_profiles')
       .select('*')
       .eq('user_id', user.id)
-      .single()
-    
+      .single();
+
     const prompt = `Analyze this resume for a ${targetProfile?.target_role} position at companies like ${targetProfile?.target_companies.join(', ')}.
     
 Resume Content:
@@ -1876,17 +1934,17 @@ Provide a comprehensive analysis with:
 7. Content score
 8. Keyword score
 
-Respond in JSON format.`
-    
+Respond in JSON format.`;
+
     const response = await openai.chat.completions.create({
       model: 'gpt-4-turbo-preview',
       messages: [{ role: 'user', content: prompt }],
       response_format: { type: 'json_object' },
-      temperature: 0.3
-    })
-    
-    const analysis = JSON.parse(response.choices[0].message.content || '{}')
-    
+      temperature: 0.3,
+    });
+
+    const analysis = JSON.parse(response.choices[0].message.content || '{}');
+
     // Save analysis to database
     const { data: savedAnalysis } = await supabase
       .from('resume_analyses')
@@ -1902,15 +1960,15 @@ Respond in JSON format.`
         content_score: analysis.content_score,
         keyword_score: analysis.keyword_score,
         detailed_feedback: analysis.detailed_feedback,
-        ai_model: 'gpt-4-turbo-preview'
+        ai_model: 'gpt-4-turbo-preview',
       })
       .select()
-      .single()
-    
-    return Response.json({ success: true, analysis: savedAnalysis })
+      .single();
+
+    return Response.json({ success: true, analysis: savedAnalysis });
   } catch (error) {
-    console.error('Resume analysis error:', error)
-    return Response.json({ error: 'Analysis failed' }, { status: 500 })
+    console.error('Resume analysis error:', error);
+    return Response.json({ error: 'Analysis failed' }, { status: 500 });
   }
 }
 ```
@@ -1919,16 +1977,16 @@ Respond in JSON format.`
 
 ```typescript
 // lib/hooks/use-realtime.ts
-import { useEffect } from 'use'
-import { createBrowserClient } from '@/lib/supabase/client'
-import { useNotificationsStore } from '@/lib/stores/notifications.store'
+import { useEffect } from 'use';
+import { createBrowserClient } from '@/lib/supabase/client';
+import { useNotificationsStore } from '@/lib/stores/notifications.store';
 
 export function useRealtimeNotifications(userId: string) {
-  const { addNotification } = useNotificationsStore()
-  
+  const { addNotification } = useNotificationsStore();
+
   useEffect(() => {
-    const supabase = createBrowserClient()
-    
+    const supabase = createBrowserClient();
+
     const channel = supabase
       .channel('notifications')
       .on(
@@ -1937,26 +1995,26 @@ export function useRealtimeNotifications(userId: string) {
           event: 'INSERT',
           schema: 'public',
           table: 'notifications',
-          filter: `user_id=eq.${userId}`
+          filter: `user_id=eq.${userId}`,
         },
         (payload) => {
-          addNotification(payload.new as Notification)
+          addNotification(payload.new as Notification);
         }
       )
-      .subscribe()
-    
+      .subscribe();
+
     return () => {
-      supabase.removeChannel(channel)
-    }
-  }, [userId, addNotification])
+      supabase.removeChannel(channel);
+    };
+  }, [userId, addNotification]);
 }
 
 export function useRealtimeRoadmapUpdates(roadmapId: string) {
-  const { setNodes } = useRoadmapStore()
-  
+  const { setNodes } = useRoadmapStore();
+
   useEffect(() => {
-    const supabase = createBrowserClient()
-    
+    const supabase = createBrowserClient();
+
     const channel = supabase
       .channel('roadmap-nodes')
       .on(
@@ -1965,24 +2023,24 @@ export function useRealtimeRoadmapUpdates(roadmapId: string) {
           event: '*',
           schema: 'public',
           table: 'roadmap_nodes',
-          filter: `roadmap_id=eq.${roadmapId}`
+          filter: `roadmap_id=eq.${roadmapId}`,
         },
         async () => {
           // Refetch nodes
           const { data } = await supabase
             .from('roadmap_nodes')
             .select('*')
-            .eq('roadmap_id', roadmapId)
-          
-          if (data) setNodes(data)
+            .eq('roadmap_id', roadmapId);
+
+          if (data) setNodes(data);
         }
       )
-      .subscribe()
-    
+      .subscribe();
+
     return () => {
-      supabase.removeChannel(channel)
-    }
-  }, [roadmapId, setNodes])
+      supabase.removeChannel(channel);
+    };
+  }, [roadmapId, setNodes]);
 }
 ```
 
@@ -1992,15 +2050,11 @@ export function useRealtimeRoadmapUpdates(roadmapId: string) {
 
 ```typescript
 // tailwind.config.ts
-import type { Config } from 'tailwindcss'
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
   darkMode: ['class'],
-  content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-  ],
+  content: ['./pages/**/*.{ts,tsx}', './components/**/*.{ts,tsx}', './app/**/*.{ts,tsx}'],
   theme: {
     extend: {
       colors: {
@@ -2014,7 +2068,7 @@ const config: Config = {
           100: '#dbeafe',
           500: '#3b82f6',
           600: '#2563eb',
-          700: '#1d4ed8'
+          700: '#1d4ed8',
         },
         secondary: {
           DEFAULT: 'hsl(var(--secondary))',
@@ -2023,25 +2077,25 @@ const config: Config = {
           100: '#f3e8ff',
           500: '#a855f7',
           600: '#9333ea',
-          700: '#7e22ce'
+          700: '#7e22ce',
         },
         success: {
           DEFAULT: '#10b981',
-          foreground: '#ffffff'
+          foreground: '#ffffff',
         },
         warning: {
           DEFAULT: '#f59e0b',
-          foreground: '#ffffff'
+          foreground: '#ffffff',
         },
         error: {
           DEFAULT: '#ef4444',
-          foreground: '#ffffff'
+          foreground: '#ffffff',
         },
         glass: {
           DEFAULT: 'rgba(255, 255, 255, 0.05)',
           light: 'rgba(255, 255, 255, 0.1)',
-          dark: 'rgba(0, 0, 0, 0.2)'
-        }
+          dark: 'rgba(0, 0, 0, 0.2)',
+        },
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -2050,18 +2104,18 @@ const config: Config = {
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
-        mono: ['var(--font-jetbrains)', 'monospace']
+        mono: ['var(--font-jetbrains)', 'monospace'],
       },
       fontSize: {
-        'xs': ['0.75rem', { lineHeight: '1rem' }],
-        'sm': ['0.875rem', { lineHeight: '1.25rem' }],
-        'base': ['1rem', { lineHeight: '1.5rem' }],
-        'lg': ['1.125rem', { lineHeight: '1.75rem' }],
-        'xl': ['1.25rem', { lineHeight: '1.75rem' }],
+        xs: ['0.75rem', { lineHeight: '1rem' }],
+        sm: ['0.875rem', { lineHeight: '1.25rem' }],
+        base: ['1rem', { lineHeight: '1.5rem' }],
+        lg: ['1.125rem', { lineHeight: '1.75rem' }],
+        xl: ['1.25rem', { lineHeight: '1.75rem' }],
         '2xl': ['1.5rem', { lineHeight: '2rem' }],
         '3xl': ['1.875rem', { lineHeight: '2.25rem' }],
         '4xl': ['2.25rem', { lineHeight: '2.5rem' }],
-        '5xl': ['3rem', { lineHeight: '1' }]
+        '5xl': ['3rem', { lineHeight: '1' }],
       },
       boxShadow: {
         'glow-sm': '0 0 10px rgba(59, 130, 246, 0.3)',
@@ -2069,54 +2123,52 @@ const config: Config = {
         'glow-lg': '0 0 30px rgba(59, 130, 246, 0.5)',
         'glow-purple-sm': '0 0 10px rgba(168, 85, 247, 0.3)',
         'glow-purple-md': '0 0 20px rgba(168, 85, 247, 0.4)',
-        'glow-purple-lg': '0 0 30px rgba(168, 85, 247, 0.5)'
+        'glow-purple-lg': '0 0 30px rgba(168, 85, 247, 0.5)',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-primary': 'linear-gradient(135deg, #3b82f6 0%, #9333ea 100%)',
         'gradient-secondary': 'linear-gradient(135deg, #9333ea 0%, #3b82f6 100%)',
-        'glass-gradient': 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)'
+        'glass-gradient':
+          'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)',
       },
       backdropBlur: {
         xs: '2px',
         sm: '4px',
         md: '8px',
         lg: '12px',
-        xl: '16px'
+        xl: '16px',
       },
       animation: {
         'fade-in': 'fadeIn 0.3s ease-in-out',
         'slide-in': 'slideIn 0.3s ease-out',
         'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
-        'shimmer': 'shimmer 2s linear infinite'
+        shimmer: 'shimmer 2s linear infinite',
       },
       keyframes: {
         fadeIn: {
           '0%': { opacity: '0' },
-          '100%': { opacity: '1' }
+          '100%': { opacity: '1' },
         },
         slideIn: {
           '0%': { transform: 'translateY(10px)', opacity: '0' },
-          '100%': { transform: 'translateY(0)', opacity: '1' }
+          '100%': { transform: 'translateY(0)', opacity: '1' },
         },
         pulseGlow: {
           '0%, 100%': { boxShadow: '0 0 20px rgba(59, 130, 246, 0.4)' },
-          '50%': { boxShadow: '0 0 30px rgba(59, 130, 246, 0.6)' }
+          '50%': { boxShadow: '0 0 30px rgba(59, 130, 246, 0.6)' },
         },
         shimmer: {
           '0%': { backgroundPosition: '-1000px 0' },
-          '100%': { backgroundPosition: '1000px 0' }
-        }
-      }
-    }
+          '100%': { backgroundPosition: '1000px 0' },
+        },
+      },
+    },
   },
-  plugins: [
-    require('tailwindcss-animate'),
-    require('@tailwindcss/typography')
-  ]
-}
+  plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography')],
+};
 
-export default config
+export default config;
 ```
 
 ### 8.2 Global CSS Variables
@@ -2131,32 +2183,32 @@ export default config
   :root {
     --background: 222 47% 11%;
     --foreground: 213 31% 91%;
-    
+
     --border: 216 34% 17%;
     --input: 216 34% 17%;
-    
+
     --primary: 217 91% 60%;
     --primary-foreground: 222 47% 11%;
-    
+
     --secondary: 271 91% 65%;
     --secondary-foreground: 222 47% 11%;
-    
+
     --radius: 0.5rem;
-    
+
     --font-inter: 'Inter', system-ui, sans-serif;
     --font-jetbrains: 'JetBrains Mono', monospace;
   }
-  
+
   .light {
     --background: 0 0% 100%;
     --foreground: 222 47% 11%;
-    
+
     --border: 214 32% 91%;
     --input: 214 32% 91%;
-    
+
     --primary: 217 91% 60%;
     --primary-foreground: 0 0% 100%;
-    
+
     --secondary: 271 91% 65%;
     --secondary-foreground: 0 0% 100%;
   }
@@ -2166,25 +2218,27 @@ export default config
   * {
     @apply border-border;
   }
-  
+
   body {
     @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    font-feature-settings:
+      'rlig' 1,
+      'calt' 1;
   }
-  
+
   /* Scrollbar Styling */
   ::-webkit-scrollbar {
     @apply w-2;
   }
-  
+
   ::-webkit-scrollbar-track {
     @apply bg-transparent;
   }
-  
+
   ::-webkit-scrollbar-thumb {
     @apply bg-glass rounded-full;
   }
-  
+
   ::-webkit-scrollbar-thumb:hover {
     @apply bg-glass-light;
   }
@@ -2194,15 +2248,15 @@ export default config
   .glass-card {
     @apply bg-glass backdrop-blur-md border border-white/10 rounded-lg;
   }
-  
+
   .glass-card-hover {
     @apply glass-card transition-all duration-300 hover:bg-glass-light hover:shadow-glow-md;
   }
-  
+
   .gradient-text {
     @apply bg-gradient-primary bg-clip-text text-transparent;
   }
-  
+
   .btn-glow {
     @apply shadow-glow-sm hover:shadow-glow-md transition-shadow duration-300;
   }
@@ -2213,47 +2267,47 @@ export default config
 
 ```typescript
 // lib/animations/variants.ts
-import { Variants } from 'framer-motion'
+import { Variants } from 'framer-motion';
 
 export const fadeInVariants: Variants = {
   hidden: { opacity: 0 },
-  visible: { 
+  visible: {
     opacity: 1,
-    transition: { duration: 0.3, ease: 'easeOut' }
+    transition: { duration: 0.3, ease: 'easeOut' },
   },
-  exit: { 
+  exit: {
     opacity: 0,
-    transition: { duration: 0.2, ease: 'easeIn' }
-  }
-}
+    transition: { duration: 0.2, ease: 'easeIn' },
+  },
+};
 
 export const slideUpVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
-    transition: { duration: 0.4, ease: 'easeOut' }
+    transition: { duration: 0.4, ease: 'easeOut' },
   },
-  exit: { 
-    opacity: 0, 
+  exit: {
+    opacity: 0,
     y: -20,
-    transition: { duration: 0.3, ease: 'easeIn' }
-  }
-}
+    transition: { duration: 0.3, ease: 'easeIn' },
+  },
+};
 
 export const scaleVariants: Variants = {
   hidden: { opacity: 0, scale: 0.95 },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     scale: 1,
-    transition: { duration: 0.3, ease: 'easeOut' }
+    transition: { duration: 0.3, ease: 'easeOut' },
   },
-  exit: { 
-    opacity: 0, 
+  exit: {
+    opacity: 0,
     scale: 0.95,
-    transition: { duration: 0.2, ease: 'easeIn' }
-  }
-}
+    transition: { duration: 0.2, ease: 'easeIn' },
+  },
+};
 
 export const staggerContainerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -2261,47 +2315,47 @@ export const staggerContainerVariants: Variants = {
     opacity: 1,
     transition: {
       staggerChildren: 0.1,
-      delayChildren: 0.1
-    }
-  }
-}
+      delayChildren: 0.1,
+    },
+  },
+};
 
 export const staggerItemVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
-    transition: { duration: 0.4, ease: 'easeOut' }
-  }
-}
+    transition: { duration: 0.4, ease: 'easeOut' },
+  },
+};
 
 export const modalVariants: Variants = {
   hidden: { opacity: 0, scale: 0.95, y: 20 },
-  visible: { 
-    opacity: 1, 
-    scale: 1, 
+  visible: {
+    opacity: 1,
+    scale: 1,
     y: 0,
-    transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] }
+    transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] },
   },
-  exit: { 
-    opacity: 0, 
-    scale: 0.95, 
+  exit: {
+    opacity: 0,
+    scale: 0.95,
     y: 20,
-    transition: { duration: 0.2, ease: [0.4, 0, 1, 1] }
-  }
-}
+    transition: { duration: 0.2, ease: [0.4, 0, 1, 1] },
+  },
+};
 
 export const glowVariants: Variants = {
   initial: { boxShadow: '0 0 20px rgba(59, 130, 246, 0.3)' },
-  hover: { 
+  hover: {
     boxShadow: '0 0 30px rgba(59, 130, 246, 0.5)',
-    transition: { duration: 0.3 }
+    transition: { duration: 0.3 },
   },
-  tap: { 
+  tap: {
     scale: 0.98,
-    transition: { duration: 0.1 }
-  }
-}
+    transition: { duration: 0.1 },
+  },
+};
 ```
 
 ## 9. User Flows
@@ -2319,7 +2373,7 @@ export const glowVariants: Variants = {
    ├── Brief introduction to Placify
    ├── "Get Started" button
    └── Progress indicator (1/4)
-   
+
    Step 2: Target Profile
    ├── Input target role (autocomplete suggestions)
    ├── Select target package range (min/max, currency selector)
@@ -2327,13 +2381,13 @@ export const glowVariants: Variants = {
    ├── Set available study hours per day (slider)
    ├── Set timeline in weeks (slider)
    └── Progress indicator (2/4)
-   
+
    Step 3: Current Skills
    ├── Add skills with proficiency levels (1-10)
    ├── Skill suggestions based on target role
    ├── Category tags (technical/soft/domain)
    └── Progress indicator (3/4)
-   
+
    Step 4: Preferences
    ├── Theme selection (dark/light)
    ├── Notification preferences
@@ -2511,15 +2565,15 @@ export const glowVariants: Variants = {
 
 ```typescript
 // middleware.ts
-import { createServerClient } from '@supabase/ssr'
-import { NextResponse, type NextRequest } from 'next/server'
+import { createServerClient } from '@supabase/ssr';
+import { NextResponse, type NextRequest } from 'next/server';
 
 export async function middleware(request: NextRequest) {
   let response = NextResponse.next({
     request: {
       headers: request.headers,
     },
-  })
+  });
 
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -2527,43 +2581,58 @@ export async function middleware(request: NextRequest) {
     {
       cookies: {
         get(name: string) {
-          return request.cookies.get(name)?.value
+          return request.cookies.get(name)?.value;
         },
         set(name: string, value: string, options: CookieOptions) {
           response.cookies.set({
             name,
             value,
             ...options,
-          })
+          });
         },
         remove(name: string, options: CookieOptions) {
           response.cookies.set({
             name,
             value: '',
             ...options,
-          })
+          });
         },
       },
     }
-  )
+  );
 
-  const { data: { user } } = await supabase.auth.getUser()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
   // Protected routes
-  const protectedRoutes = ['/dashboard', '/roadmap', '/mentor', '/interview', '/resume', '/planner', '/analytics', '/companies', '/projects', '/settings']
-  const isProtectedRoute = protectedRoutes.some(route => request.nextUrl.pathname.startsWith(route))
+  const protectedRoutes = [
+    '/dashboard',
+    '/roadmap',
+    '/mentor',
+    '/interview',
+    '/resume',
+    '/planner',
+    '/analytics',
+    '/companies',
+    '/projects',
+    '/settings',
+  ];
+  const isProtectedRoute = protectedRoutes.some((route) =>
+    request.nextUrl.pathname.startsWith(route)
+  );
 
   // Redirect to login if accessing protected route without auth
   if (isProtectedRoute && !user) {
-    return NextResponse.redirect(new URL('/login', request.url))
+    return NextResponse.redirect(new URL('/login', request.url));
   }
 
   // Redirect to dashboard if accessing auth pages while authenticated
-  const authRoutes = ['/login', '/register']
-  const isAuthRoute = authRoutes.some(route => request.nextUrl.pathname.startsWith(route))
-  
+  const authRoutes = ['/login', '/register'];
+  const isAuthRoute = authRoutes.some((route) => request.nextUrl.pathname.startsWith(route));
+
   if (isAuthRoute && user) {
-    return NextResponse.redirect(new URL('/dashboard', request.url))
+    return NextResponse.redirect(new URL('/dashboard', request.url));
   }
 
   // Check onboarding completion
@@ -2572,29 +2641,27 @@ export async function middleware(request: NextRequest) {
       .from('profiles')
       .select('onboarding_completed')
       .eq('id', user.id)
-      .single()
+      .single();
 
     if (profile && !profile.onboarding_completed) {
-      return NextResponse.redirect(new URL('/onboarding', request.url))
+      return NextResponse.redirect(new URL('/onboarding', request.url));
     }
   }
 
-  return response
+  return response;
 }
 
 export const config = {
-  matcher: [
-    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
-  ],
-}
+  matcher: ['/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)'],
+};
 ```
 
 ### 10.2 Input Validation and Sanitization
 
 ```typescript
 // lib/utils/validation.ts
-import { z } from 'zod'
-import DOMPurify from 'isomorphic-dompurify'
+import { z } from 'zod';
+import DOMPurify from 'isomorphic-dompurify';
 
 /**
  * Sanitize HTML content to prevent XSS attacks
@@ -2602,8 +2669,8 @@ import DOMPurify from 'isomorphic-dompurify'
 export function sanitizeHtml(html: string): string {
   return DOMPurify.sanitize(html, {
     ALLOWED_TAGS: ['b', 'i', 'em', 'strong', 'a', 'p', 'br'],
-    ALLOWED_ATTR: ['href', 'target']
-  })
+    ALLOWED_ATTR: ['href', 'target'],
+  });
 }
 
 /**
@@ -2613,56 +2680,55 @@ export function sanitizeInput(input: string): string {
   return input
     .trim()
     .replace(/[<>]/g, '') // Remove potential HTML tags
-    .slice(0, 10000) // Limit length
+    .slice(0, 10000); // Limit length
 }
 
 /**
  * Validate and sanitize file upload
  */
-export async function validateFileUpload(file: File, options: {
-  maxSize: number
-  allowedTypes: string[]
-}): Promise<{ valid: boolean; error?: string }> {
+export async function validateFileUpload(
+  file: File,
+  options: {
+    maxSize: number;
+    allowedTypes: string[];
+  }
+): Promise<{ valid: boolean; error?: string }> {
   // Check file size
   if (file.size > options.maxSize) {
-    return { 
-      valid: false, 
-      error: `File size exceeds ${options.maxSize / 1024 / 1024}MB limit` 
-    }
+    return {
+      valid: false,
+      error: `File size exceeds ${options.maxSize / 1024 / 1024}MB limit`,
+    };
   }
 
   // Check file type
   if (!options.allowedTypes.includes(file.type)) {
-    return { 
-      valid: false, 
-      error: `File type ${file.type} is not allowed` 
-    }
+    return {
+      valid: false,
+      error: `File type ${file.type} is not allowed`,
+    };
   }
 
   // Additional validation for images
   if (file.type.startsWith('image/')) {
     try {
-      const bitmap = await createImageBitmap(file)
-      bitmap.close()
+      const bitmap = await createImageBitmap(file);
+      bitmap.close();
     } catch {
-      return { valid: false, error: 'Invalid image file' }
+      return { valid: false, error: 'Invalid image file' };
     }
   }
 
-  return { valid: true }
+  return { valid: true };
 }
 
 /**
  * Rate limiting check
  */
-export function checkRateLimit(
-  identifier: string,
-  limit: number,
-  windowMs: number
-): boolean {
+export function checkRateLimit(identifier: string, limit: number, windowMs: number): boolean {
   // Implementation with Redis or in-memory store
   // Returns true if within limit, false if exceeded
-  return true
+  return true;
 }
 ```
 
@@ -2674,12 +2740,9 @@ export function checkRateLimit(
 /**
  * Verify request authenticity (CSRF protection)
  */
-export function verifyCsrfToken(
-  headerToken: string | null,
-  cookieToken: string | null
-): boolean {
-  if (!headerToken || !cookieToken) return false
-  return headerToken === cookieToken
+export function verifyCsrfToken(headerToken: string | null, cookieToken: string | null): boolean {
+  if (!headerToken || !cookieToken) return false;
+  return headerToken === cookieToken;
 }
 
 /**
@@ -2689,33 +2752,33 @@ export async function rateLimit(
   request: Request,
   options: { maxRequests: number; windowMs: number }
 ): Promise<{ success: boolean; remaining: number }> {
-  const ip = request.headers.get('x-forwarded-for') || 'unknown'
-  
+  const ip = request.headers.get('x-forwarded-for') || 'unknown';
+
   // Implementation would use Redis or Vercel KV
   // For now, returning success
-  return { success: true, remaining: options.maxRequests }
+  return { success: true, remaining: options.maxRequests };
 }
 
 /**
  * Validate API key for external integrations
  */
 export function validateApiKey(key: string | null): boolean {
-  if (!key) return false
+  if (!key) return false;
   // Compare with hashed keys in database
-  return true
+  return true;
 }
 
 /**
  * Audit log for sensitive operations
  */
 export async function auditLog(data: {
-  userId: string
-  action: string
-  resource: string
-  metadata?: Record<string, any>
+  userId: string;
+  action: string;
+  resource: string;
+  metadata?: Record<string, any>;
 }) {
   // Log to database or external service
-  console.log('AUDIT:', data)
+  console.log('AUDIT:', data);
 }
 ```
 
@@ -2765,7 +2828,7 @@ import dynamic from 'next/dynamic'
 // Lazy load heavy components
 const RoadmapCanvas = dynamic(
   () => import('@/components/roadmap/roadmap-canvas'),
-  { 
+  {
     ssr: false,
     loading: () => <RoadmapSkeleton />
   }
@@ -2781,13 +2844,13 @@ const ProgressSidebar = dynamic(
 export default async function RoadmapPage() {
   // Server-side data fetching
   const roadmap = await getRoadmap()
-  
+
   return (
     <div className="h-screen flex">
       <Suspense fallback={<RoadmapSkeleton />}>
         <RoadmapCanvas initialData={roadmap} />
       </Suspense>
-      
+
       <Suspense fallback={<SidebarSkeleton />}>
         <ProgressSidebar roadmapId={roadmap.id} />
       </Suspense>
@@ -2844,7 +2907,7 @@ export function OptimizedImage({
 
 -- Roadmap nodes queries
 CREATE INDEX idx_roadmap_nodes_roadmap_status ON roadmap_nodes(roadmap_id, status);
-CREATE INDEX idx_roadmap_nodes_user_lookup ON roadmap_nodes(roadmap_id) 
+CREATE INDEX idx_roadmap_nodes_user_lookup ON roadmap_nodes(roadmap_id)
   INCLUDE (status, title, node_type);
 
 -- Daily tasks queries
@@ -2860,7 +2923,7 @@ CREATE INDEX idx_study_sessions_user_date ON study_sessions(user_id, session_dat
 CREATE INDEX idx_mock_interviews_user_date ON mock_interviews(user_id, started_at DESC);
 
 -- Composite index for common joins
-CREATE INDEX idx_roadmap_nodes_dependencies ON roadmap_nodes 
+CREATE INDEX idx_roadmap_nodes_dependencies ON roadmap_nodes
   USING GIN (dependencies);
 ```
 
@@ -2868,12 +2931,12 @@ CREATE INDEX idx_roadmap_nodes_dependencies ON roadmap_nodes
 
 ```typescript
 // lib/cache/redis-cache.ts (Optional - for production)
-import { Redis } from '@upstash/redis'
+import { Redis } from '@upstash/redis';
 
 const redis = new Redis({
   url: process.env.UPSTASH_REDIS_REST_URL!,
   token: process.env.UPSTASH_REDIS_REST_TOKEN!,
-})
+});
 
 export async function getCachedData<T>(
   key: string,
@@ -2881,25 +2944,25 @@ export async function getCachedData<T>(
   ttl: number = 300 // 5 minutes default
 ): Promise<T> {
   // Try to get from cache
-  const cached = await redis.get<T>(key)
-  
+  const cached = await redis.get<T>(key);
+
   if (cached) {
-    return cached
+    return cached;
   }
-  
+
   // Fetch fresh data
-  const data = await fetcher()
-  
+  const data = await fetcher();
+
   // Store in cache
-  await redis.set(key, data, { ex: ttl })
-  
-  return data
+  await redis.set(key, data, { ex: ttl });
+
+  return data;
 }
 
 export async function invalidateCache(pattern: string) {
-  const keys = await redis.keys(pattern)
+  const keys = await redis.keys(pattern);
   if (keys.length > 0) {
-    await redis.del(...keys)
+    await redis.del(...keys);
   }
 }
 
@@ -2908,12 +2971,12 @@ export async function getCompanies() {
   return getCachedData(
     'companies:all',
     async () => {
-      const supabase = createServerClient()
-      const { data } = await supabase.from('companies').select('*')
-      return data || []
+      const supabase = createServerClient();
+      const { data } = await supabase.from('companies').select('*');
+      return data || [];
     },
     3600 // Cache for 1 hour
-  )
+  );
 }
 ```
 
@@ -2923,49 +2986,42 @@ export async function getCompanies() {
 
 ```typescript
 // components/ui/keyboard-navigation.tsx
-import { useEffect } from 'react'
+import { useEffect } from 'react';
 
-export function useKeyboardNavigation(
-  items: any[],
-  onSelect: (index: number) => void
-) {
-  const [focusedIndex, setFocusedIndex] = useState(-1)
+export function useKeyboardNavigation(items: any[], onSelect: (index: number) => void) {
+  const [focusedIndex, setFocusedIndex] = useState(-1);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       switch (e.key) {
         case 'ArrowDown':
-          e.preventDefault()
-          setFocusedIndex(prev => 
-            prev < items.length - 1 ? prev + 1 : prev
-          )
-          break
-        
+          e.preventDefault();
+          setFocusedIndex((prev) => (prev < items.length - 1 ? prev + 1 : prev));
+          break;
+
         case 'ArrowUp':
-          e.preventDefault()
-          setFocusedIndex(prev => 
-            prev > 0 ? prev - 1 : prev
-          )
-          break
-        
+          e.preventDefault();
+          setFocusedIndex((prev) => (prev > 0 ? prev - 1 : prev));
+          break;
+
         case 'Enter':
           if (focusedIndex >= 0) {
-            e.preventDefault()
-            onSelect(focusedIndex)
+            e.preventDefault();
+            onSelect(focusedIndex);
           }
-          break
-        
+          break;
+
         case 'Escape':
-          setFocusedIndex(-1)
-          break
+          setFocusedIndex(-1);
+          break;
       }
-    }
+    };
 
-    window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [focusedIndex, items.length, onSelect])
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [focusedIndex, items.length, onSelect]);
 
-  return { focusedIndex, setFocusedIndex }
+  return { focusedIndex, setFocusedIndex };
 }
 ```
 
@@ -2975,17 +3031,17 @@ export function useKeyboardNavigation(
 // components/roadmap/roadmap-canvas.tsx
 export function RoadmapCanvas({ nodes }: RoadmapCanvasProps) {
   return (
-    <div 
+    <div
       role="application"
       aria-label="Interactive learning roadmap"
       aria-describedby="roadmap-instructions"
     >
       <div id="roadmap-instructions" className="sr-only">
-        Use arrow keys to navigate between nodes. 
-        Press Enter to view node details. 
+        Use arrow keys to navigate between nodes.
+        Press Enter to view node details.
         Press Tab to move to controls.
       </div>
-      
+
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -3029,11 +3085,11 @@ export function Modal({ isOpen, onClose, title, children }: ModalProps) {
     if (isOpen) {
       // Focus close button when modal opens
       closeButtonRef.current?.focus()
-      
+
       // Prevent body scroll
       document.body.style.overflow = 'hidden'
     }
-    
+
     return () => {
       document.body.style.overflow = 'unset'
     }
@@ -3071,7 +3127,7 @@ export function Modal({ isOpen, onClose, title, children }: ModalProps) {
                 <h2 id="modal-title" className="text-2xl font-semibold">
                   {title}
                 </h2>
-                
+
                 <button
                   ref={closeButtonRef}
                   onClick={onClose}
@@ -3081,7 +3137,7 @@ export function Modal({ isOpen, onClose, title, children }: ModalProps) {
                   <X className="w-5 h-5" />
                 </button>
               </div>
-              
+
               <div>{children}</div>
             </motion.div>
           </div>
@@ -3129,7 +3185,7 @@ describe('Button Component', () => {
   it('calls onClick handler when clicked', () => {
     const handleClick = jest.fn()
     render(<Button onClick={handleClick}>Click me</Button>)
-    
+
     fireEvent.click(screen.getByText('Click me'))
     expect(handleClick).toHaveBeenCalledTimes(1)
   })
@@ -3162,7 +3218,7 @@ jest.mock('@/lib/supabase/client')
 describe('Roadmap Integration', () => {
   it('loads and displays roadmap nodes', async () => {
     render(<RoadmapPage />)
-    
+
     await waitFor(() => {
       expect(screen.getByText('Learn JavaScript Basics')).toBeInTheDocument()
       expect(screen.getByText('Build First Project')).toBeInTheDocument()
@@ -3172,13 +3228,13 @@ describe('Roadmap Integration', () => {
   it('opens node details modal on click', async () => {
     const user = userEvent.setup()
     render(<RoadmapPage />)
-    
+
     await waitFor(() => {
       expect(screen.getByText('Learn JavaScript Basics')).toBeInTheDocument()
     })
-    
+
     await user.click(screen.getByText('Learn JavaScript Basics'))
-    
+
     expect(screen.getByRole('dialog')).toBeInTheDocument()
     expect(screen.getByText('Node Details')).toBeInTheDocument()
   })
@@ -3186,9 +3242,9 @@ describe('Roadmap Integration', () => {
   it('updates node status optimistically', async () => {
     const user = userEvent.setup()
     render(<RoadmapPage />)
-    
+
     await user.click(screen.getByLabelText('Mark as complete'))
-    
+
     // UI updates immediately (optimistic)
     expect(screen.getByTestId('node-status')).toHaveTextContent('completed')
   })
@@ -3199,61 +3255,61 @@ describe('Roadmap Integration', () => {
 
 ```typescript
 // e2e/auth.spec.ts
-import { test, expect } from '@playwright/test'
+import { test, expect } from '@playwright/test';
 
 test.describe('Authentication Flow', () => {
   test('user can register and complete onboarding', async ({ page }) => {
-    await page.goto('/register')
-    
+    await page.goto('/register');
+
     // Fill registration form
-    await page.fill('[name="email"]', 'test@example.com')
-    await page.fill('[name="password"]', 'Test123456!')
-    await page.fill('[name="confirmPassword"]', 'Test123456!')
-    await page.click('button[type="submit"]')
-    
+    await page.fill('[name="email"]', 'test@example.com');
+    await page.fill('[name="password"]', 'Test123456!');
+    await page.fill('[name="confirmPassword"]', 'Test123456!');
+    await page.click('button[type="submit"]');
+
     // Should redirect to onboarding
-    await expect(page).toHaveURL('/onboarding')
-    
+    await expect(page).toHaveURL('/onboarding');
+
     // Complete onboarding steps
-    await page.click('text=Get Started')
-    
+    await page.click('text=Get Started');
+
     // Step 1: Target Profile
-    await page.fill('[name="targetRole"]', 'Frontend Developer')
-    await page.fill('[name="minPackage"]', '80000')
-    await page.fill('[name="maxPackage"]', '120000')
-    await page.click('text=Next')
-    
+    await page.fill('[name="targetRole"]', 'Frontend Developer');
+    await page.fill('[name="minPackage"]', '80000');
+    await page.fill('[name="maxPackage"]', '120000');
+    await page.click('text=Next');
+
     // Step 2: Skills
-    await page.fill('[name="skillName"]', 'JavaScript')
-    await page.click('[aria-label="Proficiency level 8"]')
-    await page.click('text=Add Skill')
-    await page.click('text=Next')
-    
+    await page.fill('[name="skillName"]', 'JavaScript');
+    await page.click('[aria-label="Proficiency level 8"]');
+    await page.click('text=Add Skill');
+    await page.click('text=Next');
+
     // Step 3: Preferences
-    await page.click('text=Dark Theme')
-    await page.click('text=Complete')
-    
+    await page.click('text=Dark Theme');
+    await page.click('text=Complete');
+
     // Should redirect to dashboard with generated roadmap
-    await expect(page).toHaveURL('/dashboard')
-    await expect(page.locator('text=Your Learning Roadmap')).toBeVisible()
-  })
+    await expect(page).toHaveURL('/dashboard');
+    await expect(page.locator('text=Your Learning Roadmap')).toBeVisible();
+  });
 
   test('user can login and logout', async ({ page }) => {
-    await page.goto('/login')
-    
-    await page.fill('[name="email"]', 'existing@example.com')
-    await page.fill('[name="password"]', 'Password123!')
-    await page.click('button[type="submit"]')
-    
-    await expect(page).toHaveURL('/dashboard')
-    
+    await page.goto('/login');
+
+    await page.fill('[name="email"]', 'existing@example.com');
+    await page.fill('[name="password"]', 'Password123!');
+    await page.click('button[type="submit"]');
+
+    await expect(page).toHaveURL('/dashboard');
+
     // Logout
-    await page.click('[aria-label="User menu"]')
-    await page.click('text=Sign Out')
-    
-    await expect(page).toHaveURL('/login')
-  })
-})
+    await page.click('[aria-label="User menu"]');
+    await page.click('text=Sign Out');
+
+    await expect(page).toHaveURL('/login');
+  });
+});
 ```
 
 ### 13.4 Accessibility Testing
@@ -3348,30 +3404,30 @@ on:
 jobs:
   lint-and-test:
     runs-on: ubuntu-latest
-    
+
     steps:
       - uses: actions/checkout@v3
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
           cache: 'npm'
-      
+
       - name: Install dependencies
         run: npm ci
-      
+
       - name: Run linter
         run: npm run lint
-      
+
       - name: Run type check
         run: npm run type-check
-      
+
       - name: Run tests
         run: npm run test:ci
         env:
           CI: true
-      
+
       - name: Upload coverage
         uses: codecov/codecov-action@v3
         with:
@@ -3380,25 +3436,25 @@ jobs:
   build:
     needs: lint-and-test
     runs-on: ubuntu-latest
-    
+
     steps:
       - uses: actions/checkout@v3
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
           cache: 'npm'
-      
+
       - name: Install dependencies
         run: npm ci
-      
+
       - name: Build application
         run: npm run build
         env:
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
           NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
-      
+
       - name: Run E2E tests
         run: npm run test:e2e
         env:
@@ -3408,10 +3464,10 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
-    
+
     steps:
       - uses: actions/checkout@v3
-      
+
       - name: Deploy to Vercel
         uses: amondnet/vercel-action@v20
         with:
@@ -3425,43 +3481,40 @@ jobs:
 
 ```typescript
 // lib/monitoring/sentry.ts
-import * as Sentry from '@sentry/nextjs'
+import * as Sentry from '@sentry/nextjs';
 
 Sentry.init({
   dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
   environment: process.env.NODE_ENV,
-  
+
   // Performance monitoring
   tracesSampleRate: 1.0,
-  
+
   // Session replay
   replaysSessionSampleRate: 0.1,
   replaysOnErrorSampleRate: 1.0,
-  
+
   beforeSend(event, hint) {
     // Filter out sensitive data
     if (event.request?.data) {
-      delete event.request.data.password
-      delete event.request.data.token
+      delete event.request.data.password;
+      delete event.request.data.token;
     }
-    return event
+    return event;
   },
-  
-  integrations: [
-    new Sentry.BrowserTracing(),
-    new Sentry.Replay()
-  ]
-})
+
+  integrations: [new Sentry.BrowserTracing(), new Sentry.Replay()],
+});
 
 // Custom error boundary
 export function logError(error: Error, errorInfo?: React.ErrorInfo) {
   Sentry.captureException(error, {
     contexts: {
       react: {
-        componentStack: errorInfo?.componentStack
-      }
-    }
-  })
+        componentStack: errorInfo?.componentStack,
+      },
+    },
+  });
 }
 ```
 
@@ -3537,6 +3590,7 @@ export function logError(error: Error, errorInfo?: React.ErrorInfo) {
 ## 15. Development Roadmap
 
 ### Phase 1: Foundation (Weeks 1-2)
+
 - [ ] Project setup and configuration
 - [ ] Supabase project setup and database schema
 - [ ] Authentication system implementation
@@ -3544,6 +3598,7 @@ export function logError(error: Error, errorInfo?: React.ErrorInfo) {
 - [ ] Base layouts and routing structure
 
 ### Phase 2: Core Features (Weeks 3-5)
+
 - [ ] Onboarding flow
 - [ ] Target profile configuration
 - [ ] AI roadmap generation
@@ -3551,6 +3606,7 @@ export function logError(error: Error, errorInfo?: React.ErrorInfo) {
 - [ ] Basic roadmap interactions (view, update status)
 
 ### Phase 3: AI Features (Weeks 6-7)
+
 - [ ] AI Mentor chat interface
 - [ ] OpenAI integration and streaming
 - [ ] Resume upload and parsing
@@ -3558,6 +3614,7 @@ export function logError(error: Error, errorInfo?: React.ErrorInfo) {
 - [ ] Mock interview system
 
 ### Phase 4: Planning & Analytics (Weeks 8-9)
+
 - [ ] Daily planner with task management
 - [ ] Study session tracking
 - [ ] Weekly AI review generation
@@ -3565,6 +3622,7 @@ export function logError(error: Error, errorInfo?: React.ErrorInfo) {
 - [ ] Progress tracking and metrics
 
 ### Phase 5: Content & Discovery (Week 10)
+
 - [ ] Company preparation module
 - [ ] Company data and resources
 - [ ] Project generator
@@ -3572,6 +3630,7 @@ export function logError(error: Error, errorInfo?: React.ErrorInfo) {
 - [ ] Notification system
 
 ### Phase 6: Polish & Optimization (Week 11)
+
 - [ ] Responsive design refinements
 - [ ] Accessibility compliance (WCAG 2.1 AA)
 - [ ] Performance optimization
@@ -3579,6 +3638,7 @@ export function logError(error: Error, errorInfo?: React.ErrorInfo) {
 - [ ] Loading states and animations
 
 ### Phase 7: Testing & Deployment (Week 12)
+
 - [ ] Unit test coverage (80%+)
 - [ ] Integration tests
 - [ ] E2E tests for critical flows
@@ -3588,6 +3648,7 @@ export function logError(error: Error, errorInfo?: React.ErrorInfo) {
 - [ ] Monitoring and error tracking setup
 
 ### Phase 8: Post-Launch (Ongoing)
+
 - [ ] User feedback collection
 - [ ] Bug fixes and improvements
 - [ ] Feature enhancements
@@ -3598,18 +3659,18 @@ export function logError(error: Error, errorInfo?: React.ErrorInfo) {
 
 ### 16.1 Architecture Decisions
 
-| Decision | Choice | Rationale |
-|----------|--------|-----------|
-| Framework | Next.js 14+ (App Router) | Server Components, streaming, built-in optimizations, excellent DX |
-| Backend | Supabase | Managed PostgreSQL, built-in auth, real-time subscriptions, RLS |
-| AI Provider | OpenAI (GPT-4) | Best-in-class language models, streaming support, reliable API |
-| State Management | Zustand | Lightweight, simple API, excellent TypeScript support |
-| Styling | Tailwind CSS | Utility-first, consistent design tokens, great performance |
-| Animation | Framer Motion | Declarative animations, gesture support, excellent React integration |
-| Roadmap Viz | React Flow | Interactive node graphs, customizable, performant |
-| Charts | Recharts | React-native charts, composable, good customization |
-| Validation | Zod | TypeScript-first, runtime validation, excellent DX |
-| Forms | React Hook Form | Performant, minimal re-renders, great validation integration |
+| Decision         | Choice                   | Rationale                                                            |
+| ---------------- | ------------------------ | -------------------------------------------------------------------- |
+| Framework        | Next.js 14+ (App Router) | Server Components, streaming, built-in optimizations, excellent DX   |
+| Backend          | Supabase                 | Managed PostgreSQL, built-in auth, real-time subscriptions, RLS      |
+| AI Provider      | OpenAI (GPT-4)           | Best-in-class language models, streaming support, reliable API       |
+| State Management | Zustand                  | Lightweight, simple API, excellent TypeScript support                |
+| Styling          | Tailwind CSS             | Utility-first, consistent design tokens, great performance           |
+| Animation        | Framer Motion            | Declarative animations, gesture support, excellent React integration |
+| Roadmap Viz      | React Flow               | Interactive node graphs, customizable, performant                    |
+| Charts           | Recharts                 | React-native charts, composable, good customization                  |
+| Validation       | Zod                      | TypeScript-first, runtime validation, excellent DX                   |
+| Forms            | React Hook Form          | Performant, minimal re-renders, great validation integration         |
 
 ### 16.2 Design Principles
 
@@ -3625,18 +3686,21 @@ export function logError(error: Error, errorInfo?: React.ErrorInfo) {
 ### 16.3 Success Metrics
 
 **Performance:**
+
 - Lighthouse score: 90+ (desktop), 80+ (mobile)
 - First Contentful Paint: < 1.8s
 - Time to Interactive: < 3.8s
 - Core Web Vitals: All "Good"
 
 **Quality:**
+
 - Test coverage: 80%+
 - Zero critical accessibility violations
 - TypeScript strict mode with no `any`
 - ESLint zero warnings
 
 **User Experience:**
+
 - Onboarding completion rate: > 80%
 - Daily active user retention: > 40%
 - Feature adoption: > 60% use 3+ features
@@ -3645,6 +3709,7 @@ export function logError(error: Error, errorInfo?: React.ErrorInfo) {
 ---
 
 ## Document Version
+
 - **Version**: 1.0
 - **Last Updated**: 2026-07-17
 - **Status**: Ready for Implementation

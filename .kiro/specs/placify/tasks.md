@@ -3,14 +3,16 @@
 ## Phase 1: Project Foundation
 
 ### Task 1.1: Initialize Next.js Project
+
 **ID**: PLAC-001  
 **Complexity**: Low  
-**Dependencies**: None  
+**Dependencies**: None
 
 **Description**:
 Set up a new Next.js 14 project with TypeScript, configure essential build tools, and establish the base project structure.
 
 **Acceptance Criteria**:
+
 - Next.js 14+ project initialized with App Router
 - TypeScript configured with strict mode enabled
 - ESLint and Prettier configured
@@ -18,6 +20,7 @@ Set up a new Next.js 14 project with TypeScript, configure essential build tools
 - Project successfully builds and runs in development mode
 
 **Files Created**:
+
 - `package.json`
 - `tsconfig.json`
 - `.eslintrc.json`
@@ -30,14 +33,16 @@ Set up a new Next.js 14 project with TypeScript, configure essential build tools
 ---
 
 ### Task 1.2: Configure Tailwind CSS and Design System
+
 **ID**: PLAC-002  
 **Complexity**: Medium  
-**Dependencies**: PLAC-001  
+**Dependencies**: PLAC-001
 
 **Description**:
 Install and configure Tailwind CSS with custom design tokens matching the dark futuristic glass UI aesthetic. Set up color palette with blue/purple gradients, typography system, spacing, and custom utilities.
 
 **Acceptance Criteria**:
+
 - Tailwind CSS installed and configured
 - Custom color palette defined (primary blue, secondary purple, glass effects)
 - Typography system configured with Inter font
@@ -47,22 +52,24 @@ Install and configure Tailwind CSS with custom design tokens matching the dark f
 - Glass morphism utilities created
 
 **Files Created/Modified**:
+
 - `tailwind.config.ts`
 - `app/globals.css`
 - `postcss.config.js`
 
-
 ---
 
 ### Task 1.3: Install and Configure Core Dependencies
+
 **ID**: PLAC-003  
 **Complexity**: Low  
-**Dependencies**: PLAC-001  
+**Dependencies**: PLAC-001
 
 **Description**:
 Install all essential dependencies including Framer Motion, Zustand, Zod, React Hook Form, date utilities, and icon library.
 
 **Acceptance Criteria**:
+
 - Framer Motion installed and working
 - Zustand installed for state management
 - Zod installed for validation
@@ -73,19 +80,22 @@ Install all essential dependencies including Framer Motion, Zustand, Zod, React 
 - All dependencies compatible and no conflicts
 
 **Files Modified**:
+
 - `package.json`
 
 ---
 
 ### Task 1.4: Set Up Folder Structure
+
 **ID**: PLAC-004  
 **Complexity**: Low  
-**Dependencies**: PLAC-001  
+**Dependencies**: PLAC-001
 
 **Description**:
 Create the complete folder structure following the design specification, including app routes, components, lib utilities, and configuration directories.
 
 **Acceptance Criteria**:
+
 - All top-level directories created (app, components, lib, public, styles)
 - App route groups created ((auth), (dashboard), (onboarding))
 - Component directories organized by feature
@@ -94,24 +104,26 @@ Create the complete folder structure following the design specification, includi
 - Structure matches design document exactly
 
 **Folders Created**:
+
 - `app/(auth)/`, `app/(dashboard)/`, `app/(onboarding)/`, `app/api/`
 - `components/ui/`, `components/layouts/`, `components/auth/`, etc.
 - `lib/supabase/`, `lib/openai/`, `lib/actions/`, `lib/hooks/`, `lib/stores/`, `lib/utils/`, `lib/types/`, `lib/validations/`
 - `public/images/`, `public/icons/`, `public/fonts/`
 - `styles/`
 
-
 ---
 
 ### Task 1.5: Create Base UI Components
+
 **ID**: PLAC-005  
 **Complexity**: Medium  
-**Dependencies**: PLAC-002, PLAC-003  
+**Dependencies**: PLAC-002, PLAC-003
 
 **Description**:
 Build foundational UI components (Button, Input, Card, Badge, Avatar, Skeleton) with Tailwind styling, Framer Motion animations, and accessibility features.
 
 **Acceptance Criteria**:
+
 - Button component with variants (primary, secondary, ghost, danger)
 - Button supports loading state, icons, sizes (sm, md, lg)
 - Input component with label, error states, and validation
@@ -123,6 +135,7 @@ Build foundational UI components (Button, Input, Card, Badge, Avatar, Skeleton) 
 - All components have proper TypeScript types
 
 **Files Created**:
+
 - `components/ui/button.tsx`
 - `components/ui/input.tsx`
 - `components/ui/card.tsx`
@@ -134,14 +147,16 @@ Build foundational UI components (Button, Input, Card, Badge, Avatar, Skeleton) 
 ---
 
 ### Task 1.6: Create Modal and Toast Components
+
 **ID**: PLAC-006  
 **Complexity**: Medium  
-**Dependencies**: PLAC-005  
+**Dependencies**: PLAC-005
 
 **Description**:
 Build Modal component with focus trap, backdrop blur, and animations. Create Toast notification system with different variants.
 
 **Acceptance Criteria**:
+
 - Modal component with AnimatePresence
 - Modal supports sizes (sm, md, lg, xl, full)
 - Focus trap implemented
@@ -153,23 +168,25 @@ Build Modal component with focus trap, backdrop blur, and animations. Create Toa
 - Toast stacking and queue management
 
 **Files Created**:
+
 - `components/ui/modal.tsx`
 - `components/ui/toast.tsx`
 - `components/ui/toast-provider.tsx`
 - `lib/hooks/use-toast.ts`
 
-
 ---
 
 ### Task 1.7: Create Additional UI Components
+
 **ID**: PLAC-007  
 **Complexity**: Low  
-**Dependencies**: PLAC-005  
+**Dependencies**: PLAC-005
 
 **Description**:
 Build remaining UI primitives including Progress, Tabs, Dropdown, Tooltip, and utility components.
 
 **Acceptance Criteria**:
+
 - Progress bar with percentage display
 - Tabs component with keyboard navigation
 - Dropdown menu with positioning
@@ -179,6 +196,7 @@ Build remaining UI primitives including Progress, Tabs, Dropdown, Tooltip, and u
 - Consistent styling with design system
 
 **Files Created**:
+
 - `components/ui/progress.tsx`
 - `components/ui/tabs.tsx`
 - `components/ui/dropdown.tsx`
@@ -188,14 +206,16 @@ Build remaining UI primitives including Progress, Tabs, Dropdown, Tooltip, and u
 ---
 
 ### Task 1.8: Set Up Framer Motion Animation Variants
+
 **ID**: PLAC-008  
 **Complexity**: Low  
-**Dependencies**: PLAC-003  
+**Dependencies**: PLAC-003
 
 **Description**:
 Create reusable Framer Motion animation variants for consistent animations across the application.
 
 **Acceptance Criteria**:
+
 - fadeInVariants defined
 - slideUpVariants defined
 - scaleVariants defined
@@ -206,20 +226,22 @@ Create reusable Framer Motion animation variants for consistent animations acros
 - Variants follow design timing specifications
 
 **Files Created**:
-- `lib/animations/variants.ts`
 
+- `lib/animations/variants.ts`
 
 ---
 
 ### Task 1.9: Create Utility Functions
+
 **ID**: PLAC-009  
 **Complexity**: Low  
-**Dependencies**: PLAC-003  
+**Dependencies**: PLAC-003
 
 **Description**:
 Implement utility functions for className merging, date formatting, input validation, and common operations.
 
 **Acceptance Criteria**:
+
 - cn() function for className merging (clsx + tailwind-merge)
 - Date formatting utilities (formatDate, formatRelativeTime, etc.)
 - String formatting utilities (truncate, capitalize, etc.)
@@ -229,6 +251,7 @@ Implement utility functions for className merging, date formatting, input valida
 - All utilities have JSDoc comments
 
 **Files Created**:
+
 - `lib/utils/cn.ts`
 - `lib/utils/date.ts`
 - `lib/utils/format.ts`
@@ -239,14 +262,16 @@ Implement utility functions for className merging, date formatting, input valida
 ## Phase 2: Database and Backend Setup
 
 ### Task 2.1: Initialize Supabase Project
+
 **ID**: PLAC-010  
 **Complexity**: Low  
-**Dependencies**: PLAC-001  
+**Dependencies**: PLAC-001
 
 **Description**:
 Create Supabase project, install Supabase client libraries, and configure environment variables.
 
 **Acceptance Criteria**:
+
 - Supabase project created
 - @supabase/supabase-js and @supabase/ssr installed
 - Environment variables configured (.env.local, .env.example)
@@ -254,24 +279,27 @@ Create Supabase project, install Supabase client libraries, and configure enviro
 - Service role key secured (not exposed to client)
 
 **Files Created**:
+
 - `.env.local`
 - `.env.example`
 
 **Files Modified**:
-- `package.json`
 
+- `package.json`
 
 ---
 
 ### Task 2.2: Create Supabase Client Utilities
+
 **ID**: PLAC-011  
 **Complexity**: Medium  
-**Dependencies**: PLAC-010  
+**Dependencies**: PLAC-010
 
 **Description**:
 Create client-side and server-side Supabase client utilities following the SSR pattern for Next.js App Router.
 
 **Acceptance Criteria**:
+
 - Browser client created for client components
 - Server client created for Server Components and Actions
 - Middleware client helper created
@@ -280,6 +308,7 @@ Create client-side and server-side Supabase client utilities following the SSR p
 - Proper error handling
 
 **Files Created**:
+
 - `lib/supabase/client.ts`
 - `lib/supabase/server.ts`
 - `lib/supabase/middleware.ts`
@@ -287,14 +316,16 @@ Create client-side and server-side Supabase client utilities following the SSR p
 ---
 
 ### Task 2.3: Create Database Schema - Core Tables
+
 **ID**: PLAC-012  
 **Complexity**: High  
-**Dependencies**: PLAC-010  
+**Dependencies**: PLAC-010
 
 **Description**:
 Create initial database migration with core tables: profiles, target_profiles, skills, companies.
 
 **Acceptance Criteria**:
+
 - Migration file created with proper naming
 - profiles table with all columns from design
 - target_profiles table with validation constraints
@@ -306,20 +337,22 @@ Create initial database migration with core tables: profiles, target_profiles, s
 - Timestamps (created_at, updated_at) on all tables
 
 **Files Created**:
-- `supabase/migrations/001_create_core_tables.sql`
 
+- `supabase/migrations/001_create_core_tables.sql`
 
 ---
 
 ### Task 2.4: Create Database Schema - Roadmap Tables
+
 **ID**: PLAC-013  
 **Complexity**: High  
-**Dependencies**: PLAC-012  
+**Dependencies**: PLAC-012
 
 **Description**:
 Create migration for roadmap-related tables: roadmaps, roadmap_nodes with dependencies and layout data.
 
 **Acceptance Criteria**:
+
 - roadmaps table created with completion tracking
 - roadmap_nodes table with all fields from design
 - node_type enum matches design (learning, project, assessment, milestone)
@@ -331,19 +364,22 @@ Create migration for roadmap-related tables: roadmaps, roadmap_nodes with depend
 - Foreign keys to roadmaps table
 
 **Files Created**:
+
 - `supabase/migrations/002_create_roadmap_tables.sql`
 
 ---
 
 ### Task 2.5: Create Database Schema - Learning Tables
+
 **ID**: PLAC-014  
 **Complexity**: Medium  
-**Dependencies**: PLAC-012  
+**Dependencies**: PLAC-012
 
 **Description**:
 Create migration for learning-related tables: resumes, resume_analyses, mock_interviews, interview_exchanges.
 
 **Acceptance Criteria**:
+
 - resumes table with file metadata
 - resume_analyses table with JSONB for recommendations
 - mock_interviews table with interview types
@@ -354,20 +390,22 @@ Create migration for learning-related tables: resumes, resume_analyses, mock_int
 - Foreign keys properly defined
 
 **Files Created**:
-- `supabase/migrations/003_create_learning_tables.sql`
 
+- `supabase/migrations/003_create_learning_tables.sql`
 
 ---
 
 ### Task 2.6: Create Database Schema - Planning Tables
+
 **ID**: PLAC-015  
 **Complexity**: Medium  
-**Dependencies**: PLAC-012  
+**Dependencies**: PLAC-012
 
 **Description**:
 Create migration for planning tables: daily_tasks, weekly_reviews, study_sessions, projects.
 
 **Acceptance Criteria**:
+
 - daily_tasks table with scheduling fields
 - weekly_reviews table with analytics data
 - study_sessions table for time tracking
@@ -378,19 +416,22 @@ Create migration for planning tables: daily_tasks, weekly_reviews, study_session
 - Indexes on date and user_id columns
 
 **Files Created**:
+
 - `supabase/migrations/004_create_planning_tables.sql`
 
 ---
 
 ### Task 2.7: Create Database Schema - System Tables
+
 **ID**: PLAC-016  
 **Complexity**: Low  
-**Dependencies**: PLAC-012  
+**Dependencies**: PLAC-012
 
 **Description**:
 Create migration for system tables: notifications, ai_conversations, ai_messages, analytics_events.
 
 **Acceptance Criteria**:
+
 - notifications table with type and priority enums
 - ai_conversations table for chat history
 - ai_messages table with role enum (user, assistant, system)
@@ -400,20 +441,22 @@ Create migration for system tables: notifications, ai_conversations, ai_messages
 - Proper foreign keys
 
 **Files Created**:
-- `supabase/migrations/005_create_system_tables.sql`
 
+- `supabase/migrations/005_create_system_tables.sql`
 
 ---
 
 ### Task 2.8: Create Row Level Security Policies
+
 **ID**: PLAC-017  
 **Complexity**: High  
-**Dependencies**: PLAC-012, PLAC-013, PLAC-014, PLAC-015, PLAC-016  
+**Dependencies**: PLAC-012, PLAC-013, PLAC-014, PLAC-015, PLAC-016
 
 **Description**:
 Implement RLS policies for all tables ensuring users can only access their own data. Enable RLS and create policies for SELECT, INSERT, UPDATE, DELETE operations.
 
 **Acceptance Criteria**:
+
 - RLS enabled on all user data tables
 - SELECT policies use auth.uid() = user_id pattern
 - INSERT policies verify auth.uid() = user_id
@@ -425,19 +468,22 @@ Implement RLS policies for all tables ensuring users can only access their own d
 - No data leakage between users
 
 **Files Created**:
+
 - `supabase/migrations/006_create_rls_policies.sql`
 
 ---
 
 ### Task 2.9: Create Database Functions and Triggers
+
 **ID**: PLAC-018  
 **Complexity**: Medium  
-**Dependencies**: PLAC-017  
+**Dependencies**: PLAC-017
 
 **Description**:
 Create database functions for updating timestamps, creating profiles on signup, and updating roadmap completion.
 
 **Acceptance Criteria**:
+
 - update_updated_at_column() function created
 - Triggers applied to all tables with updated_at
 - handle_new_user() function creates profile on auth.users INSERT
@@ -447,20 +493,22 @@ Create database functions for updating timestamps, creating profiles on signup, 
 - Functions tested and working correctly
 
 **Files Created**:
-- `supabase/migrations/007_create_functions_triggers.sql`
 
+- `supabase/migrations/007_create_functions_triggers.sql`
 
 ---
 
 ### Task 2.10: Create Database Indexes
+
 **ID**: PLAC-019  
 **Complexity**: Low  
-**Dependencies**: PLAC-017  
+**Dependencies**: PLAC-017
 
 **Description**:
 Create indexes on frequently queried columns to optimize performance per design specifications.
 
 **Acceptance Criteria**:
+
 - Indexes on all user_id columns
 - Composite indexes for common queries (user_id, date, status)
 - GIN index on dependencies array column
@@ -471,19 +519,22 @@ Create indexes on frequently queried columns to optimize performance per design 
 - Query performance improved (verified with EXPLAIN)
 
 **Files Created**:
+
 - `supabase/migrations/008_create_indexes.sql`
 
 ---
 
 ### Task 2.11: Generate TypeScript Types from Database
+
 **ID**: PLAC-020  
 **Complexity**: Low  
-**Dependencies**: PLAC-019  
+**Dependencies**: PLAC-019
 
 **Description**:
 Use Supabase CLI to generate TypeScript types from database schema and create domain model interfaces.
 
 **Acceptance Criteria**:
+
 - Supabase CLI installed
 - database.types.ts generated with all table types
 - models.ts created with domain interfaces (Profile, Roadmap, etc.)
@@ -493,22 +544,24 @@ Use Supabase CLI to generate TypeScript types from database schema and create do
 - Types match database schema exactly
 
 **Files Created**:
+
 - `lib/types/database.types.ts`
 - `lib/types/models.ts`
 - `lib/types/index.ts`
 
-
 ---
 
 ### Task 2.12: Seed Database with Initial Data
+
 **ID**: PLAC-021  
 **Complexity**: Medium  
-**Dependencies**: PLAC-019  
+**Dependencies**: PLAC-019
 
 **Description**:
 Create seed data for companies table with popular tech companies including their interview processes, tech stacks, and preparation resources.
 
 **Acceptance Criteria**:
+
 - Seed file with 20+ major tech companies
 - Each company includes: name, logo_url, website, industry, tech_stack
 - Interview process with stages defined
@@ -518,6 +571,7 @@ Create seed data for companies table with popular tech companies including their
 - Seed script can be run multiple times (idempotent)
 
 **Files Created**:
+
 - `supabase/seed.sql`
 
 ---
@@ -525,14 +579,16 @@ Create seed data for companies table with popular tech companies including their
 ## Phase 3: Authentication System
 
 ### Task 3.1: Create Auth Store
+
 **ID**: PLAC-022  
 **Complexity**: Medium  
-**Dependencies**: PLAC-011, PLAC-020  
+**Dependencies**: PLAC-011, PLAC-020
 
 **Description**:
 Implement Zustand auth store with persistence for managing user authentication state.
 
 **Acceptance Criteria**:
+
 - Auth store created with user and session state
 - setUser, setSession, signOut actions defined
 - refreshSession action implemented
@@ -542,20 +598,22 @@ Implement Zustand auth store with persistence for managing user authentication s
 - Proper state initialization
 
 **Files Created**:
-- `lib/stores/auth.store.ts`
 
+- `lib/stores/auth.store.ts`
 
 ---
 
 ### Task 3.2: Create Auth Server Actions
+
 **ID**: PLAC-023  
 **Complexity**: High  
-**Dependencies**: PLAC-011, PLAC-022  
+**Dependencies**: PLAC-011, PLAC-022
 
 **Description**:
 Implement server actions for authentication operations: signUp, signIn, signOut, resetPassword, verifyEmail.
 
 **Acceptance Criteria**:
+
 - signUp action with email/password
 - signIn action with email/password
 - signInWithOAuth action for Google and GitHub
@@ -568,19 +626,22 @@ Implement server actions for authentication operations: signUp, signIn, signOut,
 - revalidatePath called after state changes
 
 **Files Created**:
+
 - `lib/actions/auth.actions.ts`
 
 ---
 
 ### Task 3.3: Create Auth Layout and Pages
+
 **ID**: PLAC-024  
 **Complexity**: Medium  
-**Dependencies**: PLAC-005, PLAC-006  
+**Dependencies**: PLAC-005, PLAC-006
 
 **Description**:
 Create auth layout and page structures for login, register, forgot-password, and verify-email.
 
 **Acceptance Criteria**:
+
 - Auth layout with centered card design
 - Auth layout uses glass morphism effects
 - Login page route created
@@ -591,24 +652,26 @@ Create auth layout and page structures for login, register, forgot-password, and
 - Responsive design implemented
 
 **Files Created**:
+
 - `app/(auth)/layout.tsx`
 - `app/(auth)/login/page.tsx`
 - `app/(auth)/register/page.tsx`
 - `app/(auth)/forgot-password/page.tsx`
 - `app/(auth)/verify-email/page.tsx`
 
-
 ---
 
 ### Task 3.4: Create Validation Schemas
+
 **ID**: PLAC-025  
 **Complexity**: Low  
-**Dependencies**: PLAC-003  
+**Dependencies**: PLAC-003
 
 **Description**:
 Create Zod validation schemas for all forms including auth, profile, target profile, skills, and tasks.
 
 **Acceptance Criteria**:
+
 - loginSchema with email and password validation
 - registerSchema with password confirmation
 - targetProfileSchema with all field validations
@@ -620,20 +683,23 @@ Create Zod validation schemas for all forms including auth, profile, target prof
 - All schemas exported and typed
 
 **Files Created**:
+
 - `lib/validations/schemas.ts`
 - `lib/validations/rules.ts`
 
 ---
 
 ### Task 3.5: Create Login Form Component
+
 **ID**: PLAC-026  
 **Complexity**: Medium  
-**Dependencies**: PLAC-023, PLAC-025, PLAC-005  
+**Dependencies**: PLAC-023, PLAC-025, PLAC-005
 
 **Description**:
 Build login form with email/password inputs, OAuth buttons, validation, and error handling using React Hook Form.
 
 **Acceptance Criteria**:
+
 - Form uses React Hook Form with Zod resolver
 - Email and password inputs with proper labels
 - Form validation with error messages
@@ -645,21 +711,23 @@ Build login form with email/password inputs, OAuth buttons, validation, and erro
 - Accessible form with ARIA labels
 
 **Files Created**:
+
 - `components/auth/login-form.tsx`
 - `components/auth/oauth-buttons.tsx`
-
 
 ---
 
 ### Task 3.6: Create Register Form Component
+
 **ID**: PLAC-027  
 **Complexity**: Medium  
-**Dependencies**: PLAC-023, PLAC-025, PLAC-005  
+**Dependencies**: PLAC-023, PLAC-025, PLAC-005
 
 **Description**:
 Build registration form with email, password, confirm password, OAuth options, and validation.
 
 **Acceptance Criteria**:
+
 - Form uses React Hook Form with Zod resolver
 - Email, password, and confirm password inputs
 - Password strength indicator
@@ -672,19 +740,22 @@ Build registration form with email, password, confirm password, OAuth options, a
 - Success message and redirect to onboarding
 
 **Files Created**:
+
 - `components/auth/register-form.tsx`
 
 ---
 
 ### Task 3.7: Create Forgot Password Form
+
 **ID**: PLAC-028  
 **Complexity**: Low  
-**Dependencies**: PLAC-023, PLAC-025, PLAC-005  
+**Dependencies**: PLAC-023, PLAC-025, PLAC-005
 
 **Description**:
 Build forgot password form that sends password reset email.
 
 **Acceptance Criteria**:
+
 - Form with email input
 - Email validation
 - Submit button with loading state
@@ -694,20 +765,22 @@ Build forgot password form that sends password reset email.
 - Rate limiting message if applicable
 
 **Files Created**:
-- `components/auth/forgot-password-form.tsx`
 
+- `components/auth/forgot-password-form.tsx`
 
 ---
 
 ### Task 3.8: Create Authentication Middleware
+
 **ID**: PLAC-029  
 **Complexity**: High  
-**Dependencies**: PLAC-011, PLAC-022  
+**Dependencies**: PLAC-011, PLAC-022
 
 **Description**:
 Implement Next.js middleware for route protection, auth checks, and onboarding status verification.
 
 **Acceptance Criteria**:
+
 - Middleware checks authentication on protected routes
 - Redirects unauthenticated users to /login
 - Redirects authenticated users away from auth pages
@@ -719,19 +792,22 @@ Implement Next.js middleware for route protection, auth checks, and onboarding s
 - Proper matcher configuration
 
 **Files Created**:
+
 - `middleware.ts`
 
 ---
 
 ### Task 3.9: Create useAuth Hook
+
 **ID**: PLAC-030  
 **Complexity**: Low  
-**Dependencies**: PLAC-022  
+**Dependencies**: PLAC-022
 
 **Description**:
 Create custom hook for accessing auth state and actions throughout the application.
 
 **Acceptance Criteria**:
+
 - useAuth hook exports user, session, isLoading, isAuthenticated
 - Hook provides signOut function
 - Hook provides refreshSession function
@@ -739,22 +815,24 @@ Create custom hook for accessing auth state and actions throughout the applicati
 - Easy to use in components
 
 **Files Created**:
-- `lib/hooks/use-auth.ts`
 
+- `lib/hooks/use-auth.ts`
 
 ---
 
 ## Phase 4: Onboarding Flow
 
 ### Task 4.1: Create Onboarding Layout
+
 **ID**: PLAC-031  
 **Complexity**: Low  
-**Dependencies**: PLAC-024  
+**Dependencies**: PLAC-024
 
 **Description**:
 Create onboarding layout with progress indicator and centered content area.
 
 **Acceptance Criteria**:
+
 - Onboarding layout with glass card design
 - Progress indicator showing step x of 4
 - Skip tour option (dismissible)
@@ -763,19 +841,22 @@ Create onboarding layout with progress indicator and centered content area.
 - Smooth animations
 
 **Files Created**:
+
 - `app/(onboarding)/layout.tsx`
 
 ---
 
 ### Task 4.2: Create Onboarding Wizard Component
+
 **ID**: PLAC-032  
 **Complexity**: High  
-**Dependencies**: PLAC-031, PLAC-025  
+**Dependencies**: PLAC-031, PLAC-025
 
 **Description**:
 Build multi-step onboarding wizard with state management, navigation, and data persistence.
 
 **Acceptance Criteria**:
+
 - Wizard component with step state management
 - Navigation between steps (Next, Previous, Skip)
 - Form data persisted across steps
@@ -786,21 +867,23 @@ Build multi-step onboarding wizard with state management, navigation, and data p
 - Can resume from interruption (localStorage backup)
 
 **Files Created**:
+
 - `components/onboarding/onboarding-wizard.tsx`
 - `app/(onboarding)/onboarding/page.tsx`
-
 
 ---
 
 ### Task 4.3: Create Welcome Step Component
+
 **ID**: PLAC-033  
 **Complexity**: Low  
-**Dependencies**: PLAC-032  
+**Dependencies**: PLAC-032
 
 **Description**:
 Build the welcome step with introduction to Placify and "Get Started" button.
 
 **Acceptance Criteria**:
+
 - Welcome message with app overview
 - Key features highlighted
 - Animated entrance with Framer Motion
@@ -809,19 +892,22 @@ Build the welcome step with introduction to Placify and "Get Started" button.
 - Motivational copy
 
 **Files Created**:
+
 - `components/onboarding/welcome-step.tsx`
 
 ---
 
 ### Task 4.4: Create Target Profile Step Component
+
 **ID**: PLAC-034  
 **Complexity**: High  
-**Dependencies**: PLAC-032, PLAC-025  
+**Dependencies**: PLAC-032, PLAC-025
 
 **Description**:
 Build target profile configuration step with all required inputs and validation.
 
 **Acceptance Criteria**:
+
 - Target role input with autocomplete suggestions
 - Package range inputs (min/max) with currency selector
 - Company multi-select with search
@@ -834,20 +920,22 @@ Build target profile configuration step with all required inputs and validation.
 - Accessible form controls
 
 **Files Created**:
-- `components/onboarding/target-profile-step.tsx`
 
+- `components/onboarding/target-profile-step.tsx`
 
 ---
 
 ### Task 4.5: Create Skills Step Component
+
 **ID**: PLAC-035  
 **Complexity**: Medium  
-**Dependencies**: PLAC-032, PLAC-025  
+**Dependencies**: PLAC-032, PLAC-025
 
 **Description**:
 Build skills input step with dynamic skill addition, proficiency selection, and suggestions.
 
 **Acceptance Criteria**:
+
 - Skill name input with autocomplete
 - Proficiency level selector (1-10) with visual indicator
 - Category tags (technical/soft/domain)
@@ -859,19 +947,22 @@ Build skills input step with dynamic skill addition, proficiency selection, and 
 - Drag to reorder skills
 
 **Files Created**:
+
 - `components/onboarding/skills-step.tsx`
 
 ---
 
 ### Task 4.6: Create Preferences Step Component
+
 **ID**: PLAC-036  
 **Complexity**: Low  
-**Dependencies**: PLAC-032  
+**Dependencies**: PLAC-032
 
 **Description**:
 Build preferences step for theme selection and notification settings.
 
 **Acceptance Criteria**:
+
 - Theme selector (dark/light) with preview
 - Notification preference toggles (email, in-app, reminders, weekly review, milestones)
 - Email digest frequency selector
@@ -880,20 +971,22 @@ Build preferences step for theme selection and notification settings.
 - "Complete" button finishes onboarding
 
 **Files Created**:
-- `components/onboarding/preferences-step.tsx`
 
+- `components/onboarding/preferences-step.tsx`
 
 ---
 
 ### Task 4.7: Create Profile Server Actions
+
 **ID**: PLAC-037  
 **Complexity**: Medium  
-**Dependencies**: PLAC-011, PLAC-020  
+**Dependencies**: PLAC-011, PLAC-020
 
 **Description**:
 Implement server actions for creating and updating user profiles, target profiles, and skills.
 
 **Acceptance Criteria**:
+
 - createTargetProfile action saves target profile data
 - updateTargetProfile action for modifications
 - createSkill action adds skill with proficiency
@@ -905,19 +998,22 @@ Implement server actions for creating and updating user profiles, target profile
 - revalidatePath after mutations
 
 **Files Created**:
+
 - `lib/actions/profile.actions.ts`
 
 ---
 
 ### Task 4.8: Integrate Onboarding with Database
+
 **ID**: PLAC-038  
 **Complexity**: Medium  
-**Dependencies**: PLAC-032, PLAC-037  
+**Dependencies**: PLAC-032, PLAC-037
 
 **Description**:
 Connect onboarding wizard to server actions, save data to database, and handle completion flow.
 
 **Acceptance Criteria**:
+
 - Target profile saved on step completion
 - Skills saved to database
 - Preferences updated in profile
@@ -928,25 +1024,27 @@ Connect onboarding wizard to server actions, save data to database, and handle c
 - Redirect to dashboard after completion
 
 **Files Modified**:
+
 - `components/onboarding/onboarding-wizard.tsx`
 - `components/onboarding/target-profile-step.tsx`
 - `components/onboarding/skills-step.tsx`
 - `components/onboarding/preferences-step.tsx`
-
 
 ---
 
 ## Phase 5: Dashboard Layout and Navigation
 
 ### Task 5.1: Create Dashboard Layout
+
 **ID**: PLAC-039  
 **Complexity**: Medium  
-**Dependencies**: PLAC-005, PLAC-029  
+**Dependencies**: PLAC-005, PLAC-029
 
 **Description**:
 Build main dashboard layout with sidebar, top bar, and content area.
 
 **Acceptance Criteria**:
+
 - Dashboard layout with sidebar and main content
 - Sidebar with navigation links
 - Top bar with search, notifications, and user menu
@@ -956,20 +1054,23 @@ Build main dashboard layout with sidebar, top bar, and content area.
 - Active route highlighting
 
 **Files Created**:
+
 - `app/(dashboard)/layout.tsx`
 - `components/layouts/dashboard-layout.tsx`
 
 ---
 
 ### Task 5.2: Create Sidebar Component
+
 **ID**: PLAC-040  
 **Complexity**: Medium  
-**Dependencies**: PLAC-039  
+**Dependencies**: PLAC-039
 
 **Description**:
 Build sidebar navigation with icons, labels, and active state indicators.
 
 **Acceptance Criteria**:
+
 - Navigation links for all main sections (Dashboard, Roadmap, Mentor, Interview, Resume, Planner, Analytics, Companies, Projects, Settings)
 - Icons from Lucide React
 - Active route highlighted
@@ -980,20 +1081,22 @@ Build sidebar navigation with icons, labels, and active state indicators.
 - Keyboard accessible
 
 **Files Created**:
-- `components/layouts/sidebar.tsx`
 
+- `components/layouts/sidebar.tsx`
 
 ---
 
 ### Task 5.3: Create Top Bar Component
+
 **ID**: PLAC-041  
 **Complexity**: Medium  
-**Dependencies**: PLAC-039, PLAC-030  
+**Dependencies**: PLAC-039, PLAC-030
 
 **Description**:
 Build top bar with search, notifications bell, and user menu dropdown.
 
 **Acceptance Criteria**:
+
 - Global search input with keyboard shortcut (Cmd/Ctrl + K)
 - Notification bell with unread count badge
 - User menu dropdown with profile, settings, sign out
@@ -1003,20 +1106,23 @@ Build top bar with search, notifications bell, and user menu dropdown.
 - Keyboard navigation
 
 **Files Created**:
+
 - `components/layouts/top-bar.tsx`
 - `components/shared/search-bar.tsx`
 
 ---
 
 ### Task 5.4: Create Notification Bell and Dropdown
+
 **ID**: PLAC-042  
 **Complexity**: Medium  
-**Dependencies**: PLAC-041  
+**Dependencies**: PLAC-041
 
 **Description**:
 Build notifications dropdown showing recent notifications with mark as read functionality.
 
 **Acceptance Criteria**:
+
 - Notification bell icon with badge showing unread count
 - Dropdown opens on click
 - List of recent notifications (last 10)
@@ -1028,21 +1134,23 @@ Build notifications dropdown showing recent notifications with mark as read func
 - Smooth animations
 
 **Files Created**:
+
 - `components/layouts/notification-bell.tsx`
 - `components/layouts/notification-dropdown.tsx`
-
 
 ---
 
 ### Task 5.5: Create User Menu Dropdown
+
 **ID**: PLAC-043  
 **Complexity**: Low  
-**Dependencies**: PLAC-041, PLAC-030  
+**Dependencies**: PLAC-041, PLAC-030
 
 **Description**:
 Build user menu dropdown with profile link, settings link, and sign out.
 
 **Acceptance Criteria**:
+
 - User avatar triggers dropdown
 - User name and email displayed
 - Link to profile settings
@@ -1053,19 +1161,22 @@ Build user menu dropdown with profile link, settings link, and sign out.
 - Keyboard accessible
 
 **Files Created**:
+
 - `components/layouts/user-menu.tsx`
 
 ---
 
 ### Task 5.6: Create Dashboard Home Page
+
 **ID**: PLAC-044  
 **Complexity**: Medium  
-**Dependencies**: PLAC-039  
+**Dependencies**: PLAC-039
 
 **Description**:
 Build dashboard home page with overview widgets: stats, upcoming tasks, recent activity, quick actions.
 
 **Acceptance Criteria**:
+
 - Welcome message with user name
 - Stats overview cards (roadmap progress, study hours, interview score, streak)
 - Upcoming tasks widget (next 3-5 tasks)
@@ -1076,24 +1187,26 @@ Build dashboard home page with overview widgets: stats, upcoming tasks, recent a
 - Animated entrance
 
 **Files Created**:
+
 - `app/(dashboard)/dashboard/page.tsx`
 - `components/dashboard/stats-overview.tsx`
 - `components/dashboard/upcoming-tasks.tsx`
 - `components/dashboard/recent-activity.tsx`
 - `components/dashboard/quick-actions.tsx`
 
-
 ---
 
 ### Task 5.7: Create Notifications Store
+
 **ID**: PLAC-045  
 **Complexity**: Low  
-**Dependencies**: PLAC-020  
+**Dependencies**: PLAC-020
 
 **Description**:
 Implement Zustand store for managing notifications state.
 
 **Acceptance Criteria**:
+
 - Notifications array in state
 - unreadCount computed from state
 - setNotifications action
@@ -1104,6 +1217,7 @@ Implement Zustand store for managing notifications state.
 - Type-safe with TypeScript
 
 **Files Created**:
+
 - `lib/stores/notifications.store.ts`
 
 ---
@@ -1111,14 +1225,16 @@ Implement Zustand store for managing notifications state.
 ## Phase 6: OpenAI Integration Setup
 
 ### Task 6.1: Install and Configure OpenAI SDK
+
 **ID**: PLAC-046  
 **Complexity**: Low  
-**Dependencies**: PLAC-001  
+**Dependencies**: PLAC-001
 
 **Description**:
 Install OpenAI SDK, configure API key, and create client utility.
 
 **Acceptance Criteria**:
+
 - openai package installed
 - ai package installed (Vercel AI SDK)
 - OPENAI_API_KEY in environment variables
@@ -1127,25 +1243,28 @@ Install OpenAI SDK, configure API key, and create client utility.
 - Rate limiting considerations documented
 
 **Files Created**:
+
 - `lib/openai/client.ts`
 
 **Files Modified**:
+
 - `.env.local`
 - `.env.example`
 - `package.json`
 
-
 ---
 
 ### Task 6.2: Create AI Utility Functions
+
 **ID**: PLAC-047  
 **Complexity**: Medium  
-**Dependencies**: PLAC-046  
+**Dependencies**: PLAC-046
 
 **Description**:
 Create utility functions for common AI operations: chat completions, structured outputs, streaming responses.
 
 **Acceptance Criteria**:
+
 - Function for chat completion with context
 - Function for structured JSON responses
 - Function for streaming responses
@@ -1156,6 +1275,7 @@ Create utility functions for common AI operations: chat completions, structured 
 - Type-safe response parsing
 
 **Files Created**:
+
 - `lib/openai/chat.ts`
 - `lib/openai/generation.ts`
 - `lib/openai/utils.ts`
@@ -1165,14 +1285,16 @@ Create utility functions for common AI operations: chat completions, structured 
 ## Phase 7: Roadmap System
 
 ### Task 7.1: Create Roadmap Store
+
 **ID**: PLAC-048  
 **Complexity**: Medium  
-**Dependencies**: PLAC-020  
+**Dependencies**: PLAC-020
 
 **Description**:
 Implement Zustand store for managing roadmap and nodes state.
 
 **Acceptance Criteria**:
+
 - currentRoadmap in state
 - nodes array in state
 - selectedNode for modal
@@ -1184,20 +1306,22 @@ Implement Zustand store for managing roadmap and nodes state.
 - Type-safe with TypeScript
 
 **Files Created**:
-- `lib/stores/roadmap.store.ts`
 
+- `lib/stores/roadmap.store.ts`
 
 ---
 
 ### Task 7.2: Create Roadmap Server Actions
+
 **ID**: PLAC-049  
 **Complexity**: High  
-**Dependencies**: PLAC-011, PLAC-020  
+**Dependencies**: PLAC-011, PLAC-020
 
 **Description**:
 Implement server actions for roadmap CRUD operations and node status updates.
 
 **Acceptance Criteria**:
+
 - getRoadmap action fetches user's roadmap
 - getRoadmapNodes action fetches all nodes
 - updateNodeStatus action with validation
@@ -1209,19 +1333,22 @@ Implement server actions for roadmap CRUD operations and node status updates.
 - Error handling with descriptive messages
 
 **Files Created**:
+
 - `lib/actions/roadmap.actions.ts`
 
 ---
 
 ### Task 7.3: Install and Configure React Flow
+
 **ID**: PLAC-050  
 **Complexity**: Low  
-**Dependencies**: PLAC-001  
+**Dependencies**: PLAC-001
 
 **Description**:
 Install React Flow library and configure for roadmap visualization.
 
 **Acceptance Criteria**:
+
 - reactflow package installed
 - React Flow styles imported
 - Basic setup tested
@@ -1229,21 +1356,23 @@ Install React Flow library and configure for roadmap visualization.
 - Performance optimizations configured
 
 **Files Modified**:
+
 - `package.json`
 - `app/globals.css`
-
 
 ---
 
 ### Task 7.4: Create Custom Node Component
+
 **ID**: PLAC-051  
 **Complexity**: High  
-**Dependencies**: PLAC-050  
+**Dependencies**: PLAC-050
 
 **Description**:
 Build custom React Flow node component with status-based styling, animations, and interactions.
 
 **Acceptance Criteria**:
+
 - Custom node component extends React Flow Node
 - Status-based styling (locked: grayscale, available: blue glow, in_progress: purple glow pulsing, completed: green with checkmark)
 - Node displays title and icon
@@ -1255,19 +1384,22 @@ Build custom React Flow node component with status-based styling, animations, an
 - Smooth animations with Framer Motion
 
 **Files Created**:
+
 - `components/roadmap/custom-node.tsx`
 
 ---
 
 ### Task 7.5: Create Roadmap Canvas Component
+
 **ID**: PLAC-052  
 **Complexity**: High  
-**Dependencies**: PLAC-050, PLAC-051, PLAC-048  
+**Dependencies**: PLAC-050, PLAC-051, PLAC-048
 
 **Description**:
 Build main roadmap visualization using React Flow with custom nodes, edges, controls, and interactions.
 
 **Acceptance Criteria**:
+
 - React Flow canvas with custom nodes
 - Edges showing dependencies with arrows
 - Minimap for overview
@@ -1281,21 +1413,23 @@ Build main roadmap visualization using React Flow with custom nodes, edges, cont
 - Empty state if no roadmap
 
 **Files Created**:
+
 - `components/roadmap/roadmap-canvas.tsx`
 - `components/roadmap/roadmap-controls.tsx`
-
 
 ---
 
 ### Task 7.6: Create Node Details Modal
+
 **ID**: PLAC-053  
 **Complexity**: Medium  
-**Dependencies**: PLAC-006, PLAC-051  
+**Dependencies**: PLAC-006, PLAC-051
 
 **Description**:
 Build modal component that displays detailed node information and actions.
 
 **Acceptance Criteria**:
+
 - Modal displays node title, description, content
 - Shows estimated hours vs actual hours
 - Displays required skills as badges
@@ -1308,19 +1442,22 @@ Build modal component that displays detailed node information and actions.
 - Smooth animations
 
 **Files Created**:
+
 - `components/roadmap/node-details-modal.tsx`
 
 ---
 
 ### Task 7.7: Create Progress Sidebar
+
 **ID**: PLAC-054  
 **Complexity**: Medium  
-**Dependencies**: PLAC-048  
+**Dependencies**: PLAC-048
 
 **Description**:
 Build sidebar showing roadmap completion stats and milestone progress.
 
 **Acceptance Criteria**:
+
 - Overall completion percentage with circular progress
 - Nodes completed / total nodes
 - Current milestone indicator
@@ -1332,20 +1469,22 @@ Build sidebar showing roadmap completion stats and milestone progress.
 - Animated progress updates
 
 **Files Created**:
-- `components/roadmap/progress-sidebar.tsx`
 
+- `components/roadmap/progress-sidebar.tsx`
 
 ---
 
 ### Task 7.8: Create Roadmap Page
+
 **ID**: PLAC-055  
 **Complexity**: Medium  
-**Dependencies**: PLAC-052, PLAC-053, PLAC-054  
+**Dependencies**: PLAC-052, PLAC-053, PLAC-054
 
 **Description**:
 Build roadmap page integrating canvas, node details modal, and progress sidebar.
 
 **Acceptance Criteria**:
+
 - Page fetches roadmap and nodes server-side
 - Roadmap canvas rendered with data
 - Progress sidebar visible
@@ -1357,19 +1496,22 @@ Build roadmap page integrating canvas, node details modal, and progress sidebar.
 - Smooth page transitions
 
 **Files Created**:
+
 - `app/(dashboard)/roadmap/page.tsx`
 
 ---
 
 ### Task 7.9: Create AI Roadmap Generation API Route
+
 **ID**: PLAC-056  
 **Complexity**: High  
-**Dependencies**: PLAC-046, PLAC-047, PLAC-011  
+**Dependencies**: PLAC-046, PLAC-047, PLAC-011
 
 **Description**:
 Build API route that generates personalized roadmap using OpenAI based on target profile and skills.
 
 **Acceptance Criteria**:
+
 - POST /api/ai/roadmap-generation endpoint
 - Fetches user's target profile and skills
 - Constructs detailed prompt with context
@@ -1383,20 +1525,22 @@ Build API route that generates personalized roadmap using OpenAI based on target
 - Validates generated data structure
 
 **Files Created**:
-- `app/api/ai/roadmap-generation/route.ts`
 
+- `app/api/ai/roadmap-generation/route.ts`
 
 ---
 
 ### Task 7.10: Integrate Roadmap Generation with Onboarding
+
 **ID**: PLAC-057  
 **Complexity**: Medium  
-**Dependencies**: PLAC-056, PLAC-038  
+**Dependencies**: PLAC-056, PLAC-038
 
 **Description**:
 Connect onboarding completion to roadmap generation with loading state and error handling.
 
 **Acceptance Criteria**:
+
 - Call roadmap generation API after onboarding completion
 - Loading modal with progress animation
 - Loading text updates ("Analyzing your profile...", "Building your roadmap...", "Almost ready...")
@@ -1406,6 +1550,7 @@ Connect onboarding completion to roadmap generation with loading state and error
 - Timeout handling (if generation takes > 30 seconds)
 
 **Files Modified**:
+
 - `components/onboarding/onboarding-wizard.tsx`
 
 ---
@@ -1413,14 +1558,16 @@ Connect onboarding completion to roadmap generation with loading state and error
 ## Phase 8: AI Mentor Chat
 
 ### Task 8.1: Create AI Conversations Store
+
 **ID**: PLAC-058  
 **Complexity**: Low  
-**Dependencies**: PLAC-020  
+**Dependencies**: PLAC-020
 
 **Description**:
 Implement Zustand store for managing AI chat conversations and messages.
 
 **Acceptance Criteria**:
+
 - currentConversation in state
 - messages array in state
 - isStreaming boolean for loading state
@@ -1431,20 +1578,22 @@ Implement Zustand store for managing AI chat conversations and messages.
 - Type-safe with TypeScript
 
 **Files Created**:
-- `lib/stores/chat.store.ts`
 
+- `lib/stores/chat.store.ts`
 
 ---
 
 ### Task 8.2: Create AI Chat API Route
+
 **ID**: PLAC-059  
 **Complexity**: High  
-**Dependencies**: PLAC-046, PLAC-047, PLAC-011  
+**Dependencies**: PLAC-046, PLAC-047, PLAC-011
 
 **Description**:
 Build streaming AI chat API route with context awareness and conversation history.
 
 **Acceptance Criteria**:
+
 - POST /api/ai/chat endpoint with streaming
 - Fetches user's target profile and current progress for context
 - Constructs system prompt with personalized context
@@ -1457,19 +1606,22 @@ Build streaming AI chat API route with context awareness and conversation histor
 - Response time < 5 seconds for first token
 
 **Files Created**:
+
 - `app/api/ai/chat/route.ts`
 
 ---
 
 ### Task 8.3: Create Message Bubble Component
+
 **ID**: PLAC-060  
 **Complexity**: Medium  
-**Dependencies**: PLAC-005  
+**Dependencies**: PLAC-005
 
 **Description**:
 Build message bubble component with markdown rendering, code syntax highlighting, and copy functionality.
 
 **Acceptance Criteria**:
+
 - Message bubble with role-based styling (user: right-aligned blue, assistant: left-aligned purple)
 - Markdown rendering with react-markdown
 - Code syntax highlighting with prism/highlight.js
@@ -1481,20 +1633,22 @@ Build message bubble component with markdown rendering, code syntax highlighting
 - Accessible with proper ARIA labels
 
 **Files Created**:
-- `components/mentor/message-bubble.tsx`
 
+- `components/mentor/message-bubble.tsx`
 
 ---
 
 ### Task 8.4: Create Message List Component
+
 **ID**: PLAC-061  
 **Complexity**: Medium  
-**Dependencies**: PLAC-060  
+**Dependencies**: PLAC-060
 
 **Description**:
 Build scrollable message list with auto-scroll, virtualization for performance, and loading states.
 
 **Acceptance Criteria**:
+
 - Scrollable container with messages
 - Auto-scroll to bottom on new message
 - Virtualization for long conversations (react-window)
@@ -1505,19 +1659,22 @@ Build scrollable message list with auto-scroll, virtualization for performance, 
 - Date separators for different days
 
 **Files Created**:
+
 - `components/mentor/message-list.tsx`
 
 ---
 
 ### Task 8.5: Create Message Input Component
+
 **ID**: PLAC-062  
 **Complexity**: Medium  
-**Dependencies**: PLAC-005  
+**Dependencies**: PLAC-005
 
 **Description**:
 Build message input with multi-line support, send button, keyboard shortcuts, and character limit.
 
 **Acceptance Criteria**:
+
 - Textarea with auto-resize (max 5 lines)
 - Send button (disabled when empty or streaming)
 - Keyboard shortcut (Enter to send, Shift+Enter for new line)
@@ -1530,20 +1687,22 @@ Build message input with multi-line support, send button, keyboard shortcuts, an
 - Accessible with proper labels
 
 **Files Created**:
-- `components/mentor/message-input.tsx`
 
+- `components/mentor/message-input.tsx`
 
 ---
 
 ### Task 8.6: Create Suggested Prompts Component
+
 **ID**: PLAC-063  
 **Complexity**: Low  
-**Dependencies**: PLAC-005  
+**Dependencies**: PLAC-005
 
 **Description**:
 Build component showing suggested conversation starters based on user's current progress.
 
 **Acceptance Criteria**:
+
 - Display 3-5 suggested prompts
 - Prompts personalized to user's roadmap progress
 - Click prompt to send as message
@@ -1553,19 +1712,22 @@ Build component showing suggested conversation starters based on user's current 
 - Prompts relevant to target role and companies
 
 **Files Created**:
+
 - `components/mentor/suggested-prompts.tsx`
 
 ---
 
 ### Task 8.7: Create Chat Interface Component
+
 **ID**: PLAC-064  
 **Complexity**: High  
-**Dependencies**: PLAC-061, PLAC-062, PLAC-063, PLAC-058  
+**Dependencies**: PLAC-061, PLAC-062, PLAC-063, PLAC-058
 
 **Description**:
 Build complete chat interface integrating message list, input, suggested prompts, and streaming.
 
 **Acceptance Criteria**:
+
 - Chat container with header
 - Message list with scroll container
 - Message input at bottom
@@ -1578,20 +1740,22 @@ Build complete chat interface integrating message list, input, suggested prompts
 - Keyboard shortcuts displayed
 
 **Files Created**:
-- `components/mentor/chat-interface.tsx`
 
+- `components/mentor/chat-interface.tsx`
 
 ---
 
 ### Task 8.8: Create Mentor Page
+
 **ID**: PLAC-065  
 **Complexity**: Medium  
-**Dependencies**: PLAC-064  
+**Dependencies**: PLAC-064
 
 **Description**:
 Build AI mentor page with chat interface and conversation management.
 
 **Acceptance Criteria**:
+
 - Page fetches or creates conversation
 - Chat interface rendered
 - Conversation history loaded
@@ -1602,6 +1766,7 @@ Build AI mentor page with chat interface and conversation management.
 - Metadata for SEO
 
 **Files Created**:
+
 - `app/(dashboard)/mentor/page.tsx`
 
 ---
@@ -1609,14 +1774,16 @@ Build AI mentor page with chat interface and conversation management.
 ## Phase 9: Mock Interview System
 
 ### Task 9.1: Create Interview Setup Component
+
 **ID**: PLAC-066  
 **Complexity**: Medium  
-**Dependencies**: PLAC-005, PLAC-025  
+**Dependencies**: PLAC-005, PLAC-025
 
 **Description**:
 Build interview setup form for selecting type, company, and duration.
 
 **Acceptance Criteria**:
+
 - Interview type selector (technical, behavioral, hr)
 - Target company dropdown (optional)
 - Duration slider (15-60 minutes)
@@ -1627,20 +1794,22 @@ Build interview setup form for selecting type, company, and duration.
 - Accessibility compliant
 
 **Files Created**:
-- `components/interview/interview-setup.tsx`
 
+- `components/interview/interview-setup.tsx`
 
 ---
 
 ### Task 9.2: Create Interview Question Generation API
+
 **ID**: PLAC-067  
 **Complexity**: High  
-**Dependencies**: PLAC-046, PLAC-047  
+**Dependencies**: PLAC-046, PLAC-047
 
 **Description**:
 Build API route that generates interview questions based on type, role, and company using OpenAI.
 
 **Acceptance Criteria**:
+
 - POST /api/ai/interview/generate-question endpoint
 - Accepts interview type, role, company, previous questions
 - Generates contextually relevant question
@@ -1651,19 +1820,22 @@ Build API route that generates interview questions based on type, role, and comp
 - Error handling and fallback questions
 
 **Files Created**:
+
 - `app/api/ai/interview/generate-question/route.ts`
 
 ---
 
 ### Task 9.3: Create Interview Answer Evaluation API
+
 **ID**: PLAC-068  
 **Complexity**: High  
-**Dependencies**: PLAC-046, PLAC-047  
+**Dependencies**: PLAC-046, PLAC-047
 
 **Description**:
 Build API route that evaluates user's interview answer and provides feedback.
 
 **Acceptance Criteria**:
+
 - POST /api/ai/interview/evaluate-answer endpoint
 - Accepts question, answer, interview type, role
 - Evaluates answer for accuracy, clarity, completeness
@@ -1673,20 +1845,22 @@ Build API route that evaluates user's interview answer and provides feedback.
 - Constructive feedback with examples
 
 **Files Created**:
-- `app/api/ai/interview/evaluate-answer/route.ts`
 
+- `app/api/ai/interview/evaluate-answer/route.ts`
 
 ---
 
 ### Task 9.4: Create Active Interview Component
+
 **ID**: PLAC-069  
 **Complexity**: High  
-**Dependencies**: PLAC-067, PLAC-068, PLAC-005  
+**Dependencies**: PLAC-067, PLAC-068, PLAC-005
 
 **Description**:
 Build active interview interface with question display, answer input, timer, and navigation.
 
 **Acceptance Criteria**:
+
 - Question card with clear typography
 - Large textarea for answer input
 - Timer display showing remaining time
@@ -1700,19 +1874,22 @@ Build active interview interface with question display, answer input, timer, and
 - Keyboard accessible
 
 **Files Created**:
+
 - `components/interview/active-interview.tsx`
 
 ---
 
 ### Task 9.5: Create Interview Summary API
+
 **ID**: PLAC-070  
 **Complexity**: High  
-**Dependencies**: PLAC-046, PLAC-047  
+**Dependencies**: PLAC-046, PLAC-047
 
 **Description**:
 Build API route that generates comprehensive interview feedback and calculates overall score.
 
 **Acceptance Criteria**:
+
 - POST /api/ai/interview/generate-summary endpoint
 - Accepts all questions, answers, and individual scores
 - Generates overall feedback
@@ -1724,20 +1901,22 @@ Build API route that generates comprehensive interview feedback and calculates o
 - Saves summary to database
 
 **Files Created**:
-- `app/api/ai/interview/generate-summary/route.ts`
 
+- `app/api/ai/interview/generate-summary/route.ts`
 
 ---
 
 ### Task 9.6: Create Interview Results Component
+
 **ID**: PLAC-071  
 **Complexity**: Medium  
-**Dependencies**: PLAC-070, PLAC-005  
+**Dependencies**: PLAC-070, PLAC-005
 
 **Description**:
 Build interview results page showing scores, feedback, and detailed breakdown.
 
 **Acceptance Criteria**:
+
 - Overall score with animated circular gauge
 - Strengths list with icons
 - Areas for improvement with icons
@@ -1750,19 +1929,22 @@ Build interview results page showing scores, feedback, and detailed breakdown.
 - Smooth animations
 
 **Files Created**:
+
 - `components/interview/interview-results.tsx`
 
 ---
 
 ### Task 9.7: Create Interview History Component
+
 **ID**: PLAC-072  
 **Complexity**: Medium  
-**Dependencies**: PLAC-005  
+**Dependencies**: PLAC-005
 
 **Description**:
 Build component showing past interviews with filtering and score trends.
 
 **Acceptance Criteria**:
+
 - List of completed interviews
 - Filter by type, company, date range
 - Sort by date or score
@@ -1774,20 +1956,22 @@ Build component showing past interviews with filtering and score trends.
 - Loading skeletons
 
 **Files Created**:
-- `components/interview/interview-history.tsx`
 
+- `components/interview/interview-history.tsx`
 
 ---
 
 ### Task 9.8: Create Interview Server Actions
+
 **ID**: PLAC-073  
 **Complexity**: Medium  
-**Dependencies**: PLAC-011, PLAC-020  
+**Dependencies**: PLAC-011, PLAC-020
 
 **Description**:
 Implement server actions for creating, updating, and fetching interviews.
 
 **Acceptance Criteria**:
+
 - createInterview action initializes interview record
 - saveInterviewExchange action saves question/answer pair
 - updateInterviewStatus action updates status
@@ -1798,19 +1982,22 @@ Implement server actions for creating, updating, and fetching interviews.
 - Error handling
 
 **Files Created**:
+
 - `lib/actions/interview.actions.ts`
 
 ---
 
 ### Task 9.9: Create Interview Pages
+
 **ID**: PLAC-074  
 **Complexity**: High  
-**Dependencies**: PLAC-066, PLAC-069, PLAC-071, PLAC-072, PLAC-073  
+**Dependencies**: PLAC-066, PLAC-069, PLAC-071, PLAC-072, PLAC-073
 
 **Description**:
 Build interview pages: list, setup, active interview, and results.
 
 **Acceptance Criteria**:
+
 - /interview page shows interview history and new interview button
 - /interview/new page shows setup form
 - /interview/[id] page shows active interview or results based on status
@@ -1821,24 +2008,26 @@ Build interview pages: list, setup, active interview, and results.
 - Responsive layouts
 
 **Files Created**:
+
 - `app/(dashboard)/interview/page.tsx`
 - `app/(dashboard)/interview/new/page.tsx`
 - `app/(dashboard)/interview/[id]/page.tsx`
-
 
 ---
 
 ## Phase 10: Resume Analysis
 
 ### Task 10.1: Configure Supabase Storage
+
 **ID**: PLAC-075  
 **Complexity**: Low  
-**Dependencies**: PLAC-010  
+**Dependencies**: PLAC-010
 
 **Description**:
 Set up Supabase storage bucket for resume file uploads with security policies.
 
 **Acceptance Criteria**:
+
 - Storage bucket "resumes" created
 - RLS policies restrict access to own files
 - File size limit 5MB enforced
@@ -1847,19 +2036,22 @@ Set up Supabase storage bucket for resume file uploads with security policies.
 - Signed URLs for secure access
 
 **Files Created**:
+
 - Storage bucket configuration in Supabase dashboard
 
 ---
 
 ### Task 10.2: Create Resume Upload Component
+
 **ID**: PLAC-076  
 **Complexity**: Medium  
-**Dependencies**: PLAC-075, PLAC-005  
+**Dependencies**: PLAC-075, PLAC-005
 
 **Description**:
 Build drag-and-drop resume upload component with validation and progress tracking.
 
 **Acceptance Criteria**:
+
 - Drag and drop zone
 - File picker as alternative
 - File type validation (PDF, DOCX, TXT)
@@ -1872,20 +2064,22 @@ Build drag-and-drop resume upload component with validation and progress trackin
 - Accessible with keyboard
 
 **Files Created**:
-- `components/resume/resume-uploader.tsx`
 
+- `components/resume/resume-uploader.tsx`
 
 ---
 
 ### Task 10.3: Create Resume Text Extraction Utility
+
 **ID**: PLAC-077  
 **Complexity**: Medium  
-**Dependencies**: PLAC-001  
+**Dependencies**: PLAC-001
 
 **Description**:
 Implement utility to extract text from PDF, DOCX, and TXT files.
 
 **Acceptance Criteria**:
+
 - Install pdf-parse for PDF extraction
 - Install mammoth for DOCX extraction
 - Text extraction from TXT files
@@ -1896,22 +2090,26 @@ Implement utility to extract text from PDF, DOCX, and TXT files.
 - Character encoding handled correctly
 
 **Files Created**:
+
 - `lib/utils/resume-parser.ts`
 
 **Files Modified**:
+
 - `package.json`
 
 ---
 
 ### Task 10.4: Create Resume Analysis API Route
+
 **ID**: PLAC-078  
 **Complexity**: High  
-**Dependencies**: PLAC-046, PLAC-047, PLAC-077  
+**Dependencies**: PLAC-046, PLAC-047, PLAC-077
 
 **Description**:
 Build API route that analyzes resume using OpenAI and provides comprehensive feedback.
 
 **Acceptance Criteria**:
+
 - POST /api/ai/resume-analysis endpoint
 - Accepts resume ID and content
 - Fetches user's target profile for context
@@ -1925,20 +2123,22 @@ Build API route that analyzes resume using OpenAI and provides comprehensive fee
 - Error handling and retries
 
 **Files Created**:
-- `app/api/ai/resume-analysis/route.ts`
 
+- `app/api/ai/resume-analysis/route.ts`
 
 ---
 
 ### Task 10.5: Create Resume Analysis Results Component
+
 **ID**: PLAC-079  
 **Complexity**: High  
-**Dependencies**: PLAC-078, PLAC-005  
+**Dependencies**: PLAC-078, PLAC-005
 
 **Description**:
 Build component displaying resume analysis results with scores, feedback, and recommendations.
 
 **Acceptance Criteria**:
+
 - Overall score with animated circular progress
 - Score breakdown (formatting, content, keywords) with gauges
 - Strengths section with checkmark icons
@@ -1951,20 +2151,23 @@ Build component displaying resume analysis results with scores, feedback, and re
 - Visually appealing with gradients and animations
 
 **Files Created**:
+
 - `components/resume/analysis-results.tsx`
 - `components/resume/improvement-suggestions.tsx`
 
 ---
 
 ### Task 10.6: Create Resume Viewer Component
+
 **ID**: PLAC-080  
 **Complexity**: Medium  
-**Dependencies**: PLAC-005  
+**Dependencies**: PLAC-005
 
 **Description**:
 Build component for viewing uploaded resume with text preview or PDF rendering.
 
 **Acceptance Criteria**:
+
 - Display resume file name and upload date
 - For TXT: show formatted text
 - For PDF: embed PDF viewer or convert to images
@@ -1975,20 +2178,22 @@ Build component for viewing uploaded resume with text preview or PDF rendering.
 - Responsive layout
 
 **Files Created**:
-- `components/resume/resume-viewer.tsx`
 
+- `components/resume/resume-viewer.tsx`
 
 ---
 
 ### Task 10.7: Create Resume Server Actions
+
 **ID**: PLAC-081  
 **Complexity**: Medium  
-**Dependencies**: PLAC-011, PLAC-020, PLAC-075  
+**Dependencies**: PLAC-011, PLAC-020, PLAC-075
 
 **Description**:
 Implement server actions for resume upload, deletion, and analysis retrieval.
 
 **Acceptance Criteria**:
+
 - uploadResume action handles file upload to storage
 - createResumeRecord action saves metadata to database
 - deleteResume action removes file and database record
@@ -1999,19 +2204,22 @@ Implement server actions for resume upload, deletion, and analysis retrieval.
 - Error handling with descriptive messages
 
 **Files Created**:
+
 - `lib/actions/resume.actions.ts`
 
 ---
 
 ### Task 10.8: Create Resume Page
+
 **ID**: PLAC-082  
 **Complexity**: High  
-**Dependencies**: PLAC-076, PLAC-079, PLAC-080, PLAC-081  
+**Dependencies**: PLAC-076, PLAC-079, PLAC-080, PLAC-081
 
 **Description**:
 Build resume page integrating upload, viewer, and analysis components.
 
 **Acceptance Criteria**:
+
 - Upload section at top
 - List of uploaded resumes
 - Click resume to view details and analysis
@@ -2023,22 +2231,24 @@ Build resume page integrating upload, viewer, and analysis components.
 - Page metadata
 
 **Files Created**:
-- `app/(dashboard)/resume/page.tsx`
 
+- `app/(dashboard)/resume/page.tsx`
 
 ---
 
 ## Phase 11: Daily Planner
 
 ### Task 11.1: Create Planner Store
+
 **ID**: PLAC-083  
 **Complexity**: Low  
-**Dependencies**: PLAC-020  
+**Dependencies**: PLAC-020
 
 **Description**:
 Implement Zustand store for managing daily tasks state.
 
 **Acceptance Criteria**:
+
 - tasks array in state
 - selectedDate in state
 - setTasks action
@@ -2050,19 +2260,22 @@ Implement Zustand store for managing daily tasks state.
 - Type-safe with TypeScript
 
 **Files Created**:
+
 - `lib/stores/planner.store.ts`
 
 ---
 
 ### Task 11.2: Create Task Server Actions
+
 **ID**: PLAC-084  
 **Complexity**: Medium  
-**Dependencies**: PLAC-011, PLAC-020  
+**Dependencies**: PLAC-011, PLAC-020
 
 **Description**:
 Implement server actions for task CRUD operations and scheduling.
 
 **Acceptance Criteria**:
+
 - createTask action with validation
 - updateTask action for editing
 - deleteTask action with confirmation
@@ -2074,20 +2287,22 @@ Implement server actions for task CRUD operations and scheduling.
 - Error handling
 
 **Files Created**:
-- `lib/actions/tasks.actions.ts`
 
+- `lib/actions/tasks.actions.ts`
 
 ---
 
 ### Task 11.3: Create Task Card Component
+
 **ID**: PLAC-085  
 **Complexity**: Medium  
-**Dependencies**: PLAC-005  
+**Dependencies**: PLAC-005
 
 **Description**:
 Build task card with checkbox, title, time, priority indicator, and actions.
 
 **Acceptance Criteria**:
+
 - Checkbox to toggle completion
 - Task title and description
 - Scheduled time display
@@ -2101,19 +2316,22 @@ Build task card with checkbox, title, time, priority indicator, and actions.
 - Smooth animations
 
 **Files Created**:
+
 - `components/planner/task-card.tsx`
 
 ---
 
 ### Task 11.4: Create Task List Component
+
 **ID**: PLAC-086  
 **Complexity**: High  
-**Dependencies**: PLAC-085, PLAC-083  
+**Dependencies**: PLAC-085, PLAC-083
 
 **Description**:
 Build task list with grouping, drag-and-drop reordering, and filtering.
 
 **Acceptance Criteria**:
+
 - Tasks grouped by priority (high, medium, low)
 - Drag and drop to reorder (react-beautiful-dnd)
 - Filter by status (all, pending, completed)
@@ -2125,23 +2343,26 @@ Build task list with grouping, drag-and-drop reordering, and filtering.
 - Touch-friendly on mobile
 
 **Files Created**:
+
 - `components/planner/task-list.tsx`
 
 **Files Modified**:
-- `package.json` (install @dnd-kit/core or react-beautiful-dnd)
 
+- `package.json` (install @dnd-kit/core or react-beautiful-dnd)
 
 ---
 
 ### Task 11.5: Create Task Form Component
+
 **ID**: PLAC-087  
 **Complexity**: Medium  
-**Dependencies**: PLAC-025, PLAC-005  
+**Dependencies**: PLAC-025, PLAC-005
 
 **Description**:
 Build task creation/editing form with validation and roadmap node linking.
 
 **Acceptance Criteria**:
+
 - Title input (required, max 200 chars)
 - Description textarea (optional, max 1000 chars)
 - Date picker (defaults to today)
@@ -2156,19 +2377,22 @@ Build task creation/editing form with validation and roadmap node linking.
 - Can be used in modal or inline
 
 **Files Created**:
+
 - `components/planner/task-form.tsx`
 
 ---
 
 ### Task 11.6: Create Calendar Component
+
 **ID**: PLAC-088  
 **Complexity**: Medium  
-**Dependencies**: PLAC-083  
+**Dependencies**: PLAC-083
 
 **Description**:
 Build mini calendar for date selection and task count indicators.
 
 **Acceptance Criteria**:
+
 - Month view with date grid
 - Current date highlighted
 - Selected date highlighted
@@ -2181,20 +2405,22 @@ Build mini calendar for date selection and task count indicators.
 - Accessible with ARIA
 
 **Files Created**:
-- `components/planner/calendar.tsx`
 
+- `components/planner/calendar.tsx`
 
 ---
 
 ### Task 11.7: Create Daily Stats Component
+
 **ID**: PLAC-089  
 **Complexity**: Low  
-**Dependencies**: PLAC-083  
+**Dependencies**: PLAC-083
 
 **Description**:
 Build component showing daily task statistics and progress.
 
 **Acceptance Criteria**:
+
 - Tasks completed / total tasks
 - Hours logged / hours planned
 - Completion percentage with circular progress
@@ -2205,19 +2431,22 @@ Build component showing daily task statistics and progress.
 - Smooth animations
 
 **Files Created**:
+
 - `components/planner/daily-stats.tsx`
 
 ---
 
 ### Task 11.8: Create Planner Page
+
 **ID**: PLAC-090  
 **Complexity**: High  
-**Dependencies**: PLAC-086, PLAC-087, PLAC-088, PLAC-089, PLAC-084  
+**Dependencies**: PLAC-086, PLAC-087, PLAC-088, PLAC-089, PLAC-084
 
 **Description**:
 Build planner page integrating calendar, task list, form, and stats.
 
 **Acceptance Criteria**:
+
 - Calendar on left sidebar
 - Task list in center
 - Daily stats at top
@@ -2230,22 +2459,24 @@ Build planner page integrating calendar, task list, form, and stats.
 - Real-time task updates
 
 **Files Created**:
-- `app/(dashboard)/planner/page.tsx`
 
+- `app/(dashboard)/planner/page.tsx`
 
 ---
 
 ## Phase 12: Analytics Dashboard
 
 ### Task 12.1: Install and Configure Recharts
+
 **ID**: PLAC-091  
 **Complexity**: Low  
-**Dependencies**: PLAC-001  
+**Dependencies**: PLAC-001
 
 **Description**:
 Install Recharts library for data visualization and configure theming.
 
 **Acceptance Criteria**:
+
 - recharts package installed
 - Recharts components work with Tailwind
 - Custom theme colors configured
@@ -2253,19 +2484,22 @@ Install Recharts library for data visualization and configure theming.
 - Accessibility features enabled
 
 **Files Modified**:
+
 - `package.json`
 
 ---
 
 ### Task 12.2: Create Analytics Server Actions
+
 **ID**: PLAC-092  
 **Complexity**: High  
-**Dependencies**: PLAC-011, PLAC-020  
+**Dependencies**: PLAC-011, PLAC-020
 
 **Description**:
 Implement server actions for fetching and aggregating analytics data.
 
 **Acceptance Criteria**:
+
 - getProgressStats action (roadmap completion, study hours, etc.)
 - getStudyHoursOverTime action with date range
 - getMockInterviewScores action with trend data
@@ -2277,20 +2511,22 @@ Implement server actions for fetching and aggregating analytics data.
 - Error handling
 
 **Files Created**:
-- `lib/actions/analytics.actions.ts`
 
+- `lib/actions/analytics.actions.ts`
 
 ---
 
 ### Task 12.3: Create Metrics Grid Component
+
 **ID**: PLAC-093  
 **Complexity**: Medium  
-**Dependencies**: PLAC-005, PLAC-092  
+**Dependencies**: PLAC-005, PLAC-092
 
 **Description**:
 Build grid of metric cards showing key statistics.
 
 **Acceptance Criteria**:
+
 - Metric cards for: roadmap completion, study hours, interview score, streak
 - Each card shows: icon, label, value, change percentage
 - Color-coded based on trend (green up, red down)
@@ -2301,19 +2537,22 @@ Build grid of metric cards showing key statistics.
 - Hover effects
 
 **Files Created**:
+
 - `components/analytics/metrics-grid.tsx`
 
 ---
 
 ### Task 12.4: Create Progress Chart Component
+
 **ID**: PLAC-094  
 **Complexity**: Medium  
-**Dependencies**: PLAC-091, PLAC-092  
+**Dependencies**: PLAC-091, PLAC-092
 
 **Description**:
 Build line chart showing roadmap progress and study hours over time.
 
 **Acceptance Criteria**:
+
 - Recharts LineChart with two lines (nodes completed, study hours)
 - X-axis: dates
 - Y-axis: dual axis (nodes on left, hours on right)
@@ -2326,20 +2565,22 @@ Build line chart showing roadmap progress and study hours over time.
 - Empty state for no data
 
 **Files Created**:
-- `components/analytics/progress-chart.tsx`
 
+- `components/analytics/progress-chart.tsx`
 
 ---
 
 ### Task 12.5: Create Skills Radar Chart Component
+
 **ID**: PLAC-095  
 **Complexity**: Medium  
-**Dependencies**: PLAC-091, PLAC-092  
+**Dependencies**: PLAC-091, PLAC-092
 
 **Description**:
 Build radar chart displaying skill proficiency levels.
 
 **Acceptance Criteria**:
+
 - Recharts RadarChart with skill proficiency data
 - Shows top 8 skills
 - Proficiency levels 1-10 on radial axis
@@ -2351,19 +2592,22 @@ Build radar chart displaying skill proficiency levels.
 - Empty state for no skills
 
 **Files Created**:
+
 - `components/analytics/skills-radar.tsx`
 
 ---
 
 ### Task 12.6: Create Activity Heatmap Component
+
 **ID**: PLAC-096  
 **Complexity**: High  
-**Dependencies**: PLAC-005, PLAC-092  
+**Dependencies**: PLAC-005, PLAC-092
 
 **Description**:
 Build GitHub-style activity heatmap showing daily study activity.
 
 **Acceptance Criteria**:
+
 - Grid of squares representing days (last 365 days)
 - Color intensity based on study hours
 - Tooltips on hover showing date and hours
@@ -2374,20 +2618,22 @@ Build GitHub-style activity heatmap showing daily study activity.
 - Smooth animations
 
 **Files Created**:
-- `components/analytics/activity-heatmap.tsx`
 
+- `components/analytics/activity-heatmap.tsx`
 
 ---
 
 ### Task 12.7: Create Export Analytics Utility
+
 **ID**: PLAC-097  
 **Complexity**: Medium  
-**Dependencies**: PLAC-092  
+**Dependencies**: PLAC-092
 
 **Description**:
 Implement utility to export analytics data as PDF or CSV.
 
 **Acceptance Criteria**:
+
 - Export to CSV with all raw data
 - Export to PDF with charts (using jspdf)
 - Date range selection for export
@@ -2397,22 +2643,26 @@ Implement utility to export analytics data as PDF or CSV.
 - Error handling
 
 **Files Created**:
+
 - `lib/utils/export-analytics.ts`
 
 **Files Modified**:
+
 - `package.json` (install jspdf, jspdf-autotable)
 
 ---
 
 ### Task 12.8: Create Analytics Page
+
 **ID**: PLAC-098  
 **Complexity**: High  
-**Dependencies**: PLAC-093, PLAC-094, PLAC-095, PLAC-096, PLAC-097  
+**Dependencies**: PLAC-093, PLAC-094, PLAC-095, PLAC-096, PLAC-097
 
 **Description**:
 Build analytics page integrating all charts and metrics.
 
 **Acceptance Criteria**:
+
 - Metrics grid at top
 - Progress chart below metrics
 - Two-column layout: skills radar on left, heatmap on right
@@ -2424,22 +2674,24 @@ Build analytics page integrating all charts and metrics.
 - Page metadata
 
 **Files Created**:
-- `app/(dashboard)/analytics/page.tsx`
 
+- `app/(dashboard)/analytics/page.tsx`
 
 ---
 
 ## Phase 13: Company Preparation
 
 ### Task 13.1: Create Company List Component
+
 **ID**: PLAC-099  
 **Complexity**: Medium  
-**Dependencies**: PLAC-005  
+**Dependencies**: PLAC-005
 
 **Description**:
 Build searchable, filterable list of companies with cards.
 
 **Acceptance Criteria**:
+
 - Grid of company cards
 - Search by company name
 - Filter by industry
@@ -2452,20 +2704,23 @@ Build searchable, filterable list of companies with cards.
 - Responsive grid
 
 **Files Created**:
+
 - `components/companies/company-list.tsx`
 - `components/companies/company-card.tsx`
 
 ---
 
 ### Task 13.2: Create Company Details Component
+
 **ID**: PLAC-100  
 **Complexity**: High  
-**Dependencies**: PLAC-005  
+**Dependencies**: PLAC-005
 
 **Description**:
 Build comprehensive company details page with all preparation resources.
 
 **Acceptance Criteria**:
+
 - Company header with logo, name, website link
 - Overview section (industry, size, description)
 - Tech stack with badges
@@ -2480,21 +2735,23 @@ Build comprehensive company details page with all preparation resources.
 - Responsive layout
 
 **Files Created**:
+
 - `components/companies/company-details.tsx`
 - `components/companies/preparation-resources.tsx`
-
 
 ---
 
 ### Task 13.3: Create Company Server Actions
+
 **ID**: PLAC-101  
 **Complexity**: Low  
-**Dependencies**: PLAC-011, PLAC-020  
+**Dependencies**: PLAC-011, PLAC-020
 
 **Description**:
 Implement server actions for fetching company data and managing bookmarks.
 
 **Acceptance Criteria**:
+
 - getCompanies action with search and filtering
 - getCompanyById action with full details
 - bookmarkCompany action saves bookmark
@@ -2504,19 +2761,22 @@ Implement server actions for fetching company data and managing bookmarks.
 - Caching for company data
 
 **Files Created**:
+
 - `lib/actions/companies.actions.ts`
 
 ---
 
 ### Task 13.4: Create Companies Pages
+
 **ID**: PLAC-102  
 **Complexity**: Medium  
-**Dependencies**: PLAC-099, PLAC-100, PLAC-101  
+**Dependencies**: PLAC-099, PLAC-100, PLAC-101
 
 **Description**:
 Build companies pages: list and individual company detail.
 
 **Acceptance Criteria**:
+
 - /companies page shows company list
 - /companies/[id] page shows company details
 - Server-side data fetching
@@ -2527,23 +2787,25 @@ Build companies pages: list and individual company detail.
 - Breadcrumb navigation
 
 **Files Created**:
+
 - `app/(dashboard)/companies/page.tsx`
 - `app/(dashboard)/companies/[id]/page.tsx`
-
 
 ---
 
 ## Phase 14: Project Generator
 
 ### Task 14.1: Create Project Generation API Route
+
 **ID**: PLAC-103  
 **Complexity**: High  
-**Dependencies**: PLAC-046, PLAC-047  
+**Dependencies**: PLAC-046, PLAC-047
 
 **Description**:
 Build API route that generates personalized project ideas using OpenAI.
 
 **Acceptance Criteria**:
+
 - POST /api/ai/project-generation endpoint
 - Accepts target role, skills, difficulty preference
 - Fetches user's target companies for tech stack alignment
@@ -2555,19 +2817,22 @@ Build API route that generates personalized project ideas using OpenAI.
 - Error handling
 
 **Files Created**:
+
 - `app/api/ai/project-generation/route.ts`
 
 ---
 
 ### Task 14.2: Create Project Card Component
+
 **ID**: PLAC-104  
 **Complexity**: Medium  
-**Dependencies**: PLAC-005  
+**Dependencies**: PLAC-005
 
 **Description**:
 Build project card displaying project summary with action buttons.
 
 **Acceptance Criteria**:
+
 - Project title and description (truncated)
 - Difficulty badge
 - Estimated duration
@@ -2579,20 +2844,22 @@ Build project card displaying project summary with action buttons.
 - Smooth animations
 
 **Files Created**:
-- `components/projects/project-card.tsx`
 
+- `components/projects/project-card.tsx`
 
 ---
 
 ### Task 14.3: Create Project Details Component
+
 **ID**: PLAC-105  
 **Complexity**: High  
-**Dependencies**: PLAC-005  
+**Dependencies**: PLAC-005
 
 **Description**:
 Build detailed project view with requirements, phases, and tracking.
 
 **Acceptance Criteria**:
+
 - Full project description
 - All technologies listed with icons
 - Requirements checklist
@@ -2607,19 +2874,22 @@ Build detailed project view with requirements, phases, and tracking.
 - Responsive layout
 
 **Files Created**:
+
 - `components/projects/project-details.tsx`
 
 ---
 
 ### Task 14.4: Create Project Generator Component
+
 **ID**: PLAC-106  
 **Complexity**: Medium  
-**Dependencies**: PLAC-103, PLAC-005  
+**Dependencies**: PLAC-103, PLAC-005
 
 **Description**:
 Build UI for generating new project ideas with preferences.
 
 **Acceptance Criteria**:
+
 - Difficulty selector (beginner, intermediate, advanced)
 - Specific technology preference (optional)
 - Generate button
@@ -2630,20 +2900,22 @@ Build UI for generating new project ideas with preferences.
 - Empty state with call to action
 
 **Files Created**:
-- `components/projects/project-generator.tsx`
 
+- `components/projects/project-generator.tsx`
 
 ---
 
 ### Task 14.5: Create Project List Component
+
 **ID**: PLAC-107  
 **Complexity**: Medium  
-**Dependencies**: PLAC-104  
+**Dependencies**: PLAC-104
 
 **Description**:
 Build filterable list of projects with status tabs.
 
 **Acceptance Criteria**:
+
 - Tabs for: All, Suggested, In Progress, Completed
 - Filter by difficulty and technology
 - Sort options (date, difficulty, status)
@@ -2654,19 +2926,22 @@ Build filterable list of projects with status tabs.
 - Responsive grid
 
 **Files Created**:
+
 - `components/projects/project-list.tsx`
 
 ---
 
 ### Task 14.6: Create Project Server Actions
+
 **ID**: PLAC-108  
 **Complexity**: Medium  
-**Dependencies**: PLAC-011, PLAC-020  
+**Dependencies**: PLAC-011, PLAC-020
 
 **Description**:
 Implement server actions for project CRUD and status management.
 
 **Acceptance Criteria**:
+
 - createProject action saves generated project
 - updateProject action for editing details
 - updateProjectStatus action (suggested → in_progress → completed)
@@ -2678,20 +2953,22 @@ Implement server actions for project CRUD and status management.
 - Error handling
 
 **Files Created**:
-- `lib/actions/projects.actions.ts`
 
+- `lib/actions/projects.actions.ts`
 
 ---
 
 ### Task 14.7: Create Projects Pages
+
 **ID**: PLAC-109  
 **Complexity**: High  
-**Dependencies**: PLAC-106, PLAC-107, PLAC-105, PLAC-108  
+**Dependencies**: PLAC-106, PLAC-107, PLAC-105, PLAC-108
 
 **Description**:
 Build projects pages: list with generator and individual project details.
 
 **Acceptance Criteria**:
+
 - /projects page shows project list and generator
 - /projects/[id] page shows project details
 - Generator button opens modal
@@ -2702,6 +2979,7 @@ Build projects pages: list with generator and individual project details.
 - Responsive layouts
 
 **Files Created**:
+
 - `app/(dashboard)/projects/page.tsx`
 - `app/(dashboard)/projects/[id]/page.tsx`
 
@@ -2710,14 +2988,16 @@ Build projects pages: list with generator and individual project details.
 ## Phase 15: Settings and Profile
 
 ### Task 15.1: Create Profile Settings Component
+
 **ID**: PLAC-110  
 **Complexity**: Medium  
-**Dependencies**: PLAC-005, PLAC-025  
+**Dependencies**: PLAC-005, PLAC-025
 
 **Description**:
 Build profile settings form for updating user information.
 
 **Acceptance Criteria**:
+
 - Full name input
 - Email input (with verification if changed)
 - Avatar upload with preview
@@ -2728,20 +3008,22 @@ Build profile settings form for updating user information.
 - Accessible form
 
 **Files Created**:
-- `components/settings/profile-settings.tsx`
 
+- `components/settings/profile-settings.tsx`
 
 ---
 
 ### Task 15.2: Create Account Settings Component
+
 **ID**: PLAC-111  
 **Complexity**: Medium  
-**Dependencies**: PLAC-005  
+**Dependencies**: PLAC-005
 
 **Description**:
 Build account settings for password, connected accounts, and danger zone.
 
 **Acceptance Criteria**:
+
 - Change password section with old/new password inputs
 - Connected OAuth accounts display
 - Connect/disconnect OAuth buttons
@@ -2752,19 +3034,22 @@ Build account settings for password, connected accounts, and danger zone.
 - Confirmation dialogs for dangerous actions
 
 **Files Created**:
+
 - `components/settings/account-settings.tsx`
 
 ---
 
 ### Task 15.3: Create Notification Settings Component
+
 **ID**: PLAC-112  
 **Complexity**: Low  
-**Dependencies**: PLAC-005  
+**Dependencies**: PLAC-005
 
 **Description**:
 Build notification preferences with toggles for each type.
 
 **Acceptance Criteria**:
+
 - Toggle for email notifications
 - Toggle for in-app notifications
 - Toggle for task reminders
@@ -2775,20 +3060,22 @@ Build notification preferences with toggles for each type.
 - Changes saved to profile
 
 **Files Created**:
-- `components/settings/notification-settings.tsx`
 
+- `components/settings/notification-settings.tsx`
 
 ---
 
 ### Task 15.4: Create Data Export Component
+
 **ID**: PLAC-113  
 **Complexity**: Medium  
-**Dependencies**: PLAC-011  
+**Dependencies**: PLAC-011
 
 **Description**:
 Build component for exporting user data in compliance with GDPR.
 
 **Acceptance Criteria**:
+
 - Request data export button
 - Export includes: profile, target profile, skills, roadmap, tasks, interviews, resumes (metadata), projects
 - Data exported as JSON file
@@ -2798,19 +3085,22 @@ Build component for exporting user data in compliance with GDPR.
 - Error handling
 
 **Files Created**:
+
 - `components/settings/data-export.tsx`
 
 ---
 
 ### Task 15.5: Create Settings Page
+
 **ID**: PLAC-114  
 **Complexity**: Medium  
-**Dependencies**: PLAC-110, PLAC-111, PLAC-112, PLAC-113  
+**Dependencies**: PLAC-110, PLAC-111, PLAC-112, PLAC-113
 
 **Description**:
 Build settings page with tabs for different setting categories.
 
 **Acceptance Criteria**:
+
 - Tabs: Profile, Account, Notifications, Data & Privacy
 - Tab content displays corresponding settings component
 - Active tab highlighted
@@ -2820,6 +3110,7 @@ Build settings page with tabs for different setting categories.
 - Auto-save or explicit save per section
 
 **Files Created**:
+
 - `app/(dashboard)/settings/page.tsx`
 
 ---
@@ -2827,14 +3118,16 @@ Build settings page with tabs for different setting categories.
 ## Phase 16: Real-time Features
 
 ### Task 16.1: Create Real-time Hooks
+
 **ID**: PLAC-115  
 **Complexity**: Medium  
-**Dependencies**: PLAC-011, PLAC-045  
+**Dependencies**: PLAC-011, PLAC-045
 
 **Description**:
 Implement custom hooks for Supabase real-time subscriptions.
 
 **Acceptance Criteria**:
+
 - useRealtimeNotifications hook subscribes to notification inserts
 - useRealtimeRoadmapUpdates hook subscribes to roadmap_nodes changes
 - useRealtimeTasks hook subscribes to daily_tasks changes
@@ -2844,20 +3137,22 @@ Implement custom hooks for Supabase real-time subscriptions.
 - Type-safe with TypeScript
 
 **Files Created**:
-- `lib/hooks/use-realtime.ts`
 
+- `lib/hooks/use-realtime.ts`
 
 ---
 
 ### Task 16.2: Integrate Real-time Updates
+
 **ID**: PLAC-116  
 **Complexity**: Medium  
-**Dependencies**: PLAC-115  
+**Dependencies**: PLAC-115
 
 **Description**:
 Integrate real-time subscriptions into relevant components for live updates.
 
 **Acceptance Criteria**:
+
 - Notification bell updates in real-time
 - Roadmap nodes update when status changes (multi-device sync)
 - Daily tasks update in real-time
@@ -2866,6 +3161,7 @@ Integrate real-time subscriptions into relevant components for live updates.
 - No flash of content
 
 **Files Modified**:
+
 - `components/layouts/notification-bell.tsx`
 - `components/roadmap/roadmap-canvas.tsx`
 - `components/planner/task-list.tsx`
@@ -2875,14 +3171,16 @@ Integrate real-time subscriptions into relevant components for live updates.
 ## Phase 17: Weekly Review System
 
 ### Task 17.1: Create Weekly Review Generation API
+
 **ID**: PLAC-117  
 **Complexity**: High  
-**Dependencies**: PLAC-046, PLAC-047, PLAC-092  
+**Dependencies**: PLAC-046, PLAC-047, PLAC-092
 
 **Description**:
 Build API route that generates AI-powered weekly progress review.
 
 **Acceptance Criteria**:
+
 - POST /api/ai/weekly-review endpoint
 - Fetches user data for past week (nodes completed, hours logged, tasks, interviews)
 - Calculates metrics (completion rate, progress %, week-over-week change)
@@ -2894,20 +3192,22 @@ Build API route that generates AI-powered weekly progress review.
 - Error handling
 
 **Files Created**:
-- `app/api/ai/weekly-review/route.ts`
 
+- `app/api/ai/weekly-review/route.ts`
 
 ---
 
 ### Task 17.2: Create Cron Job for Weekly Reviews
+
 **ID**: PLAC-118  
 **Complexity**: Medium  
-**Dependencies**: PLAC-117  
+**Dependencies**: PLAC-117
 
 **Description**:
 Implement cron job API route that generates weekly reviews for all users.
 
 **Acceptance Criteria**:
+
 - GET /api/cron/weekly-reviews endpoint
 - Protected with cron secret or Vercel Cron
 - Fetches users who need reviews (7 days since last review or registration)
@@ -2917,19 +3217,22 @@ Implement cron job API route that generates weekly reviews for all users.
 - Success/failure tracking
 
 **Files Created**:
+
 - `app/api/cron/weekly-reviews/route.ts`
 
 ---
 
 ### Task 17.3: Configure Vercel Cron
+
 **ID**: PLAC-119  
 **Complexity**: Low  
-**Dependencies**: PLAC-118  
+**Dependencies**: PLAC-118
 
 **Description**:
 Configure Vercel cron job to run weekly review generation.
 
 **Acceptance Criteria**:
+
 - vercel.json configured with cron schedule
 - Runs every Monday at 9:00 AM UTC
 - Cron secret configured
@@ -2937,19 +3240,22 @@ Configure Vercel cron job to run weekly review generation.
 - Logs accessible
 
 **Files Modified**:
+
 - `vercel.json`
 
 ---
 
 ### Task 17.4: Create Weekly Review Display Component
+
 **ID**: PLAC-120  
 **Complexity**: Medium  
-**Dependencies**: PLAC-005  
+**Dependencies**: PLAC-005
 
 **Description**:
 Build component for displaying weekly review with charts and insights.
 
 **Acceptance Criteria**:
+
 - Review header with date range
 - Metrics summary (hours, nodes, tasks completed)
 - Progress chart showing week's activity
@@ -2962,20 +3268,22 @@ Build component for displaying weekly review with charts and insights.
 - Share review button
 
 **Files Created**:
-- `components/dashboard/weekly-review.tsx`
 
+- `components/dashboard/weekly-review.tsx`
 
 ---
 
 ### Task 17.5: Integrate Weekly Review into Dashboard
+
 **ID**: PLAC-121  
 **Complexity**: Low  
-**Dependencies**: PLAC-120, PLAC-044  
+**Dependencies**: PLAC-120, PLAC-044
 
 **Description**:
 Add weekly review section to dashboard home page.
 
 **Acceptance Criteria**:
+
 - Latest review displayed in card
 - "View Full Review" button opens modal
 - Notification when new review available
@@ -2983,6 +3291,7 @@ Add weekly review section to dashboard home page.
 - Empty state if no reviews yet
 
 **Files Modified**:
+
 - `app/(dashboard)/dashboard/page.tsx`
 
 ---
@@ -2990,14 +3299,16 @@ Add weekly review section to dashboard home page.
 ## Phase 18: Search Functionality
 
 ### Task 18.1: Create Global Search API
+
 **ID**: PLAC-122  
 **Complexity**: High  
-**Dependencies**: PLAC-011  
+**Dependencies**: PLAC-011
 
 **Description**:
 Build API route for global search across all content types.
 
 **Acceptance Criteria**:
+
 - GET /api/search endpoint with query parameter
 - Searches across: roadmap nodes, companies, projects, tasks
 - Fuzzy matching support
@@ -3009,20 +3320,22 @@ Build API route for global search across all content types.
 - Error handling
 
 **Files Created**:
-- `app/api/search/route.ts`
 
+- `app/api/search/route.ts`
 
 ---
 
 ### Task 18.2: Create Search Results Component
+
 **ID**: PLAC-123  
 **Complexity**: Medium  
-**Dependencies**: PLAC-122, PLAC-005  
+**Dependencies**: PLAC-122, PLAC-005
 
 **Description**:
 Build search results display with grouped results and filtering.
 
 **Acceptance Criteria**:
+
 - Results grouped by type (Roadmap, Companies, Projects, Tasks)
 - Result items show: title, snippet with highlighted text, type icon
 - Click result navigates to item
@@ -3033,19 +3346,22 @@ Build search results display with grouped results and filtering.
 - Result count per type
 
 **Files Created**:
+
 - `components/shared/search-results.tsx`
 
 ---
 
 ### Task 18.3: Implement Search Modal
+
 **ID**: PLAC-124  
 **Complexity**: High  
-**Dependencies**: PLAC-122, PLAC-123, PLAC-006  
+**Dependencies**: PLAC-122, PLAC-123, PLAC-006
 
 **Description**:
 Build command palette-style search modal with keyboard shortcuts.
 
 **Acceptance Criteria**:
+
 - Modal opens with Cmd/Ctrl + K
 - Search input auto-focused
 - Real-time search as user types (debounced)
@@ -3058,20 +3374,22 @@ Build command palette-style search modal with keyboard shortcuts.
 - Accessible with ARIA
 
 **Files Created**:
-- `components/shared/search-modal.tsx`
 
+- `components/shared/search-modal.tsx`
 
 ---
 
 ### Task 18.4: Integrate Search into Layout
+
 **ID**: PLAC-125  
 **Complexity**: Low  
-**Dependencies**: PLAC-124, PLAC-041  
+**Dependencies**: PLAC-124, PLAC-041
 
 **Description**:
 Add search button and keyboard shortcut listener to top bar.
 
 **Acceptance Criteria**:
+
 - Search button in top bar
 - Keyboard shortcut listener (Cmd/Ctrl + K)
 - Search modal renders when triggered
@@ -3079,6 +3397,7 @@ Add search button and keyboard shortcut listener to top bar.
 - Works from any page
 
 **Files Modified**:
+
 - `components/layouts/top-bar.tsx`
 - `app/(dashboard)/layout.tsx`
 
@@ -3087,14 +3406,16 @@ Add search button and keyboard shortcut listener to top bar.
 ## Phase 19: Error Handling and Monitoring
 
 ### Task 19.1: Install and Configure Sentry
+
 **ID**: PLAC-126  
 **Complexity**: Low  
-**Dependencies**: PLAC-001  
+**Dependencies**: PLAC-001
 
 **Description**:
 Install Sentry for error tracking and performance monitoring.
 
 **Acceptance Criteria**:
+
 - @sentry/nextjs installed
 - Sentry initialized in Next.js
 - DSN configured in environment variables
@@ -3104,27 +3425,30 @@ Install Sentry for error tracking and performance monitoring.
 - Error filtering (remove sensitive data)
 
 **Files Created**:
+
 - `sentry.client.config.ts`
 - `sentry.server.config.ts`
 - `sentry.edge.config.ts`
 
 **Files Modified**:
+
 - `next.config.js`
 - `.env.local`
 - `package.json`
 
-
 ---
 
 ### Task 19.2: Create Error Boundary Components
+
 **ID**: PLAC-127  
 **Complexity**: Medium  
-**Dependencies**: PLAC-126, PLAC-005  
+**Dependencies**: PLAC-126, PLAC-005
 
 **Description**:
 Build error boundary components for graceful error handling.
 
 **Acceptance Criteria**:
+
 - Root error boundary for app-wide errors
 - Page-level error boundaries
 - Component-level error boundaries for critical features
@@ -3134,6 +3458,7 @@ Build error boundary components for graceful error handling.
 - Reset error state functionality
 
 **Files Created**:
+
 - `components/shared/error-boundary.tsx`
 - `app/error.tsx`
 - `app/global-error.tsx`
@@ -3141,14 +3466,16 @@ Build error boundary components for graceful error handling.
 ---
 
 ### Task 19.3: Create Loading and Empty States
+
 **ID**: PLAC-128  
 **Complexity**: Low  
-**Dependencies**: PLAC-005  
+**Dependencies**: PLAC-005
 
 **Description**:
 Build reusable loading and empty state components.
 
 **Acceptance Criteria**:
+
 - Loading spinner component
 - Skeleton components for different layouts
 - Empty state component with icon, message, and action
@@ -3157,22 +3484,24 @@ Build reusable loading and empty state components.
 - Accessible with ARIA
 
 **Files Created**:
+
 - `components/shared/loading-spinner.tsx`
 - `components/shared/empty-state.tsx`
 - `components/shared/page-loading.tsx`
 
-
 ---
 
 ### Task 19.4: Implement Rate Limiting
+
 **ID**: PLAC-129  
 **Complexity**: Medium  
-**Dependencies**: PLAC-001  
+**Dependencies**: PLAC-001
 
 **Description**:
 Implement rate limiting for API routes to prevent abuse.
 
 **Acceptance Criteria**:
+
 - Install @upstash/ratelimit or similar
 - Rate limit AI endpoints (10 requests per minute per user)
 - Rate limit authentication endpoints (5 requests per minute per IP)
@@ -3182,9 +3511,11 @@ Implement rate limiting for API routes to prevent abuse.
 - Bypass for development environment
 
 **Files Created**:
+
 - `lib/utils/rate-limit.ts`
 
 **Files Modified**:
+
 - API route files
 - `package.json`
 
@@ -3193,14 +3524,16 @@ Implement rate limiting for API routes to prevent abuse.
 ## Phase 20: Testing
 
 ### Task 20.1: Configure Testing Framework
+
 **ID**: PLAC-130  
 **Complexity**: Low  
-**Dependencies**: PLAC-001  
+**Dependencies**: PLAC-001
 
 **Description**:
 Set up Jest and React Testing Library for unit and integration tests.
 
 **Acceptance Criteria**:
+
 - jest and @testing-library/react installed
 - jest.config.js configured
 - Test setup file created
@@ -3210,6 +3543,7 @@ Set up Jest and React Testing Library for unit and integration tests.
 - CI integration ready
 
 **Files Created**:
+
 - `jest.config.js`
 - `jest.setup.js`
 - `__tests__/setup.ts`
@@ -3217,20 +3551,22 @@ Set up Jest and React Testing Library for unit and integration tests.
 - `__mocks__/openai.ts`
 
 **Files Modified**:
-- `package.json`
 
+- `package.json`
 
 ---
 
 ### Task 20.2: Write UI Component Tests
+
 **ID**: PLAC-131  
 **Complexity**: Medium  
-**Dependencies**: PLAC-130, PLAC-005  
+**Dependencies**: PLAC-130, PLAC-005
 
 **Description**:
 Write unit tests for all UI components in components/ui/.
 
 **Acceptance Criteria**:
+
 - Tests for Button (variants, loading, disabled, onClick)
 - Tests for Input (validation, errors, onChange)
 - Tests for Card (variants, hover, onClick)
@@ -3240,6 +3576,7 @@ Write unit tests for all UI components in components/ui/.
 - All tests pass
 
 **Files Created**:
+
 - `__tests__/components/ui/button.test.tsx`
 - `__tests__/components/ui/input.test.tsx`
 - `__tests__/components/ui/card.test.tsx`
@@ -3249,14 +3586,16 @@ Write unit tests for all UI components in components/ui/.
 ---
 
 ### Task 20.3: Write Integration Tests
+
 **ID**: PLAC-132  
 **Complexity**: High  
-**Dependencies**: PLAC-130  
+**Dependencies**: PLAC-130
 
 **Description**:
 Write integration tests for key user flows.
 
 **Acceptance Criteria**:
+
 - Authentication flow test (login, register, logout)
 - Onboarding flow test (multi-step wizard)
 - Roadmap interaction test (view, update node status)
@@ -3266,23 +3605,25 @@ Write integration tests for key user flows.
 - Tests run in CI
 
 **Files Created**:
+
 - `__tests__/integration/auth.test.tsx`
 - `__tests__/integration/onboarding.test.tsx`
 - `__tests__/integration/roadmap.test.tsx`
 - `__tests__/integration/tasks.test.tsx`
 
-
 ---
 
 ### Task 20.4: Configure E2E Testing with Playwright
+
 **ID**: PLAC-133  
 **Complexity**: Low  
-**Dependencies**: PLAC-001  
+**Dependencies**: PLAC-001
 
 **Description**:
 Set up Playwright for end-to-end testing.
 
 **Acceptance Criteria**:
+
 - @playwright/test installed
 - playwright.config.ts configured
 - Test browsers installed
@@ -3292,23 +3633,27 @@ Set up Playwright for end-to-end testing.
 - CI integration ready
 
 **Files Created**:
+
 - `playwright.config.ts`
 - `e2e/fixtures.ts`
 
 **Files Modified**:
+
 - `package.json`
 
 ---
 
 ### Task 20.5: Write E2E Tests
+
 **ID**: PLAC-134  
 **Complexity**: High  
-**Dependencies**: PLAC-133  
+**Dependencies**: PLAC-133
 
 **Description**:
 Write end-to-end tests for critical user journeys.
 
 **Acceptance Criteria**:
+
 - Full registration and onboarding flow
 - Login and navigation test
 - Roadmap generation and interaction
@@ -3318,24 +3663,26 @@ Write end-to-end tests for critical user journeys.
 - Tests run in CI with screenshots on failure
 
 **Files Created**:
+
 - `e2e/auth.spec.ts`
 - `e2e/onboarding.spec.ts`
 - `e2e/roadmap.spec.ts`
 - `e2e/interview.spec.ts`
 - `e2e/resume.spec.ts`
 
-
 ---
 
 ### Task 20.6: Write Accessibility Tests
+
 **ID**: PLAC-135  
 **Complexity**: Medium  
-**Dependencies**: PLAC-130  
+**Dependencies**: PLAC-130
 
 **Description**:
 Write automated accessibility tests using jest-axe.
 
 **Acceptance Criteria**:
+
 - jest-axe installed and configured
 - Tests for all major components
 - No critical accessibility violations
@@ -3345,10 +3692,12 @@ Write automated accessibility tests using jest-axe.
 - All tests pass
 
 **Files Created**:
+
 - `__tests__/accessibility/components.test.tsx`
 - `__tests__/accessibility/pages.test.tsx`
 
 **Files Modified**:
+
 - `package.json`
 
 ---
@@ -3356,14 +3705,16 @@ Write automated accessibility tests using jest-axe.
 ## Phase 21: Performance Optimization
 
 ### Task 21.1: Implement Image Optimization
+
 **ID**: PLAC-136  
 **Complexity**: Low  
-**Dependencies**: PLAC-001  
+**Dependencies**: PLAC-001
 
 **Description**:
 Optimize all images using Next.js Image component and WebP format.
 
 **Acceptance Criteria**:
+
 - All images use next/image
 - WebP format with fallbacks
 - Responsive images with srcset
@@ -3372,20 +3723,22 @@ Optimize all images using Next.js Image component and WebP format.
 - Blur placeholders for above-the-fold images
 
 **Files Modified**:
-- All components using images
 
+- All components using images
 
 ---
 
 ### Task 21.2: Optimize Bundle Size
+
 **ID**: PLAC-137  
 **Complexity**: Medium  
-**Dependencies**: PLAC-001  
+**Dependencies**: PLAC-001
 
 **Description**:
 Analyze and optimize JavaScript bundle size.
 
 **Acceptance Criteria**:
+
 - @next/bundle-analyzer installed
 - Bundle analysis run and reviewed
 - Dynamic imports for heavy components (React Flow, Recharts)
@@ -3395,6 +3748,7 @@ Analyze and optimize JavaScript bundle size.
 - First Load JS < 100KB
 
 **Files Modified**:
+
 - `next.config.js`
 - `package.json`
 - Component files with dynamic imports
@@ -3402,14 +3756,16 @@ Analyze and optimize JavaScript bundle size.
 ---
 
 ### Task 21.3: Implement Caching Strategy
+
 **ID**: PLAC-138  
 **Complexity**: Medium  
-**Dependencies**: PLAC-011  
+**Dependencies**: PLAC-011
 
 **Description**:
 Implement caching for frequently accessed data.
 
 **Acceptance Criteria**:
+
 - Next.js route caching configured
 - Supabase queries with revalidation tags
 - Static data (companies) cached longer
@@ -3418,21 +3774,23 @@ Implement caching for frequently accessed data.
 - Redis/Upstash for API response caching (optional)
 
 **Files Modified**:
+
 - Server action files
 - API route files
-
 
 ---
 
 ### Task 21.4: Run Lighthouse Audits
+
 **ID**: PLAC-139  
 **Complexity**: Low  
-**Dependencies**: PLAC-136, PLAC-137, PLAC-138  
+**Dependencies**: PLAC-136, PLAC-137, PLAC-138
 
 **Description**:
 Run Lighthouse audits and optimize for Core Web Vitals.
 
 **Acceptance Criteria**:
+
 - Lighthouse performance score > 90 (desktop)
 - Lighthouse performance score > 80 (mobile)
 - First Contentful Paint < 1.8s
@@ -3448,14 +3806,16 @@ Run Lighthouse audits and optimize for Core Web Vitals.
 ## Phase 22: Documentation and Polish
 
 ### Task 22.1: Create README Documentation
+
 **ID**: PLAC-140  
 **Complexity**: Low  
-**Dependencies**: None  
+**Dependencies**: None
 
 **Description**:
 Write comprehensive README with setup instructions and architecture overview.
 
 **Acceptance Criteria**:
+
 - Project overview and features
 - Tech stack listed
 - Prerequisites
@@ -3468,21 +3828,23 @@ Write comprehensive README with setup instructions and architecture overview.
 - Contributing guidelines
 
 **Files Created**:
+
 - `README.md`
 - `CONTRIBUTING.md`
-
 
 ---
 
 ### Task 22.2: Add Code Comments and Documentation
+
 **ID**: PLAC-141  
 **Complexity**: Low  
-**Dependencies**: All previous tasks  
+**Dependencies**: All previous tasks
 
 **Description**:
 Add JSDoc comments to all functions, components, and utilities.
 
 **Acceptance Criteria**:
+
 - All exported functions have JSDoc comments
 - All components have description comments
 - Complex logic has inline comments
@@ -3491,19 +3853,22 @@ Add JSDoc comments to all functions, components, and utilities.
 - Generated API documentation using TypeDoc
 
 **Files Modified**:
+
 - All source files
 
 ---
 
 ### Task 22.3: Create User Guide
+
 **ID**: PLAC-142  
 **Complexity**: Low  
-**Dependencies**: None  
+**Dependencies**: None
 
 **Description**:
 Write user-facing documentation explaining features and workflows.
 
 **Acceptance Criteria**:
+
 - Getting started guide
 - Feature walkthroughs
 - FAQ section
@@ -3512,6 +3877,7 @@ Write user-facing documentation explaining features and workflows.
 - Hosted on GitHub wiki or separate docs site
 
 **Files Created**:
+
 - `docs/user-guide.md`
 - `docs/faq.md`
 - `docs/troubleshooting.md`
@@ -3519,14 +3885,16 @@ Write user-facing documentation explaining features and workflows.
 ---
 
 ### Task 22.4: Polish UI and Animations
+
 **ID**: PLAC-143  
 **Complexity**: Medium  
-**Dependencies**: All UI tasks  
+**Dependencies**: All UI tasks
 
 **Description**:
 Final polish pass on all UI components and animations for consistency and smoothness.
 
 **Acceptance Criteria**:
+
 - All animations smooth (60fps)
 - Consistent timing functions across app
 - No janky transitions
@@ -3539,20 +3907,22 @@ Final polish pass on all UI components and animations for consistency and smooth
 - Mobile interactions optimized
 
 **Files Modified**:
-- All component files
 
+- All component files
 
 ---
 
 ### Task 22.5: Add Meta Tags and SEO
+
 **ID**: PLAC-144  
 **Complexity**: Low  
-**Dependencies**: All page tasks  
+**Dependencies**: All page tasks
 
 **Description**:
 Add proper meta tags, Open Graph, and Twitter cards for all pages.
 
 **Acceptance Criteria**:
+
 - Every page has unique title
 - Every page has meta description
 - Open Graph tags for social sharing
@@ -3563,11 +3933,13 @@ Add proper meta tags, Open Graph, and Twitter cards for all pages.
 - Schema.org structured data
 
 **Files Created**:
+
 - `public/robots.txt`
 - `public/sitemap.xml`
 - `app/manifest.ts`
 
 **Files Modified**:
+
 - All page files with metadata
 
 ---
@@ -3575,14 +3947,16 @@ Add proper meta tags, Open Graph, and Twitter cards for all pages.
 ## Phase 23: Deployment and CI/CD
 
 ### Task 23.1: Configure GitHub Actions CI/CD
+
 **ID**: PLAC-145  
 **Complexity**: Medium  
-**Dependencies**: PLAC-130, PLAC-133  
+**Dependencies**: PLAC-130, PLAC-133
 
 **Description**:
 Set up GitHub Actions workflow for automated testing and deployment.
 
 **Acceptance Criteria**:
+
 - Workflow runs on push to main and develop
 - Workflow runs on pull requests
 - Linting step
@@ -3596,21 +3970,23 @@ Set up GitHub Actions workflow for automated testing and deployment.
 - Notifications on failure
 
 **Files Created**:
+
 - `.github/workflows/ci.yml`
 - `.github/workflows/deploy.yml`
-
 
 ---
 
 ### Task 23.2: Configure Vercel Project
+
 **ID**: PLAC-146  
 **Complexity**: Low  
-**Dependencies**: PLAC-001  
+**Dependencies**: PLAC-001
 
 **Description**:
 Set up Vercel project with environment variables and deployment settings.
 
 **Acceptance Criteria**:
+
 - Vercel project created
 - GitHub repository connected
 - Environment variables configured (production, preview)
@@ -3621,19 +3997,22 @@ Set up Vercel project with environment variables and deployment settings.
 - Production deployment on main branch
 
 **Files Created**:
+
 - `vercel.json`
 
 ---
 
 ### Task 23.3: Set Up Database Migrations for Production
+
 **ID**: PLAC-147  
 **Complexity**: Medium  
-**Dependencies**: PLAC-019  
+**Dependencies**: PLAC-019
 
 **Description**:
 Prepare and run database migrations on production Supabase instance.
 
 **Acceptance Criteria**:
+
 - Production Supabase project created
 - All migrations tested on staging
 - Migrations run on production
@@ -3646,14 +4025,16 @@ Prepare and run database migrations on production Supabase instance.
 ---
 
 ### Task 23.4: Configure Production Environment Variables
+
 **ID**: PLAC-148  
 **Complexity**: Low  
-**Dependencies**: PLAC-146, PLAC-147  
+**Dependencies**: PLAC-146, PLAC-147
 
 **Description**:
 Set all required environment variables in Vercel production environment.
 
 **Acceptance Criteria**:
+
 - NEXT_PUBLIC_SUPABASE_URL (production)
 - NEXT_PUBLIC_SUPABASE_ANON_KEY (production)
 - SUPABASE_SERVICE_ROLE_KEY (production)
@@ -3665,20 +4046,22 @@ Set all required environment variables in Vercel production environment.
 - Variables synced to preview environments
 
 **Files Modified**:
-- Vercel project settings
 
+- Vercel project settings
 
 ---
 
 ### Task 23.5: Deploy to Production
+
 **ID**: PLAC-149  
 **Complexity**: Low  
-**Dependencies**: PLAC-145, PLAC-146, PLAC-147, PLAC-148  
+**Dependencies**: PLAC-145, PLAC-146, PLAC-147, PLAC-148
 
 **Description**:
 Deploy application to Vercel production environment.
 
 **Acceptance Criteria**:
+
 - Build successful
 - All tests passing
 - Application accessible at production URL
@@ -3693,14 +4076,16 @@ Deploy application to Vercel production environment.
 ---
 
 ### Task 23.6: Set Up Monitoring and Alerts
+
 **ID**: PLAC-150  
 **Complexity**: Low  
-**Dependencies**: PLAC-126, PLAC-149  
+**Dependencies**: PLAC-126, PLAC-149
 
 **Description**:
 Configure monitoring dashboards and error alerts.
 
 **Acceptance Criteria**:
+
 - Sentry alerts configured (error rate, performance)
 - Vercel analytics active
 - Supabase monitoring enabled
@@ -3715,14 +4100,16 @@ Configure monitoring dashboards and error alerts.
 ## Phase 24: Post-Launch
 
 ### Task 24.1: Create Feedback Collection System
+
 **ID**: PLAC-151  
 **Complexity**: Low  
-**Dependencies**: PLAC-005  
+**Dependencies**: PLAC-005
 
 **Description**:
 Add feedback widget for users to submit feedback and bug reports.
 
 **Acceptance Criteria**:
+
 - Feedback button accessible from all pages
 - Form with: feedback type, description, screenshot capture
 - Submissions saved to database
@@ -3731,21 +4118,23 @@ Add feedback widget for users to submit feedback and bug reports.
 - Dashboard to view feedback (admin)
 
 **Files Created**:
+
 - `components/shared/feedback-widget.tsx`
 - `app/api/feedback/route.ts`
-
 
 ---
 
 ### Task 24.2: Implement Analytics Tracking
+
 **ID**: PLAC-152  
 **Complexity**: Low  
-**Dependencies**: PLAC-149  
+**Dependencies**: PLAC-149
 
 **Description**:
 Add privacy-compliant analytics for understanding user behavior.
 
 **Acceptance Criteria**:
+
 - Analytics library integrated (Vercel Analytics or Plausible)
 - Page views tracked
 - User events tracked (signup, roadmap generation, interview completion)
@@ -3755,23 +4144,27 @@ Add privacy-compliant analytics for understanding user behavior.
 - Dashboard accessible
 
 **Files Created**:
+
 - `components/shared/cookie-consent.tsx`
 - `lib/analytics/tracking.ts`
 
 **Files Modified**:
+
 - `app/layout.tsx`
 
 ---
 
 ### Task 24.3: Create Terms of Service and Privacy Policy
+
 **ID**: PLAC-153  
 **Complexity**: Low  
-**Dependencies**: None  
+**Dependencies**: None
 
 **Description**:
 Draft legal documents for terms of service and privacy policy.
 
 **Acceptance Criteria**:
+
 - Terms of Service written
 - Privacy Policy written (GDPR compliant)
 - Cookie Policy written
@@ -3781,6 +4174,7 @@ Draft legal documents for terms of service and privacy policy.
 - Last updated date displayed
 
 **Files Created**:
+
 - `app/(legal)/terms/page.tsx`
 - `app/(legal)/privacy/page.tsx`
 - `app/(legal)/cookies/page.tsx`
@@ -3789,14 +4183,16 @@ Draft legal documents for terms of service and privacy policy.
 ---
 
 ### Task 24.4: Optimize for Mobile Experience
+
 **ID**: PLAC-154  
 **Complexity**: Medium  
-**Dependencies**: PLAC-143  
+**Dependencies**: PLAC-143
 
 **Description**:
 Final optimization pass specifically for mobile devices.
 
 **Acceptance Criteria**:
+
 - Touch targets minimum 44px
 - Swipe gestures where appropriate
 - Bottom navigation accessible
@@ -3808,21 +4204,23 @@ Final optimization pass specifically for mobile devices.
 - Mobile performance score > 80
 
 **Files Modified**:
+
 - All component files
 - `app/manifest.ts`
-
 
 ---
 
 ### Task 24.5: Create Admin Dashboard (Optional)
+
 **ID**: PLAC-155  
 **Complexity**: High  
-**Dependencies**: PLAC-149  
+**Dependencies**: PLAC-149
 
 **Description**:
 Build basic admin dashboard for monitoring platform usage and managing content.
 
 **Acceptance Criteria**:
+
 - Admin-only route protection
 - User statistics (total users, active users, retention)
 - Usage metrics (roadmaps generated, interviews conducted)
@@ -3833,6 +4231,7 @@ Build basic admin dashboard for monitoring platform usage and managing content.
 - Database health dashboard
 
 **Files Created**:
+
 - `app/(admin)/admin/page.tsx`
 - `app/(admin)/layout.tsx`
 - `components/admin/` directory with components
@@ -3842,9 +4241,10 @@ Build basic admin dashboard for monitoring platform usage and managing content.
 ## Summary
 
 **Total Tasks**: 155  
-**Estimated Timeline**: 12-16 weeks for a team of 2-3 developers  
+**Estimated Timeline**: 12-16 weeks for a team of 2-3 developers
 
 **Implementation Order**:
+
 1. **Phase 1-2**: Foundation and Database (2 weeks)
 2. **Phase 3-4**: Authentication and Onboarding (1.5 weeks)
 3. **Phase 5-6**: Dashboard and OpenAI Setup (1 week)
@@ -3856,6 +4256,7 @@ Build basic admin dashboard for monitoring platform usage and managing content.
 9. **Phase 22-24**: Documentation, Deployment, Post-Launch (1.5 weeks)
 
 **Key Milestones**:
+
 - ✅ Week 2: Database and authentication working
 - ✅ Week 4: Onboarding flow and first AI roadmap generation
 - ✅ Week 6: Complete roadmap visualization
@@ -3866,4 +4267,4 @@ Build basic admin dashboard for monitoring platform usage and managing content.
 
 ---
 
-*Note: This task breakdown assumes a small team working full-time. Individual task estimates may vary. Some tasks can be parallelized when multiple developers are available.*
+_Note: This task breakdown assumes a small team working full-time. Individual task estimates may vary. Some tasks can be parallelized when multiple developers are available._

@@ -11,6 +11,7 @@
 Placify embodies the intersection of intelligence and ambition. Our design language reflects the journey of preparation—structured yet adaptive, focused yet inspiring. Every element serves a purpose: to guide users toward their placement goals with clarity, confidence, and motivation.
 
 **Core Principles:**
+
 - **Purposeful Minimalism**: Every pixel has intent. Remove noise, amplify signal.
 - **Intelligent Hierarchy**: Information architecture that guides without overwhelming.
 - **Fluid Motion**: Transitions that feel natural, not decorative.
@@ -37,7 +38,6 @@ Progress is celebrated, milestones are recognized, and every feature reinforces 
 - Achieve sub-100ms perceived interaction speed
 - Balance data density with breathing room
 
-
 ---
 
 ## 2. Color System
@@ -60,6 +60,7 @@ primary-900: #1e3a8a  // Darkest
 ```
 
 **Usage:**
+
 - primary-500: Primary buttons, links, active states
 - primary-600: Hover states for primary elements
 - primary-400: Secondary interactive elements
@@ -83,14 +84,15 @@ secondary-900: #581c87  // Darkest
 ```
 
 **Usage:**
+
 - secondary-500: Accent elements, achievements, premium features
 - secondary-600: Hover states for secondary elements
 - Gradient combinations with primary for emphasis
 
-
 ### 2.3 Semantic Colors
 
 **Success (Green)**
+
 ```
 success-50:  #ecfdf5
 success-100: #d1fae5
@@ -100,6 +102,7 @@ success-900: #064e3b
 ```
 
 **Warning (Amber)**
+
 ```
 warning-50:  #fffbeb
 warning-100: #fef3c7
@@ -109,6 +112,7 @@ warning-900: #78350f
 ```
 
 **Error (Red)**
+
 ```
 error-50:  #fef2f2
 error-100: #fee2e2
@@ -118,6 +122,7 @@ error-900: #7f1d1d
 ```
 
 **Info (Cyan)**
+
 ```
 info-50:  #ecfeff
 info-100: #cffafe
@@ -141,7 +146,6 @@ neutral-800: #1f2937  // Very dark
 neutral-900: #111827  // Almost black
 neutral-950: #030712  // Deepest black
 ```
-
 
 ### 2.5 Surface Colors (Dark Theme)
 
@@ -169,27 +173,30 @@ text-inverse:    rgba(0, 0, 0, 0.90)        // Text on light backgrounds
 ### 2.7 Gradients
 
 **Primary Gradient (Blue to Purple)**
+
 ```
 gradient-primary: linear-gradient(135deg, #3b82f6 0%, #9333ea 100%)
 gradient-primary-soft: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(147, 51, 234, 0.2) 100%)
 ```
 
 **Secondary Gradient (Purple to Pink)**
+
 ```
 gradient-secondary: linear-gradient(135deg, #9333ea 0%, #ec4899 100%)
 ```
 
 **Radial Glow**
+
 ```
 gradient-glow: radial-gradient(circle at center, rgba(59, 130, 246, 0.4) 0%, transparent 70%)
 ```
 
 **Background Ambient**
+
 ```
 gradient-ambient: radial-gradient(ellipse at top, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
                   radial-gradient(ellipse at bottom, rgba(147, 51, 234, 0.05) 0%, transparent 50%)
 ```
-
 
 ### 2.8 Glass Morphism Values
 
@@ -205,6 +212,7 @@ glass-backdrop-saturate: 180%
 ```
 
 **Glass Card Example:**
+
 ```
 background: glass-background
 backdrop-filter: blur(glass-backdrop-blur) saturate(glass-backdrop-saturate)
@@ -231,6 +239,7 @@ glow-error:     rgba(239, 68, 68, 0.4)    // Red glow
 
 **Primary Font: Inter**  
 Used for UI elements, body text, and most content.
+
 ```
 font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif
 font-feature-settings: 'rlig' 1, 'calt' 1, 'ss01' 1  // Enable ligatures and alternates
@@ -238,14 +247,15 @@ font-feature-settings: 'rlig' 1, 'calt' 1, 'ss01' 1  // Enable ligatures and alt
 
 **Monospace Font: JetBrains Mono**  
 Used for code snippets, technical data, and interview questions.
+
 ```
 font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace
 ```
 
-
 ### 3.2 Type Scale
 
 **Display (Hero sections, landing pages)**
+
 ```
 display-2xl: 72px / 90px   | font-weight: 700  | letter-spacing: -0.02em
 display-xl:  60px / 72px   | font-weight: 700  | letter-spacing: -0.02em
@@ -254,6 +264,7 @@ display-md:  36px / 44px   | font-weight: 700  | letter-spacing: -0.01em
 ```
 
 **Headings**
+
 ```
 h1: 32px / 40px  | font-weight: 700  | letter-spacing: -0.01em
 h2: 28px / 36px  | font-weight: 700  | letter-spacing: -0.01em
@@ -264,6 +275,7 @@ h6: 16px / 24px  | font-weight: 600  | letter-spacing: 0em
 ```
 
 **Body Text**
+
 ```
 body-xl:  20px / 32px  | font-weight: 400  | letter-spacing: 0em
 body-lg:  18px / 28px  | font-weight: 400  | letter-spacing: 0em
@@ -273,6 +285,7 @@ body-xs:  12px / 18px  | font-weight: 400  | letter-spacing: 0.01em
 ```
 
 **Labels and UI**
+
 ```
 label-lg: 16px / 24px  | font-weight: 500  | letter-spacing: 0em
 label-md: 14px / 20px  | font-weight: 500  | letter-spacing: 0em
@@ -281,6 +294,7 @@ label-xs: 11px / 16px  | font-weight: 500  | letter-spacing: 0.02em
 ```
 
 **Code and Monospace**
+
 ```
 code-lg: 16px / 24px  | font-weight: 400  | monospace
 code-md: 14px / 20px  | font-weight: 400  | monospace
@@ -297,11 +311,11 @@ weight-bold:     700
 ```
 
 **Usage Guidelines:**
+
 - Headings: 600-700
 - Body text: 400
 - Labels, buttons: 500-600
 - Emphasis: 600
-
 
 ### 3.4 Responsive Typography
 
@@ -310,12 +324,14 @@ Typography scales down on smaller screens to maintain readability and hierarchy.
 **Desktop (1024px+) - Base scale above**
 
 **Tablet (768px - 1023px)**
+
 ```
 Multiply font sizes by 0.95
 Maintain line heights
 ```
 
 **Mobile (320px - 767px)**
+
 ```
 display-2xl: 48px / 56px
 display-xl:  40px / 48px
@@ -359,6 +375,7 @@ Placify uses an 8px base grid for consistent spacing. All spacing values are mul
 ### 4.2 Component Spacing
 
 **Padding (Internal spacing)**
+
 ```
 padding-xs:  8px
 padding-sm:  12px
@@ -368,8 +385,8 @@ padding-xl:  32px
 padding-2xl: 48px
 ```
 
-
 **Margins (External spacing)**
+
 ```
 margin-xs:  8px
 margin-sm:  16px
@@ -380,6 +397,7 @@ margin-2xl: 64px
 ```
 
 **Gap (Flexbox/Grid spacing)**
+
 ```
 gap-xs:  4px
 gap-sm:  8px
@@ -392,6 +410,7 @@ gap-2xl: 32px
 ### 4.3 Layout Spacing
 
 **Container Padding**
+
 ```
 Desktop:  max-width: 1280px, padding: 48px
 Tablet:   max-width: 100%, padding: 32px
@@ -399,6 +418,7 @@ Mobile:   max-width: 100%, padding: 16px
 ```
 
 **Section Spacing**
+
 ```
 Between sections (desktop):  80px
 Between sections (tablet):   64px
@@ -423,13 +443,13 @@ radius-full:  9999px // Pills, avatars, badges
 ```
 
 **Usage:**
+
 - Buttons: radius-md (8px)
 - Inputs: radius-md (8px)
 - Cards: radius-lg (12px)
 - Modals: radius-xl (16px)
 - Badges: radius-full
 - Pills: radius-full
-
 
 ---
 
@@ -487,6 +507,7 @@ glow-success-md: 0 0 20px rgba(16, 185, 129, 0.4)
 ### 7.2 Glow Usage
 
 **Interactive States:**
+
 ```
 Default:  no glow
 Hover:    glow-sm or glow-md
@@ -495,11 +516,11 @@ Active:   glow-lg (pulsing animation)
 ```
 
 **Status Indicators:**
+
 - Primary action buttons: glow-sm on hover
 - Active roadmap nodes: glow-purple-md with pulse
 - Completed items: glow-success-sm
 - Important notifications: glow-md
-
 
 ### 7.3 Pulsing Glow Animation
 
@@ -581,7 +602,6 @@ Hover State:
 Active State:
   background: glass-background-light
 ```
-
 
 ### 8.3 Ghost Button
 
@@ -666,7 +686,6 @@ large:  height: 48px, padding: 14px 28px, font-size: 18px
 6. Default
 ```
 
-
 ---
 
 ## 9. Input Fields
@@ -712,6 +731,7 @@ Success State:
 ### 9.2 Textarea
 
 Same as text input, but:
+
 ```
 min-height: 120px
 resize: vertical
@@ -747,7 +767,6 @@ margin-top: 6px
 Error message: color: error-500
 Success message: color: success-500
 ```
-
 
 ---
 
@@ -844,7 +863,6 @@ Actions:
   gap: gap-sm
 ```
 
-
 ---
 
 ## 11. Sidebar
@@ -920,7 +938,7 @@ Active State:
   background: gradient-primary-soft
   color: primary-400
   box-shadow: glow-sm
-  
+
   Icon color: primary-500
 
 Icon:
@@ -936,7 +954,6 @@ Badge (notification count):
   border-radius: radius-full
   font-size: label-xs
 ```
-
 
 ### 11.4 Sidebar Section Divider
 
@@ -968,16 +985,16 @@ Avatar:
   height: 40px
   border-radius: radius-full
   background: gradient-primary
-  
+
 User Info:
   flex: 1
-  
+
   Name:
     font-size: body-sm
     font-weight: weight-medium
     color: text-primary
     margin-bottom: 2px
-  
+
   Email:
     font-size: label-xs
     color: text-tertiary
@@ -1022,7 +1039,7 @@ color: text-tertiary
 Link:
   color: text-secondary
   transition: color 200ms
-  
+
   Hover:
     color: primary-400
 
@@ -1034,7 +1051,6 @@ Current:
   color: text-primary
   font-weight: weight-medium
 ```
-
 
 ### 12.3 Tabs
 
@@ -1110,7 +1126,6 @@ Error:      error-500
 - Use filled variants sparingly (active states, alerts)
 - Icons should be decorative or have text alternatives
 - Minimum touch target: 44px × 44px on mobile
-
 
 ---
 
@@ -1200,7 +1215,6 @@ Variants:
   Offline:  background: neutral-500
 ```
 
-
 ---
 
 ## 15. Progress Indicators
@@ -1223,7 +1237,7 @@ Bar:
 
 With Label:
   Container has margin-bottom: 8px
-  
+
   Label:
     display: flex
     justify-content: space-between
@@ -1290,18 +1304,18 @@ Step Circle:
   justify-content: center
   font-size: label-sm
   font-weight: weight-semibold
-  
+
   Completed:
     background: primary-500
     color: white
     box-shadow: glow-sm
-  
+
   Current:
     background: gradient-primary
     color: white
     box-shadow: glow-md
     animation: pulse-glow
-  
+
   Upcoming:
     background: neutral-800
     color: text-tertiary
@@ -1310,11 +1324,10 @@ Step Circle:
 Connector Line:
   flex: 1
   height: 2px
-  
+
   Completed: background: primary-500
   Upcoming:  background: neutral-800
 ```
-
 
 ---
 
@@ -1336,7 +1349,7 @@ Header:
   justify-content: space-between
   align-items: center
   margin-bottom: 24px
-  
+
   Title:
     font-size: h5
     font-weight: weight-semibold
@@ -1382,7 +1395,7 @@ Values:
   gap: 8px
   font-size: body-sm
   color: text-secondary
-  
+
   Color Indicator:
     width: 8px
     height: 8px
@@ -1403,13 +1416,12 @@ Legend Item:
   gap: 8px
   font-size: label-sm
   color: text-secondary
-  
+
   Color Box:
     width: 12px
     height: 12px
     border-radius: 2px
 ```
-
 
 ---
 
@@ -1459,6 +1471,7 @@ Action Button:
 ### 17.3 Empty State Variants
 
 **No Data Yet:**
+
 ```
 Icon: Plus circle or Database
 Message: "Get started by creating your first [item]"
@@ -1466,6 +1479,7 @@ Tone: Encouraging, instructional
 ```
 
 **No Results:**
+
 ```
 Icon: Search or Filter
 Message: "No results found for '[query]'"
@@ -1474,6 +1488,7 @@ Tone: Helpful, suggestive
 ```
 
 **Error State:**
+
 ```
 Icon: Alert triangle
 Message: "Unable to load [content]"
@@ -1499,7 +1514,6 @@ Primary Spinner:
   0%:   transform: rotate(0deg)
   100%: transform: rotate(360deg)
 ```
-
 
 ### 18.2 Loading Overlay
 
@@ -1575,6 +1589,7 @@ border-radius: radius-md
 ### 19.2 Skeleton Variants
 
 **Text Line:**
+
 ```
 height: 16px (body text)
 height: 24px (heading)
@@ -1584,6 +1599,7 @@ margin-bottom: 8px
 ```
 
 **Avatar:**
+
 ```
 width: 40px
 height: 40px
@@ -1591,6 +1607,7 @@ border-radius: radius-full
 ```
 
 **Card:**
+
 ```
 height: 200px (or specific)
 width: 100%
@@ -1598,16 +1615,17 @@ border-radius: radius-lg
 ```
 
 **Button:**
+
 ```
 height: 40px
 width: 120px
 border-radius: radius-md
 ```
 
-
 ### 19.3 Skeleton Composition Examples
 
 **Card with Avatar and Text:**
+
 ```
 Card Container
 ├── Flex Row (gap: 16px)
@@ -1618,6 +1636,7 @@ Card Container
 ```
 
 **List Item:**
+
 ```
 Container
 ├── Text Line (80% width, height: 20px)
@@ -1655,6 +1674,7 @@ xl:     1280px
 ### 20.3 Responsive Patterns
 
 **Sidebar Behavior:**
+
 ```
 Mobile (< md):     Hidden by default, overlay when opened
 Tablet (md - lg):  Collapsible, icon-only when collapsed
@@ -1662,6 +1682,7 @@ Desktop (>= lg):   Always visible, full width
 ```
 
 **Grid Layouts:**
+
 ```
 Mobile:   1 column
 Tablet:   2 columns
@@ -1669,6 +1690,7 @@ Desktop:  3-4 columns
 ```
 
 **Card Spacing:**
+
 ```
 Mobile:   gap-md (12px)
 Tablet:   gap-lg (16px)
@@ -1678,13 +1700,13 @@ Desktop:  gap-xl (24px)
 ### 20.4 Touch Targets (Mobile)
 
 All interactive elements must meet minimum sizes:
+
 ```
 Buttons:     44px × 44px minimum
 Links:       44px × 44px minimum tap area
 Icons:       44px × 44px tap area (icon can be smaller)
 Checkboxes:  24px × 24px (with 44px tap area)
 ```
-
 
 ---
 
@@ -1695,6 +1717,7 @@ Placify is built for everyone. WCAG 2.1 AA compliance is mandatory.
 ### 21.1 Color Contrast Requirements
 
 **Text Contrast:**
+
 ```
 Normal text (< 18px):     Minimum 4.5:1 contrast ratio
 Large text (≥ 18px):      Minimum 3:1 contrast ratio
@@ -1702,6 +1725,7 @@ UI components:            Minimum 3:1 contrast ratio
 ```
 
 **Verified Combinations:**
+
 ```
 ✅ text-primary on surface-background:   19.2:1
 ✅ text-secondary on surface-background: 9.8:1
@@ -1713,6 +1737,7 @@ UI components:            Minimum 3:1 contrast ratio
 ### 21.2 Keyboard Navigation
 
 **Focus Indicators:**
+
 ```
 Visible focus ring on all interactive elements
 Ring width: 2px
@@ -1727,12 +1752,14 @@ Focus style:
 ```
 
 **Tab Order:**
+
 - Follows logical reading order (top to bottom, left to right)
 - Skip navigation link provided
 - Modal traps focus until dismissed
 - Dropdowns navigate with arrow keys
 
 **Keyboard Shortcuts:**
+
 ```
 Cmd/Ctrl + K:  Open search
 Escape:        Close modals/dropdowns
@@ -1745,6 +1772,7 @@ Tab/Shift+Tab: Navigate between focusable elements
 ### 21.3 Screen Reader Support
 
 **ARIA Labels:**
+
 - All icons without adjacent text have `aria-label`
 - Decorative icons use `aria-hidden="true"`
 - Form inputs have associated labels
@@ -1752,12 +1780,14 @@ Tab/Shift+Tab: Navigate between focusable elements
 - Live regions for dynamic content (`aria-live="polite"`)
 
 **Semantic HTML:**
+
 - Use `<button>` for actions, `<a>` for navigation
 - Proper heading hierarchy (h1 → h2 → h3, no skipping)
 - Landmark regions (`<nav>`, `<main>`, `<aside>`, `<footer>`)
 - Lists use `<ul>`, `<ol>`, or `<dl>`
 
 **ARIA Roles:**
+
 ```
 Modal:        role="dialog", aria-modal="true"
 Tabs:         role="tablist", "tab", "tabpanel"
@@ -1765,10 +1795,10 @@ Alerts:       role="alert" or role="status"
 Breadcrumbs:  aria-label="Breadcrumb"
 ```
 
-
 ### 21.4 Motion and Animation
 
 **Respect User Preferences:**
+
 ```css
 @media (prefers-reduced-motion: reduce) {
   * {
@@ -1780,6 +1810,7 @@ Breadcrumbs:  aria-label="Breadcrumb"
 ```
 
 **Animation Guidelines:**
+
 - Duration: 200-400ms for most transitions
 - No auto-playing videos with sound
 - Provide pause button for content > 5 seconds
@@ -1788,33 +1819,34 @@ Breadcrumbs:  aria-label="Breadcrumb"
 ### 21.5 Form Accessibility
 
 **Required Fields:**
+
 ```html
-<input required aria-required="true">
-<label>
-  Name <span aria-label="required">*</span>
-</label>
+<input required aria-required="true" /> <label> Name <span aria-label="required">*</span> </label>
 ```
 
 **Error Messages:**
+
 ```html
-<input aria-invalid="true" aria-describedby="error-id">
+<input aria-invalid="true" aria-describedby="error-id" />
 <span id="error-id" role="alert">Error message</span>
 ```
 
 **Helper Text:**
+
 ```html
-<input aria-describedby="help-id">
-<span id="help-id">Helper text</span>
+<input aria-describedby="help-id" /> <span id="help-id">Helper text</span>
 ```
 
 ### 21.6 Alternative Text
 
 **Images:**
+
 - Decorative: `alt=""` or `aria-hidden="true"`
 - Informative: Descriptive alt text
 - Complex: Alt text + long description
 
 **Icon-only Buttons:**
+
 ```html
 <button aria-label="Close dialog">
   <XIcon aria-hidden="true" />
@@ -1833,38 +1865,40 @@ Guidelines for creating new components or variants.
 Each component should do one thing well. Prefer composition over complex components.
 
 **Prop Interface:**
+
 ```typescript
 interface ComponentProps {
   // Visual variants
-  variant?: 'primary' | 'secondary' | 'ghost'
-  size?: 'sm' | 'md' | 'lg'
-  
+  variant?: 'primary' | 'secondary' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+
   // State
-  disabled?: boolean
-  loading?: boolean
-  
+  disabled?: boolean;
+  loading?: boolean;
+
   // Accessibility
-  'aria-label'?: string
-  
+  'aria-label'?: string;
+
   // Common
-  className?: string
-  children?: React.ReactNode
+  className?: string;
+  children?: React.ReactNode;
 }
 ```
 
 **Compound Components:**
 Prefer explicit sub-components over implicit children structure.
+
 ```
 ✅ <Card><Card.Header><Card.Body><Card.Footer>
 ❌ <Card> with magic children detection
 ```
-
 
 ### 22.2 Variant System
 
 Components should offer clear, purposeful variants.
 
 **Naming Convention:**
+
 ```
 variant:  visual style (primary, secondary, ghost, danger)
 size:     dimensions (sm, md, lg)
@@ -1872,6 +1906,7 @@ state:    interaction state (default, hover, active, disabled)
 ```
 
 **Avoid:**
+
 - Too many variants (max 4-5 per property)
 - Ambiguous names ("special", "custom")
 - Variants that only differ in color
@@ -1879,6 +1914,7 @@ state:    interaction state (default, hover, active, disabled)
 ### 22.3 Animation Standards
 
 **Transition Timing:**
+
 ```
 Instant:     0ms       (only for state that doesn't change visually)
 Fast:        150ms     (small movements, opacity)
@@ -1888,6 +1924,7 @@ Slow:        600ms+    (page transitions, special emphasis)
 ```
 
 **Easing Functions:**
+
 ```
 ease-in:      cubic-bezier(0.4, 0, 1, 1)       // Accelerating
 ease-out:     cubic-bezier(0, 0, 0.2, 1)       // Decelerating (default)
@@ -1896,72 +1933,74 @@ spring:       cubic-bezier(0.34, 1.56, 0.64, 1) // Bounce effect
 ```
 
 **Framer Motion Variants:**
+
 ```typescript
 // Fade in
 const fadeIn = {
   hidden: { opacity: 0 },
-  visible: { 
+  visible: {
     opacity: 1,
-    transition: { duration: 0.3, ease: 'easeOut' }
-  }
-}
+    transition: { duration: 0.3, ease: 'easeOut' },
+  },
+};
 
 // Slide up
 const slideUp = {
   hidden: { opacity: 0, y: 20 },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
-    transition: { duration: 0.4, ease: 'easeOut' }
-  }
-}
+    transition: { duration: 0.4, ease: 'easeOut' },
+  },
+};
 
 // Scale
 const scale = {
   hidden: { opacity: 0, scale: 0.95 },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     scale: 1,
-    transition: { duration: 0.3, ease: 'easeOut' }
-  }
-}
+    transition: { duration: 0.3, ease: 'easeOut' },
+  },
+};
 ```
 
 ### 22.4 Spacing Consistency
 
 **Internal Padding:**
+
 - Small components (badges, pills): 4-8px
 - Medium components (buttons, inputs): 12-16px
 - Large components (cards): 24-32px
 
 **External Margins:**
+
 - Related elements: 8-12px
 - Sections: 24-32px
 - Major sections: 48-64px
 
 **Gap in Flex/Grid:**
+
 - Tight layouts: 8px
 - Standard layouts: 12-16px
 - Loose layouts: 24px
-
 
 ### 22.5 State Management
 
 All interactive components should handle these states:
 
 **Required States:**
+
 1. Default (resting)
 2. Hover
 3. Focus (keyboard)
 4. Active/Pressed
 5. Disabled
 
-**Optional States:**
-6. Loading
-7. Error
-8. Success
+**Optional States:** 6. Loading 7. Error 8. Success
 
 **State Priority (highest to lowest):**
+
 ```
 1. Disabled (if true, ignore all other states)
 2. Loading (if true, ignore hover/active)
@@ -2001,6 +2040,7 @@ Reusable Framer Motion animations for common patterns.
 ### 23.1 Entry Animations
 
 **Fade In:**
+
 ```typescript
 {
   initial: { opacity: 0 },
@@ -2011,6 +2051,7 @@ Reusable Framer Motion animations for common patterns.
 ```
 
 **Slide Up:**
+
 ```typescript
 {
   initial: { opacity: 0, y: 20 },
@@ -2021,6 +2062,7 @@ Reusable Framer Motion animations for common patterns.
 ```
 
 **Scale Up:**
+
 ```typescript
 {
   initial: { opacity: 0, scale: 0.95 },
@@ -2029,7 +2071,6 @@ Reusable Framer Motion animations for common patterns.
   transition: { duration: 0.3, ease: 'easeOut' }
 }
 ```
-
 
 ### 23.2 Stagger Animations
 
@@ -2042,27 +2083,28 @@ const container = {
     opacity: 1,
     transition: {
       staggerChildren: 0.1,
-      delayChildren: 0.1
-    }
-  }
-}
+      delayChildren: 0.1,
+    },
+  },
+};
 
 const item = {
   hidden: { opacity: 0, y: 20 },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
-    transition: { duration: 0.4 }
-  }
-}
+    transition: { duration: 0.4 },
+  },
+};
 ```
 
 ### 23.3 Hover Effects
 
 **Lift:**
+
 ```typescript
 {
-  whileHover: { 
+  whileHover: {
     y: -2,
     transition: { duration: 0.2 }
   }
@@ -2070,9 +2112,10 @@ const item = {
 ```
 
 **Scale:**
+
 ```typescript
 {
-  whileHover: { 
+  whileHover: {
     scale: 1.02,
     transition: { duration: 0.2 }
   }
@@ -2080,9 +2123,10 @@ const item = {
 ```
 
 **Glow:**
+
 ```typescript
 {
-  whileHover: { 
+  whileHover: {
     boxShadow: '0 0 20px rgba(59, 130, 246, 0.4)',
     transition: { duration: 0.3 }
   }
@@ -2093,7 +2137,7 @@ const item = {
 
 ```typescript
 {
-  whileTap: { 
+  whileTap: {
     scale: 0.98,
     transition: { duration: 0.1 }
   }
@@ -2118,36 +2162,41 @@ const item = {
 ### 24.1 Performance
 
 **Optimize Animations:**
+
 - Animate `transform` and `opacity` only (GPU accelerated)
 - Avoid animating `width`, `height`, `top`, `left`
 - Use `will-change` sparingly and remove after animation
 
 **Reduce Repaints:**
+
 - Use `backdrop-filter` carefully (performance cost)
 - Limit number of glass morphism elements on screen
 - Debounce scroll and resize handlers
 
 **Image Optimization:**
+
 - Use WebP format with fallbacks
 - Implement lazy loading
 - Provide proper sizing attributes
 - Use blur placeholders
 
-
 ### 24.2 Maintainability
 
 **Design Tokens:**
+
 - Never use raw color values (#3b82f6) directly in components
 - Always reference design tokens (primary-500)
 - Keep all design decisions in this document
 
 **Component Library:**
+
 - Build primitive components first (Button, Input, Card)
 - Compose complex components from primitives
 - Document each component with examples
 - Export TypeScript types for all props
 
 **Naming Conventions:**
+
 ```
 Components:    PascalCase (Button, Card, UserMenu)
 Files:         kebab-case (button.tsx, user-menu.tsx)
@@ -2159,16 +2208,19 @@ Variants:      lowercase (primary, secondary, ghost)
 ### 24.3 Testing
 
 **Visual Regression:**
+
 - Screenshot test all component variants
 - Test at multiple breakpoints
 - Test light and dark themes
 
 **Accessibility:**
+
 - Automated tests with jest-axe
 - Manual keyboard navigation testing
 - Screen reader testing (NVDA, VoiceOver, JAWS)
 
 **Interaction:**
+
 - Test all states (hover, focus, active, disabled)
 - Test loading states
 - Test error states
@@ -2176,6 +2228,7 @@ Variants:      lowercase (primary, secondary, ghost)
 ### 24.4 Documentation
 
 **Component Documentation Should Include:**
+
 1. Purpose and use cases
 2. Visual examples of all variants
 3. Props table with types and defaults
@@ -2184,6 +2237,7 @@ Variants:      lowercase (primary, secondary, ghost)
 6. Do's and don'ts
 
 **Design Token Documentation:**
+
 - Maintain this file as source of truth
 - Auto-generate token files for code
 - Version control all changes
@@ -2196,6 +2250,7 @@ Variants:      lowercase (primary, secondary, ghost)
 When implementing this design system:
 
 ### Phase 1: Foundation
+
 - [ ] Configure Tailwind with design tokens
 - [ ] Set up font loading (Inter, JetBrains Mono)
 - [ ] Create CSS custom properties for colors
@@ -2204,6 +2259,7 @@ When implementing this design system:
 - [ ] Test color contrast ratios
 
 ### Phase 2: Primitives
+
 - [ ] Implement Button with all variants
 - [ ] Implement Input with all states
 - [ ] Implement Card with variants
@@ -2211,8 +2267,8 @@ When implementing this design system:
 - [ ] Implement progress indicators
 - [ ] Test accessibility of primitives
 
-
 ### Phase 3: Layout
+
 - [ ] Implement Sidebar navigation
 - [ ] Implement Top bar
 - [ ] Implement responsive layouts
@@ -2221,6 +2277,7 @@ When implementing this design system:
 - [ ] Verify focus management
 
 ### Phase 4: Feedback
+
 - [ ] Implement Toast notifications
 - [ ] Implement Modal dialogs
 - [ ] Implement Loading states
@@ -2229,6 +2286,7 @@ When implementing this design system:
 - [ ] Test ARIA announcements
 
 ### Phase 5: Data Display
+
 - [ ] Configure Recharts theming
 - [ ] Implement chart containers
 - [ ] Implement data tables
@@ -2236,6 +2294,7 @@ When implementing this design system:
 - [ ] Verify chart accessibility
 
 ### Phase 6: Polish
+
 - [ ] Add all animations
 - [ ] Test reduced motion preferences
 - [ ] Optimize performance
@@ -2298,7 +2357,6 @@ Text:
 32:   128px  (32 units)
 ```
 
-
 ---
 
 ## Appendix C: Typography Scale Quick Reference
@@ -2338,22 +2396,23 @@ Labels:
 
 Quick reference for consistent state styling across components.
 
-| State    | Background        | Border           | Text          | Shadow      | Transform    |
-|----------|-------------------|------------------|---------------|-------------|--------------|
-| Default  | Base              | border-default   | text-primary  | shadow-sm   | none         |
-| Hover    | Base + 10%        | border-emphasis  | text-primary  | shadow-md   | translateY(-1px) |
-| Focus    | Base              | primary-500      | text-primary  | glow-focus  | none         |
-| Active   | Base - 10%        | border-emphasis  | text-primary  | shadow-sm   | none         |
-| Disabled | neutral-700       | border-soft      | text-disabled | none        | none         |
-| Loading  | Base              | border-default   | text-primary  | shadow-sm   | none         |
-| Error    | Base              | error-500        | text-primary  | glow-error  | none         |
-| Success  | Base              | success-500      | text-primary  | glow-success| none         |
+| State    | Background  | Border          | Text          | Shadow       | Transform        |
+| -------- | ----------- | --------------- | ------------- | ------------ | ---------------- |
+| Default  | Base        | border-default  | text-primary  | shadow-sm    | none             |
+| Hover    | Base + 10%  | border-emphasis | text-primary  | shadow-md    | translateY(-1px) |
+| Focus    | Base        | primary-500     | text-primary  | glow-focus   | none             |
+| Active   | Base - 10%  | border-emphasis | text-primary  | shadow-sm    | none             |
+| Disabled | neutral-700 | border-soft     | text-disabled | none         | none             |
+| Loading  | Base        | border-default  | text-primary  | shadow-sm    | none             |
+| Error    | Base        | error-500       | text-primary  | glow-error   | none             |
+| Success  | Base        | success-500     | text-primary  | glow-success | none             |
 
 ---
 
 ## Version History
 
 ### Version 1.0 (Current)
+
 - Initial design system specification
 - Complete color palette with semantic colors
 - Typography scale with responsive sizing
@@ -2365,6 +2424,7 @@ Quick reference for consistent state styling across components.
 - State management rules
 
 ### Planned Updates
+
 - Version 1.1: Light theme variant
 - Version 1.2: Extended color palette for data visualization
 - Version 1.3: Advanced animation patterns
@@ -2375,6 +2435,7 @@ Quick reference for consistent state styling across components.
 ## Credits and Inspiration
 
 This design system draws inspiration from:
+
 - **Linear**: Clean, minimal interface with subtle animations
 - **Vercel**: Premium dark theme with excellent contrast
 - **Notion**: Hierarchical information architecture
@@ -2391,4 +2452,4 @@ This design system draws inspiration from:
 
 ---
 
-*This design system is a living document. All changes should be documented and communicated to the engineering team. When in doubt, prioritize accessibility and consistency over novelty.*
+_This design system is a living document. All changes should be documented and communicated to the engineering team. When in doubt, prioritize accessibility and consistency over novelty._

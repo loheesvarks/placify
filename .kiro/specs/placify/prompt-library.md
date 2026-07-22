@@ -35,30 +35,33 @@ All prompts include version numbers for tracking changes and A/B testing.
 
 ```typescript
 const DEFAULT_AI_CONFIG = {
-  model: "gpt-4-turbo-preview",
+  model: 'gpt-4-turbo-preview',
   temperature: 0.7,
   max_tokens: 2000,
   top_p: 1,
   frequency_penalty: 0.3,
   presence_penalty: 0.3,
-  response_format: { type: "json_object" }
+  response_format: { type: 'json_object' },
 };
 ```
 
 ### Tone & Voice Guidelines
 
 **Professional yet Approachable**
+
 - Use "you" and "your" (second person)
 - Avoid jargon unless explaining technical concepts
 - Be encouraging without being patronizing
 - Acknowledge challenges while staying positive
 
 **Action-Oriented**
+
 - Provide specific, actionable recommendations
 - Include "next steps" in responses
 - Use imperative verbs (explore, practice, review)
 
 **Empathetic**
+
 - Recognize user effort and progress
 - Validate struggles and concerns
 - Celebrate achievements genuinely
@@ -69,7 +72,6 @@ const DEFAULT_AI_CONFIG = {
 
 **Version:** 1.0  
 **Purpose:** Conversational AI mentor providing guidance, answering questions, and offering support throughout the placement preparation journey.
-
 
 ### System Prompt
 
@@ -152,11 +154,11 @@ interface MentorContext {
 
 ```typescript
 interface MentorResponse {
-  message: string;              // Conversational response (500-800 chars)
-  suggestions: string[];        // 2-4 actionable suggestions
-  resources: Resource[];        // 0-3 relevant resources
-  next_steps: string[];         // 1-3 immediate actions
-  confidence: number;           // 0.0-1.0, how confident in advice
+  message: string; // Conversational response (500-800 chars)
+  suggestions: string[]; // 2-4 actionable suggestions
+  resources: Resource[]; // 0-3 relevant resources
+  next_steps: string[]; // 1-3 immediate actions
+  confidence: number; // 0.0-1.0, how confident in advice
 }
 
 interface Resource {
@@ -215,15 +217,15 @@ interface Resource {
   "target_companies": ["Google", "Microsoft", "Amazon"],
   "timeline_weeks": 16,
   "user_skills": [
-    {"name": "JavaScript", "proficiency": 7},
-    {"name": "React", "proficiency": 6},
-    {"name": "Data Structures", "proficiency": 4}
+    { "name": "JavaScript", "proficiency": 7 },
+    { "name": "React", "proficiency": 6 },
+    { "name": "Data Structures", "proficiency": 4 }
   ],
   "completion_percentage": 35,
   "recent_study_summary": "Completed 8 DSA problems, 2 React projects this week",
   "conversation_history": [
-    {"role": "user", "content": "I'm struggling with dynamic programming"},
-    {"role": "assistant", "content": "DP can be challenging..."}
+    { "role": "user", "content": "I'm struggling with dynamic programming" },
+    { "role": "assistant", "content": "DP can be challenging..." }
   ],
   "user_message": "Should I focus more on system design or keep practicing DSA?"
 }
@@ -330,8 +332,8 @@ interface RoadmapGeneratorContext {
   hours_per_day: number;
   timeline_weeks: number;
   start_date: string;
-  total_hours: number;          // hours_per_day * timeline_weeks * 7
-  node_count: number;            // calculated: total_hours / 15 (avg hours per node)
+  total_hours: number; // hours_per_day * timeline_weeks * 7
+  node_count: number; // calculated: total_hours / 15 (avg hours per node)
 }
 ```
 
@@ -352,17 +354,17 @@ interface RoadmapOutput {
 }
 
 interface RoadmapNode {
-  node_id: string;              // Unique: "node-1", "node-2", etc.
-  title: string;                // Clear, actionable title
-  description: string;          // 100-200 chars
+  node_id: string; // Unique: "node-1", "node-2", etc.
+  title: string; // Clear, actionable title
+  description: string; // 100-200 chars
   node_type: 'learning' | 'project' | 'assessment' | 'milestone';
   difficulty_level: 'beginner' | 'intermediate' | 'advanced';
-  estimated_hours: number;      // 5-40 hours
-  required_skills: string[];    // Skills needed
-  skills_gained: string[];      // Skills learned
-  dependencies: string[];       // Array of node_ids that must be completed first
-  resources: Resource[];        // 2-5 learning resources
-  week_number: number;          // Which week this belongs to
+  estimated_hours: number; // 5-40 hours
+  required_skills: string[]; // Skills needed
+  skills_gained: string[]; // Skills learned
+  dependencies: string[]; // Array of node_ids that must be completed first
+  resources: Resource[]; // 2-5 learning resources
+  week_number: number; // Which week this belongs to
   priority: 'high' | 'medium' | 'low';
 }
 
@@ -424,9 +426,9 @@ interface Resource {
   "target_role": "Full Stack Developer",
   "target_companies": ["Google", "Amazon", "Netflix"],
   "user_skills": [
-    {"name": "JavaScript", "proficiency": 6, "category": "technical"},
-    {"name": "Python", "proficiency": 4, "category": "technical"},
-    {"name": "Git", "proficiency": 5, "category": "technical"}
+    { "name": "JavaScript", "proficiency": 6, "category": "technical" },
+    { "name": "Python", "proficiency": 4, "category": "technical" },
+    { "name": "Git", "proficiency": 5, "category": "technical" }
   ],
   "hours_per_day": 4,
   "timeline_weeks": 12,
@@ -595,11 +597,11 @@ interface RoadmapUpdaterContext {
   completed_node_ids: string[];
   in_progress_node_ids: string[];
   completion_percentage: number;
-  hours_variance: number;        // % difference from estimated
+  hours_variance: number; // % difference from estimated
   avg_score: number;
   strong_skills: string[];
   weak_skills: string[];
-  speed_factor: number;          // 0.5 = half speed, 2.0 = double speed
+  speed_factor: number; // 0.5 = half speed, 2.0 = double speed
   update_reason: 'ahead' | 'behind' | 'skill_gap' | 'profile_change' | 'performance';
   update_instruction: string;
   new_target_profile?: Partial<RoadmapGeneratorContext>;
@@ -723,12 +725,12 @@ interface SkillGapContext {
 ```typescript
 interface SkillGapOutput {
   summary: string;
-  overall_readiness: number;     // 0-100
+  overall_readiness: number; // 0-100
   critical_gaps: SkillGap[];
   high_priority_gaps: SkillGap[];
   medium_priority_gaps: SkillGap[];
   low_priority_gaps: SkillGap[];
-  strengths: string[];           // Skills above requirement
+  strengths: string[]; // Skills above requirement
   recommendations: GapRecommendation[];
 }
 
@@ -736,14 +738,14 @@ interface SkillGap {
   skill_name: string;
   current_proficiency: number;
   required_proficiency: number;
-  gap_size: number;              // required - current
+  gap_size: number; // required - current
   estimated_hours_to_close: number;
-  reason: string;                // Why this skill matters
-  relevant_companies: string[];  // Which target companies need this
+  reason: string; // Why this skill matters
+  relevant_companies: string[]; // Which target companies need this
 }
 
 interface GapRecommendation {
-  priority: number;              // 1 = highest
+  priority: number; // 1 = highest
   action: string;
   skill_targets: string[];
   estimated_duration: string;
@@ -877,9 +879,9 @@ interface PathOptimization {
 }
 
 interface ScheduleRecommendation {
-  day_pattern: string;           // e.g., "Monday, Wednesday, Friday"
-  time_slot: string;             // e.g., "7:00-8:30 AM"
-  activity_type: string;         // e.g., "DSA Practice"
+  day_pattern: string; // e.g., "Monday, Wednesday, Friday"
+  time_slot: string; // e.g., "7:00-8:30 AM"
+  activity_type: string; // e.g., "DSA Practice"
   duration_minutes: number;
   rationale: string;
 }
@@ -965,36 +967,36 @@ Provide detailed analysis with specific, actionable feedback.
 
 ```typescript
 interface ResumeAnalysisOutput {
-  overall_score: number;         // 0-100
+  overall_score: number; // 0-100
   section_scores: {
-    content: number;             // 0-40
-    structure: number;           // 0-20
-    keywords: number;            // 0-20
-    writing: number;             // 0-10
-    ats_compatibility: number;   // 0-10
+    content: number; // 0-40
+    structure: number; // 0-20
+    keywords: number; // 0-20
+    writing: number; // 0-10
+    ats_compatibility: number; // 0-10
   };
-  strengths: string[];           // 3-5 items
-  critical_issues: Issue[];      // High priority fixes
-  improvement_suggestions: Issue[];  // Medium priority
-  minor_suggestions: Issue[];    // Low priority
-  missing_keywords: string[];    // Important missing terms
+  strengths: string[]; // 3-5 items
+  critical_issues: Issue[]; // High priority fixes
+  improvement_suggestions: Issue[]; // Medium priority
+  minor_suggestions: Issue[]; // Low priority
+  missing_keywords: string[]; // Important missing terms
   keyword_density: {
     term: string;
     count: number;
     optimal_count: number;
   }[];
-  ats_warnings: string[];        // ATS compatibility issues
-  estimated_pass_rate: number;   // % chance of passing ATS screening
+  ats_warnings: string[]; // ATS compatibility issues
+  estimated_pass_rate: number; // % chance of passing ATS screening
 }
 
 interface Issue {
   category: 'content' | 'structure' | 'keywords' | 'writing' | 'ats';
   severity: 'critical' | 'high' | 'medium' | 'low';
   issue: string;
-  location: string;              // Where in resume
+  location: string; // Where in resume
   suggestion: string;
-  example?: string;              // Example of improvement
-  impact: string;                // Why this matters
+  example?: string; // Example of improvement
+  impact: string; // Why this matters
 }
 ```
 
@@ -1037,13 +1039,7 @@ interface Issue {
       "impact": "Current format may cause 80% of content to be missed by ATS systems"
     }
   ],
-  "missing_keywords": [
-    "System Design",
-    "Microservices",
-    "CI/CD",
-    "Agile",
-    "REST APIs"
-  ],
+  "missing_keywords": ["System Design", "Microservices", "CI/CD", "Agile", "REST APIs"],
   "estimated_pass_rate": 45
 }
 ```
@@ -1113,12 +1109,12 @@ Evaluate ATS compatibility and provide specific fixes for issues.
 
 ```typescript
 interface ATSScoreOutput {
-  ats_score: number;             // 0-100
-  pass_probability: number;       // 0-100, likelihood of passing ATS
-  parseability_score: number;     // 0-30
-  keyword_score: number;          // 0-40
-  format_score: number;           // 0-20
-  metadata_score: number;         // 0-10
+  ats_score: number; // 0-100
+  pass_probability: number; // 0-100, likelihood of passing ATS
+  parseability_score: number; // 0-30
+  keyword_score: number; // 0-40
+  format_score: number; // 0-20
+  metadata_score: number; // 0-10
   critical_ats_issues: ATSIssue[];
   keyword_analysis: KeywordAnalysis;
   format_recommendations: string[];
@@ -1130,7 +1126,7 @@ interface ATSIssue {
   severity: 'critical' | 'high' | 'medium';
   problem: string;
   fix: string;
-  impact_on_score: number;        // Points lost
+  impact_on_score: number; // Points lost
 }
 
 interface KeywordAnalysis {
@@ -1210,12 +1206,12 @@ interface ImprovementSuggestionsOutput {
 }
 
 interface ImprovementSuggestion {
-  priority: number;              // 1 = highest
-  current_text: string;          // Original weak text
-  improved_text: string;         // Rewritten strong text
+  priority: number; // 1 = highest
+  current_text: string; // Original weak text
+  improved_text: string; // Rewritten strong text
   improvement_type: 'quantify' | 'add_impact' | 'technical_depth' | 'action_verb' | 'specificity';
-  explanation: string;           // Why this is better
-  impact_score_delta: number;    // +5 to +20 points
+  explanation: string; // Why this is better
+  impact_score_delta: number; // +5 to +20 points
 }
 ```
 
@@ -1366,11 +1362,11 @@ interface InterviewQuestion {
   question_type: 'coding' | 'system_design' | 'behavioral' | 'hr' | 'technical_concept';
   difficulty: 'easy' | 'medium' | 'hard';
   estimated_time_minutes: number;
-  competencies_tested: string[];   // What this evaluates
-  hints: string[];                 // 2-3 hints if user struggles
-  optimal_answer_structure: string;  // How to approach answer
-  red_flags: string[];             // Common mistakes to avoid
-  follow_up_questions: string[];   // Likely follow-ups from interviewer
+  competencies_tested: string[]; // What this evaluates
+  hints: string[]; // 2-3 hints if user struggles
+  optimal_answer_structure: string; // How to approach answer
+  red_flags: string[]; // Common mistakes to avoid
+  follow_up_questions: string[]; // Likely follow-ups from interviewer
   company_specific_notes?: string; // Why this matters for target company
 }
 
@@ -1551,27 +1547,27 @@ Provide detailed evaluation with specific feedback and improvement suggestions.
 
 ```typescript
 interface AnswerEvaluationOutput {
-  overall_score: number;         // 0-100
+  overall_score: number; // 0-100
   detailed_scores: {
-    accuracy: number;            // 0-30
-    completeness: number;        // 0-25
-    clarity: number;             // 0-20
-    depth: number;               // 0-15
-    structure: number;           // 0-10
+    accuracy: number; // 0-30
+    completeness: number; // 0-25
+    clarity: number; // 0-20
+    depth: number; // 0-15
+    structure: number; // 0-10
   };
   evaluation_level: 'exceptional' | 'strong' | 'acceptable' | 'needs_improvement' | 'weak';
-  strengths: string[];           // 2-4 specific positives
+  strengths: string[]; // 2-4 specific positives
   areas_for_improvement: ImprovementArea[];
-  missing_elements: string[];    // Key points not covered
-  improved_answer_example: string;  // How to make it better
-  interviewer_perception: string;   // How interviewer likely viewed this
-  next_practice_focus: string[];    // What to work on next
+  missing_elements: string[]; // Key points not covered
+  improved_answer_example: string; // How to make it better
+  interviewer_perception: string; // How interviewer likely viewed this
+  next_practice_focus: string[]; // What to work on next
 }
 
 interface ImprovementArea {
-  aspect: string;                // What needs improvement
-  current_issue: string;         // Specific problem
-  suggestion: string;            // How to fix it
+  aspect: string; // What needs improvement
+  current_issue: string; // Specific problem
+  suggestion: string; // How to fix it
   impact: 'high' | 'medium' | 'low';
 }
 ```
@@ -1707,17 +1703,17 @@ Generate actionable insights and next steps.
 ```typescript
 interface InterviewSummaryOutput {
   overall_performance: {
-    score: number;               // 0-100
+    score: number; // 0-100
     readiness_level: 'ready' | 'almost_ready' | 'needs_practice' | 'significant_gaps';
     readiness_assessment: string;
     estimated_weeks_to_ready: number;
   };
-  key_strengths: string[];       // 3-5 items
-  critical_weaknesses: string[];  // 2-4 items
+  key_strengths: string[]; // 3-5 items
+  critical_weaknesses: string[]; // 2-4 items
   question_breakdown: {
     best_answer: { question_id: string; score: number; why: string };
     weakest_answer: { question_id: string; score: number; why: string };
-    consistency_score: number;   // Variance in performance
+    consistency_score: number; // Variance in performance
   };
   improvement_plan: ImprovementPlan;
   company_fit_assessment: CompanyFitAssessment;
@@ -1726,8 +1722,8 @@ interface InterviewSummaryOutput {
 }
 
 interface ImprovementPlan {
-  immediate_actions: Action[];   // This week
-  short_term_goals: Action[];    // Next 2-4 weeks
+  immediate_actions: Action[]; // This week
+  short_term_goals: Action[]; // Next 2-4 weeks
   long_term_development: Action[]; // 1-3 months
 }
 
@@ -1741,8 +1737,8 @@ interface Action {
 
 interface CompanyFitAssessment {
   company_name: string;
-  technical_fit: number;         // 0-100
-  cultural_fit: number;          // 0-100
+  technical_fit: number; // 0-100
+  cultural_fit: number; // 0-100
   competitive_position: 'strong' | 'average' | 'weak';
   specific_gaps: string[];
   strengths_for_company: string[];
@@ -1867,20 +1863,20 @@ interface WeeklyReviewContext {
 
 ```typescript
 interface WeeklyReviewOutput {
-  summary: string;               // 150-250 chars, overall week summary
+  summary: string; // 150-250 chars, overall week summary
   progress_assessment: {
     status: 'ahead' | 'on_track' | 'slightly_behind' | 'significantly_behind';
-    completion_vs_expected: number;  // % difference
+    completion_vs_expected: number; // % difference
     trajectory: 'improving' | 'stable' | 'declining';
     pace_adjustment_needed: boolean;
   };
   top_achievements: Achievement[]; // 3-5 wins
-  areas_of_concern: Concern[];     // 1-3 issues
+  areas_of_concern: Concern[]; // 1-3 issues
   skill_progression: SkillChange[];
-  weekly_insights: Insight[];      // 2-4 data-driven insights
+  weekly_insights: Insight[]; // 2-4 data-driven insights
   upcoming_week_plan: WeekPlan;
   motivational_message: string;
-  estimated_completion_date: string;  // Projected finish date
+  estimated_completion_date: string; // Projected finish date
 }
 
 interface Achievement {
@@ -1913,7 +1909,7 @@ interface Insight {
 }
 
 interface WeekPlan {
-  focus_areas: string[];         // 2-3 priorities
+  focus_areas: string[]; // 2-3 priorities
   recommended_hours: number;
   key_milestones: string[];
   stretch_goals: string[];
@@ -2112,7 +2108,7 @@ interface SessionOptimizationOutput {
   suggestions: SessionSuggestion[];
   break_recommendation: BreakRecommendation;
   technique_recommendations: string[];
-  session_health_score: number;   // 0-100
+  session_health_score: number; // 0-100
 }
 
 interface SessionSuggestion {
@@ -2219,22 +2215,22 @@ interface ProjectIdeasOutput {
 interface ProjectIdea {
   project_id: string;
   title: string;
-  tagline: string;              // One-line description
-  description: string;          // 200-300 chars
+  tagline: string; // One-line description
+  description: string; // 200-300 chars
   difficulty: 'beginner' | 'intermediate' | 'advanced';
   estimated_hours: number;
   skills_required: string[];
   skills_developed: string[];
   tech_stack: string[];
-  key_features: string[];       // 5-8 core features
+  key_features: string[]; // 5-8 core features
   implementation_phases: Phase[];
   evaluation_criteria: Criterion[];
-  portfolio_value: number;      // 0-100, how impressive
-  learning_value: number;       // 0-100, skill development
+  portfolio_value: number; // 0-100, how impressive
+  learning_value: number; // 0-100, skill development
   company_relevance: CompanyRelevance[];
-  similar_real_projects: string[];  // Industry examples
-  differentiators: string[];    // What makes this unique
-  demo_ideas: string[];         // How to showcase it
+  similar_real_projects: string[]; // Industry examples
+  differentiators: string[]; // What makes this unique
+  demo_ideas: string[]; // How to showcase it
 }
 
 interface Phase {
@@ -2247,13 +2243,13 @@ interface Phase {
 
 interface Criterion {
   criterion: string;
-  weight: number;               // 0-100
+  weight: number; // 0-100
   evaluation_method: string;
 }
 
 interface CompanyRelevance {
   company: string;
-  relevance_score: number;      // 0-100
+  relevance_score: number; // 0-100
   reason: string;
 }
 ```
@@ -2341,20 +2337,20 @@ Provide detailed evaluation with specific improvement suggestions.
 
 ```typescript
 interface ProjectEvaluationOutput {
-  overall_score: number;         // 0-100
+  overall_score: number; // 0-100
   section_scores: {
-    technical: number;           // 0-40
-    completeness: number;        // 0-20
-    best_practices: number;      // 0-20
-    presentation: number;        // 0-20
+    technical: number; // 0-40
+    completeness: number; // 0-20
+    best_practices: number; // 0-20
+    presentation: number; // 0-20
   };
   hiring_manager_verdict: 'impressive' | 'solid' | 'acceptable' | 'needs_work';
-  strengths: string[];           // 3-5 specific strengths
+  strengths: string[]; // 3-5 specific strengths
   areas_for_improvement: DetailedImprovement[];
-  quick_wins: string[];          // Easy improvements with high impact
+  quick_wins: string[]; // Easy improvements with high impact
   portfolio_readiness: boolean;
   recommended_next_steps: string[];
-  interviewer_questions: string[];  // Questions this might raise
+  interviewer_questions: string[]; // Questions this might raise
 }
 
 interface DetailedImprovement {
@@ -2713,11 +2709,11 @@ interface LearningResource {
   difficulty: 'beginner' | 'intermediate' | 'advanced';
   estimated_hours: number;
   cost: number | 'free';
-  rating: number;              // 0-5
+  rating: number; // 0-5
   why_recommended: string;
   learning_outcomes: string[];
   prerequisites: string[];
-  best_for: string[];          // e.g., "visual learners", "hands-on practice"
+  best_for: string[]; // e.g., "visual learners", "hands-on practice"
 }
 
 interface LearningPath {
@@ -2821,23 +2817,23 @@ interface ProgressAnalysisOutput {
 }
 
 interface VelocityAnalysis {
-  current_pace: number;          // x vs expected (1.0 = on track)
+  current_pace: number; // x vs expected (1.0 = on track)
   pace_trend: 'accelerating' | 'stable' | 'decelerating';
   bottlenecks: string[];
-  efficiency_score: number;      // 0-100
-  time_utilization: number;      // % of available time used effectively
+  efficiency_score: number; // 0-100
+  time_utilization: number; // % of available time used effectively
 }
 
 interface QualityAnalysis {
-  understanding_depth: number;   // 0-100
-  retention_rate: number;        // 0-100
+  understanding_depth: number; // 0-100
+  retention_rate: number; // 0-100
   first_attempt_success: number; // 0-100
-  improvement_rate: number;      // % improvement over time
+  improvement_rate: number; // % improvement over time
   mastery_distribution: { beginner: number; intermediate: number; advanced: number };
 }
 
 interface BehavioralInsights {
-  consistency_score: number;     // 0-100
+  consistency_score: number; // 0-100
   longest_streak: number;
   current_streak: number;
   peak_performance_hours: string[];
@@ -2848,14 +2844,15 @@ interface BehavioralInsights {
 
 interface Predictions {
   projected_completion_date: string;
-  confidence: number;            // 0-100
+  confidence: number; // 0-100
   projected_final_skill_levels: { skill: string; projected: number }[];
   interview_readiness_date: string;
-  success_probability: number;   // 0-100
+  success_probability: number; // 0-100
 }
 
 interface Opportunity {
-  opportunity_type: 'time_management' | 'difficulty_adjustment' | 'focus_shift' | 'technique_change';
+  opportunity_type:
+    'time_management' | 'difficulty_adjustment' | 'focus_shift' | 'technique_change';
   description: string;
   potential_impact: 'high' | 'medium' | 'low';
   implementation: string;
@@ -2989,7 +2986,7 @@ interface TimelinePhase {
 interface AlternativePath {
   path_name: string;
   description: string;
-  suitability_score: number;  // 0-100
+  suitability_score: number; // 0-100
   trade_offs: string[];
 }
 ```
@@ -3076,10 +3073,10 @@ Provide personalized, genuine encouragement and actionable guidance.
 
 ```typescript
 interface MotivationOutput {
-  personalized_message: string;  // 200-400 chars, heartfelt
+  personalized_message: string; // 200-400 chars, heartfelt
   perspective_reframe: string;
   small_wins_to_celebrate: string[];
-  immediate_actions: string[];   // 2-3 small, doable steps
+  immediate_actions: string[]; // 2-3 small, doable steps
   long_term_reminder: string;
   similar_success_story?: string;
   motivational_quote?: string;
@@ -3162,13 +3159,13 @@ Create engaging notification copy.
 
 ```typescript
 interface NotificationContentOutput {
-  title: string;                 // Max 50 chars
-  message: string;               // Max 100 chars
-  cta_text: string;              // Call-to-action button text
+  title: string; // Max 50 chars
+  message: string; // Max 100 chars
+  cta_text: string; // Call-to-action button text
   cta_url: string;
   priority: 'low' | 'normal' | 'high';
   category: 'reminder' | 'achievement' | 'insight' | 'social';
-  emoji?: string;                // Optional emoji for personality
+  emoji?: string; // Optional emoji for personality
 }
 ```
 
@@ -3241,8 +3238,8 @@ Create engaging, actionable insight.
 
 ```typescript
 interface DashboardInsightOutput {
-  insight_title: string;         // Max 60 chars
-  insight_description: string;   // 100-150 chars
+  insight_title: string; // Max 60 chars
+  insight_description: string; // 100-150 chars
   insight_type: 'trend' | 'pattern' | 'prediction' | 'opportunity' | 'achievement';
   data_points: DataPoint[];
   recommendation: string;
@@ -3275,11 +3272,13 @@ interface DataPoint {
 ### Version Control Strategy
 
 **Version Format:** `{major}.{minor}.{patch}`
+
 - Major: Breaking changes to schema or behavior
 - Minor: New features, non-breaking enhancements
 - Patch: Bug fixes, copy improvements
 
 **Tracking:**
+
 ```typescript
 interface PromptVersion {
   prompt_name: string;
@@ -3299,7 +3298,7 @@ interface PromptExperiment {
   prompt_name: string;
   control_version: string;
   variant_version: string;
-  traffic_split: number;         // 0-100
+  traffic_split: number; // 0-100
   metrics_tracked: string[];
   start_date: string;
   end_date?: string;
@@ -3313,23 +3312,27 @@ interface PromptExperiment {
 ### Global Error Strategy
 
 **Response Validation:**
+
 1. Check for valid JSON
 2. Validate schema compliance
 3. Check content safety
 4. Verify personalization worked
 
 **Retry Logic:**
+
 - Max 3 retries with exponential backoff
 - Different retry strategies per prompt type
 - Fallback to simpler prompt on repeated failures
 
 **Fallback Responses:**
+
 ```typescript
 const FALLBACKS = {
-  mentor: "I'm having trouble processing that right now. Let me help you with your roadmap instead...",
-  roadmap: "Unable to generate complete roadmap. Creating simplified version...",
-  resume: "Analysis temporarily unavailable. Please try again shortly.",
-  interview: "Question generation paused. Here are previously suggested questions..."
+  mentor:
+    "I'm having trouble processing that right now. Let me help you with your roadmap instead...",
+  roadmap: 'Unable to generate complete roadmap. Creating simplified version...',
+  resume: 'Analysis temporarily unavailable. Please try again shortly.',
+  interview: 'Question generation paused. Here are previously suggested questions...',
 };
 ```
 
@@ -3340,12 +3343,14 @@ const FALLBACKS = {
 ### Content Filtering
 
 **Input Validation:**
+
 - Max input length: 10,000 chars
 - Detect prompt injection attempts
 - Filter PII before sending to API
 - Sanitize user-generated content
 
 **Output Validation:**
+
 - Content safety check (toxicity, bias)
 - PII detection and redaction
 - Fact-checking critical claims
@@ -3355,11 +3360,11 @@ const FALLBACKS = {
 
 ```typescript
 const RATE_LIMITS = {
-  mentor_chat: "30 per hour",
-  roadmap_generation: "5 per day",
-  resume_analysis: "10 per day",
-  mock_interview: "3 per day",
-  weekly_review: "1 per week"
+  mentor_chat: '30 per hour',
+  roadmap_generation: '5 per day',
+  resume_analysis: '10 per day',
+  mock_interview: '3 per day',
+  weekly_review: '1 per week',
 };
 ```
 
@@ -3370,18 +3375,21 @@ const RATE_LIMITS = {
 ### Key Metrics
 
 **Quality Metrics:**
+
 - User satisfaction ratings
 - Retry rates per prompt
 - Fallback trigger frequency
 - Response time (p50, p95, p99)
 
 **Business Metrics:**
+
 - Feature usage rates
 - Conversion impact
 - User engagement
 - Retention correlation
 
 **Performance Metrics:**
+
 - Token usage per prompt
 - API costs per user
 - Cache hit rates

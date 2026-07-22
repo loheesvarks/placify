@@ -33,6 +33,7 @@ Motion enhances experience but never blocks functionality. Critical information 
 ### 1.2 When Animations Should Be Used
 
 **Provide Feedback**
+
 - Button presses and interactions
 - Form submissions and validation
 - Loading states and progress
@@ -40,6 +41,7 @@ Motion enhances experience but never blocks functionality. Critical information 
 - Drag and drop operations
 
 **Guide Attention**
+
 - New content appearing
 - Important notifications
 - Active elements and selections
@@ -47,6 +49,7 @@ Motion enhances experience but never blocks functionality. Critical information 
 - AI recommendations
 
 **Communicate Relationships**
+
 - Parent-child hierarchies
 - Sequential dependencies (roadmap nodes)
 - Cause and effect
@@ -54,6 +57,7 @@ Motion enhances experience but never blocks functionality. Critical information 
 - Data updates
 
 **Create Delight**
+
 - Onboarding experiences
 - Achievement celebrations
 - Milestone completions
@@ -61,6 +65,7 @@ Motion enhances experience but never blocks functionality. Critical information 
 - First-time interactions
 
 **Maintain Context**
+
 - Page transitions
 - Modal appearances
 - Sidebar expand/collapse
@@ -70,22 +75,26 @@ Motion enhances experience but never blocks functionality. Critical information 
 ### 1.3 When Animations Should NOT Be Used
 
 **During Critical Tasks**
+
 - Password entry
 - Payment processing
 - Data deletion confirmations
 - Time-sensitive actions
 
 **On Initial Load**
+
 - Above-the-fold content should appear immediately
 - Avoid animation blocking First Contentful Paint
 - Skeleton screens don't animate on initial render
 
 **For Repetitive Actions**
+
 - Rapidly repeated clicks should reduce animation duration
 - Bulk operations should skip individual item animations
 - List scrolling should not animate every item
 
 **When Performance Suffers**
+
 - If frame rate drops below 45fps, disable animation
 - On low-power devices, simplify or disable decorative animations
 - Large dataset rendering should prioritize performance over motion
@@ -103,6 +112,7 @@ Motion enhances experience but never blocks functionality. Critical information 
 ### 1.5 Accessibility Considerations
 
 **Respect User Preferences**
+
 ```css
 @media (prefers-reduced-motion: reduce) {
   /* All animations become instant or significantly reduced */
@@ -115,23 +125,27 @@ Motion enhances experience but never blocks functionality. Critical information 
 ```
 
 **Never Animate Critical Information**
+
 - Error messages appear instantly
 - Success confirmations appear instantly
 - Navigation changes don't require animation completion
 - Form validation appears immediately
 
 **Avoid Vestibular Issues**
+
 - No continuous spinning animations >3 seconds
 - Parallax effects are subtle (<20px movement)
 - Zoom animations stay <1.1x scale factor for backgrounds
 - Auto-playing animations pause after 5 seconds
 
 **Provide Animation Controls**
+
 - Users can disable non-essential animations in settings
 - Notification animations can be reduced
 - Decorative effects can be disabled
 
 **Keyboard Navigation**
+
 - Focus indicators animate smoothly (200ms)
 - Focus never jumps or teleports
 - Animated elements remain keyboard accessible during animation
@@ -157,6 +171,7 @@ deliberate:  1000ms   // Multi-step animations, celebrations
 ```
 
 **Usage Guidelines:**
+
 - Hover states: immediate (50ms)
 - Button clicks: fast (150ms)
 - Form inputs: normal (250ms)
@@ -177,6 +192,7 @@ stagger-xl:   150ms   // Dramatic sequential items
 ```
 
 **Stagger Patterns:**
+
 - List items (5-10 items): stagger-xs (20ms)
 - Card grids (3-6 items): stagger-sm (40ms)
 - Feature reveals (3-4 items): stagger-md (60ms)
@@ -188,6 +204,7 @@ stagger-xl:   150ms   // Dramatic sequential items
 Named easing functions following industry standards.
 
 **Standard Easings (CSS cubic-bezier):**
+
 ```
 linear:      cubic-bezier(0, 0, 1, 1)
 ease-in:     cubic-bezier(0.4, 0, 1, 1)
@@ -196,6 +213,7 @@ ease-in-out: cubic-bezier(0.4, 0, 0.2, 1)
 ```
 
 **Custom Easings (Placify-specific):**
+
 ```
 ease-smooth:    cubic-bezier(0.25, 0.1, 0.25, 1)      // Smooth, subtle
 ease-bounce:    cubic-bezier(0.68, -0.55, 0.265, 1.55) // Playful overshoot
@@ -205,6 +223,7 @@ ease-dramatic:  cubic-bezier(0.87, 0, 0.13, 1)        // Strong emphasis
 ```
 
 **Usage Guidelines:**
+
 - Hover states: ease-out (standard)
 - Modal open/close: ease-smooth
 - Button press: ease-snappy
@@ -218,6 +237,7 @@ ease-dramatic:  cubic-bezier(0.87, 0, 0.13, 1)        // Strong emphasis
 For Framer Motion spring animations. Springs feel more natural than easing curves for interactive elements.
 
 **Standard Springs:**
+
 ```javascript
 spring-gentle: {
   type: "spring",
@@ -256,6 +276,7 @@ spring-elastic: {
 ```
 
 **Usage Guidelines:**
+
 - Modals/Drawers: spring-gentle
 - Drag and drop: spring-responsive
 - Button feedback: spring-snappy
@@ -271,17 +292,17 @@ Level 1 (Critical - Never interrupt):
   - Error messages
   - Loading states blocking UI
   - Data saving indicators
-  
+
 Level 2 (High - Interrupt Level 3):
   - Modal open/close
   - Page transitions
   - Form submissions
-  
+
 Level 3 (Medium - Interrupt Level 4):
   - Card hovers
   - Dropdown menus
   - Tooltips
-  
+
 Level 4 (Low - Can be skipped):
   - Decorative glows
   - Background animations
@@ -320,6 +341,7 @@ Critical Layer (z-index: 99):
 ```
 
 **Animation Rules:**
+
 - Elements animate within their z-index layer
 - Opening modals: increase z-index before animation starts
 - Closing modals: decrease z-index after animation completes
@@ -340,6 +362,7 @@ Full-page navigation animations.
 **Easing:** ease-elegant
 
 **Outgoing Page:**
+
 - Opacity: 1 → 0.4
 - Scale: 1 → 0.98
 - Blur: 0px → 4px
@@ -348,6 +371,7 @@ Full-page navigation animations.
 - Easing: ease-in
 
 **Incoming Page:**
+
 - Opacity: 0 → 1
 - Scale: 0.98 → 1
 - Blur: 4px → 0px
@@ -364,12 +388,14 @@ Full-page navigation animations.
 **Easing:** ease-smooth
 
 **Outgoing Page:**
+
 - Opacity: 1 → 0
 - Scale: 1 → 1.05
 - Blur: 0px → 8px
 - Duration: 200ms
 
 **Incoming Page:**
+
 - Opacity: 0 → 1
 - Transform: translateX(30px) → translateX(0)
 - Duration: 450ms
@@ -383,11 +409,13 @@ Full-page navigation animations.
 **Easing:** ease-snappy
 
 **Outgoing Page:**
+
 - Opacity: 1 → 0
 - Transform: translateX(0) → translateX(30px)
 - Duration: 300ms
 
 **Incoming Page:**
+
 - Opacity: 0 → 1
 - Scale: 0.98 → 1
 - Transform: translateX(-20px) → translateX(0)
@@ -408,6 +436,7 @@ Animations specific to app routing between major sections.
 **Spring:** spring-gentle
 
 **Animation:**
+
 - Fade out dashboard: 200ms
 - Roadmap fades in: 0 → 1 opacity
 - Roadmap scales: 0.95 → 1
@@ -423,6 +452,7 @@ Animations specific to app routing between major sections.
 **Easing:** ease-smooth
 
 **Animation:**
+
 - Current page: opacity 1 → 0.3, blur 0 → 8px
 - Settings page: translateX(100%) → translateX(0)
 - Settings page: opacity 0 → 1
@@ -436,6 +466,7 @@ Animations specific to app routing between major sections.
 **Easing:** ease-elegant
 
 **Animation Sequence:**
+
 1. Success checkmark appears (scale 0 → 1.2 → 1) - 300ms
 2. Login form fades out (opacity 1 → 0) - 200ms
 3. Screen flashes subtle gradient - 150ms
@@ -457,12 +488,14 @@ Animations specific to app routing between major sections.
 **Spring:** spring-responsive
 
 **Expand:**
+
 - Width: 64px → 280px
 - Labels: opacity 0 → 1, translateX(-10px) → translateX(0)
 - Icons: no animation (stay in place)
 - Delay for labels: 150ms
 
 **Collapse:**
+
 - Width: 280px → 64px
 - Labels: opacity 1 → 0, translateX(0) → translateX(-10px)
 - Duration: 200ms (faster collapse)
@@ -475,11 +508,13 @@ Animations specific to app routing between major sections.
 **Easing:** ease-smooth
 
 **Open:**
+
 - Sidebar: translateX(-100%) → translateX(0)
 - Backdrop: opacity 0 → 0.6
 - Both animate simultaneously
 
 **Close:**
+
 - Sidebar: translateX(0) → translateX(-100%)
 - Backdrop: opacity 0.6 → 0
 - Duration: 250ms (faster close)
@@ -492,6 +527,7 @@ Animations specific to app routing between major sections.
 **Easing:** ease-out
 
 **Animation:**
+
 - Background: opacity 0 → 1
 - Glow: box-shadow 0 → glow-sm
 - Scale: 1 → 1.02
@@ -505,6 +541,7 @@ Animations specific to app routing between major sections.
 **Spring:** spring-gentle
 
 **Animation:**
+
 - Background: gradient-primary-soft fades in
 - Border-left: 3px solid primary-500 grows from top
 - Glow: pulsing glow-sm (2s cycle)
@@ -524,6 +561,7 @@ Animations specific to app routing between major sections.
 **Easing:** ease-out
 
 **Animation:**
+
 - Opacity: 0 → 1
 - TranslateX: -10px → 0
 - Separator fades in after text
@@ -536,11 +574,13 @@ Animations specific to app routing between major sections.
 **Easing:** ease-smooth
 
 **Active Tab:**
+
 - Border-bottom: 2px solid, slides in from left to right
 - Color: text-secondary → primary-400
 - Background: subtle highlight fades in
 
 **Inactive Tab:**
+
 - Border: fades out
 - Color: shifts to text-secondary
 - Duration: 150ms (faster fade)
@@ -553,6 +593,7 @@ Animations specific to app routing between major sections.
 **Easing:** ease-out
 
 **Animation:**
+
 - Opacity: 0 → 1
 - Scale: 0.95 → 1
 - Transform origin: top center
@@ -571,20 +612,24 @@ Animations specific to app routing between major sections.
 **Easing:** ease-out
 
 **Primary Button:**
+
 - Transform: translateY(0) → translateY(-2px)
 - Box-shadow: glow-sm → glow-md
 - Scale: 1 → 1.02
 
 **Secondary Button:**
+
 - Background: glass-background → glass-background-hover
 - Border-color: glass-border → primary-500/30
 - Glow: none → glow-sm
 
 **Ghost Button:**
+
 - Background: transparent → glass-background
 - Color: text-secondary → text-primary
 
 **Icon Button:**
+
 - Background: transparent → glass-background
 - Scale: 1 → 1.1
 - Icon color: text-secondary → text-primary
@@ -597,6 +642,7 @@ Animations specific to app routing between major sections.
 **Easing:** ease-snappy
 
 **Animation:**
+
 - Transform: translateY(-2px) → translateY(0)
 - Scale: 1.02 → 0.98
 - Box-shadow: glow-md → glow-sm
@@ -609,6 +655,7 @@ Animations specific to app routing between major sections.
 **Easing:** ease-out
 
 **Animation:**
+
 - Opacity: 1 → 0.6
 - Cursor: pointer → not-allowed
 - Glow: fades to 0
@@ -622,6 +669,7 @@ Animations specific to app routing between major sections.
 **Easing:** linear
 
 **Animation:**
+
 - Text: opacity 1 → 0 (150ms)
 - Spinner: fades in opacity 0 → 1 (150ms)
 - Spinner: continuous rotation 360deg (1000ms loop)
@@ -630,6 +678,7 @@ Animations specific to app routing between major sections.
 - Pointer events: none
 
 **Spinner Specifics:**
+
 - Size: 16px × 16px
 - Stroke: 2px
 - Color: currentColor
@@ -648,6 +697,7 @@ Animations specific to app routing between major sections.
 **Easing:** ease-out
 
 **Animation:**
+
 - Border-color: surface-border → primary-500
 - Box-shadow: none → 0 0 0 3px rgba(59, 130, 246, 0.1)
 - Label color: text-secondary → primary-400 (if floating)
@@ -661,6 +711,7 @@ Animations specific to app routing between major sections.
 **Easing:** ease-bounce (subtle)
 
 **Animation:**
+
 - Border-color: surface-border → error-500 (instant)
 - Box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1)
 - Shake animation: translateX(0 → 4px → -4px → 2px → -2px → 0) over 400ms
@@ -668,6 +719,7 @@ Animations specific to app routing between major sections.
 - Error icon: scale 0 → 1.2 → 1 (bounce)
 
 **Shake Keyframes:**
+
 ```
 0%:   translateX(0)
 25%:  translateX(4px)
@@ -684,6 +736,7 @@ Animations specific to app routing between major sections.
 **Easing:** ease-out
 
 **Animation:**
+
 - Border-color: surface-border → success-500
 - Box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1)
 - Success checkmark: scale 0 → 1, opacity 0 → 1
@@ -702,6 +755,7 @@ Animations specific to app routing between major sections.
 **Easing:** ease-smooth
 
 **Animation:**
+
 - Transform: translateY(0) → translateY(-4px)
 - Box-shadow: shadow-sm → shadow-md + glow-sm
 - Border-color: glass-border → primary-500/20
@@ -717,6 +771,7 @@ Animations specific to app routing between major sections.
 **Easing:** ease-elegant
 
 **Animation:**
+
 - Opacity: 0 → 1
 - Transform: translateY(20px) → translateY(0)
 - Scale: 0.95 → 1
@@ -730,6 +785,7 @@ Animations specific to app routing between major sections.
 **Easing:** ease-in-out
 
 **Animation:**
+
 - RotateY: 0deg → 180deg
 - Front face: opacity 1 → 0 at 50% progress
 - Back face: opacity 0 → 1 at 50% progress
@@ -743,6 +799,7 @@ Animations specific to app routing between major sections.
 **Easing:** ease-in
 
 **Animation:**
+
 - Scale: 1 → 0.9
 - Opacity: 1 → 0
 - Transform: translateX(0) → translateX(-30px)
@@ -763,6 +820,7 @@ Glass effects are static visual styles, but blur can animate during transitions.
 **Easing:** ease-out
 
 **Animation:**
+
 - Backdrop-blur: 0px → 12px
 - Background: transparent → glass-background
 - Border: opacity 0 → 1
@@ -776,6 +834,7 @@ Glass effects are static visual styles, but blur can animate during transitions.
 **Easing:** ease-smooth
 
 **Animation:**
+
 - Backdrop-blur: 12px → 16px
 - Background: glass-background → glass-background-hover
 - Border: glass-border → primary-500/20
@@ -789,6 +848,7 @@ Glass effects are static visual styles, but blur can animate during transitions.
 **Easing:** ease-out
 
 **Animation:**
+
 - Opacity: 0 → 1
 - Backdrop-blur: 0px → 20px
 - Background: transparent → rgba(0, 0, 0, 0.4)
@@ -805,11 +865,13 @@ Glass effects are static visual styles, but blur can animate during transitions.
 **Easing:** ease-smooth
 
 **Backdrop:**
+
 - Opacity: 0 → 1
 - Backdrop-blur: 0 → 20px
 - Duration: 300ms
 
 **Modal Content:**
+
 - Opacity: 0 → 1
 - Scale: 0.9 → 1
 - TranslateY: 20px → 0
@@ -825,12 +887,14 @@ Glass effects are static visual styles, but blur can animate during transitions.
 **Easing:** ease-in
 
 **Modal Content:**
+
 - Opacity: 1 → 0
 - Scale: 1 → 0.95
 - TranslateY: 0 → 10px
 - Duration: 250ms
 
 **Backdrop:**
+
 - Opacity: 1 → 0
 - Backdrop-blur: 20px → 0
 - Delay: 100ms (wait for content to fade)
@@ -844,11 +908,13 @@ Glass effects are static visual styles, but blur can animate during transitions.
 **Easing:** ease-elegant
 
 **Outgoing Content:**
+
 - Opacity: 1 → 0
 - TranslateX: 0 → -30px (next) or 30px (previous)
 - Duration: 200ms
 
 **Incoming Content:**
+
 - Opacity: 0 → 1
 - TranslateX: 30px (next) or -30px (previous) → 0
 - Delay: 150ms
@@ -866,6 +932,7 @@ Glass effects are static visual styles, but blur can animate during transitions.
 **Spring:** spring-responsive
 
 **Animation:**
+
 - TranslateX: 100% → 0
 - Opacity: 0 → 1 (first 100ms)
 - Box-shadow: none → shadow-2xl
@@ -879,6 +946,7 @@ Glass effects are static visual styles, but blur can animate during transitions.
 **Easing:** ease-in
 
 **Animation:**
+
 - TranslateX: 0 → 100%
 - Opacity: 1 → 0 (last 100ms)
 - Backdrop: opacity 0.5 → 0
@@ -891,6 +959,7 @@ Glass effects are static visual styles, but blur can animate during transitions.
 **Easing:** ease-smooth
 
 **Animation:**
+
 - TranslateX: -100% → 0
 - Opacity: 0 → 1
 - Backdrop: opacity 0 → 0.6
@@ -904,6 +973,7 @@ Glass effects are static visual styles, but blur can animate during transitions.
 **Easing:** ease-out
 
 **Animation:**
+
 - Opacity: 0 → 1
 - TranslateY: 10px → 0
 - Delay: Starts after drawer slide completes
@@ -920,6 +990,7 @@ Glass effects are static visual styles, but blur can animate during transitions.
 **Easing:** ease-out
 
 **Animation:**
+
 - Opacity: 0 → 1
 - Scale: 0.9 → 1
 - TransformOrigin: bottom center (for top tooltip), top center (for bottom tooltip)
@@ -933,6 +1004,7 @@ Glass effects are static visual styles, but blur can animate during transitions.
 **Easing:** ease-in
 
 **Animation:**
+
 - Opacity: 1 → 0
 - Scale: 1 → 0.95
 - Duration: faster exit for immediate feel
@@ -949,6 +1021,7 @@ Glass effects are static visual styles, but blur can animate during transitions.
 **Spring:** spring-responsive
 
 **Animation:**
+
 - TranslateY: -100% → 0 (top position) or 100% → 0 (bottom position)
 - Opacity: 0 → 1
 - Scale: 0.95 → 1
@@ -962,6 +1035,7 @@ Glass effects are static visual styles, but blur can animate during transitions.
 **Easing:** ease-in
 
 **Animation:**
+
 - TranslateX: 0 → 100% (slide right)
 - Opacity: 1 → 0
 - Scale: 1 → 0.9
@@ -975,6 +1049,7 @@ Glass effects are static visual styles, but blur can animate during transitions.
 **Easing:** ease-smooth
 
 **Animation:**
+
 - TranslateY: shift all toasts up to fill gap
 - Smooth spring transition
 
@@ -986,6 +1061,7 @@ Glass effects are static visual styles, but blur can animate during transitions.
 **Easing:** linear
 
 **Animation:**
+
 - Width: 100% → 0%
 - Smooth linear progression
 - Pauses on hover
@@ -1003,12 +1079,14 @@ Glass effects are static visual styles, but blur can animate during transitions.
 **Easing:** ease-out
 
 **Animation:**
+
 - Opacity: 0 → 1
 - Scale: 0.95 → 1
 - TransformOrigin: top (for dropdowns below trigger), bottom (for dropdowns above)
 - Blur: 4px → 0px
 
 **Menu Items Stagger:**
+
 - Delay: stagger-xs (20ms)
 - TranslateY: -5px → 0
 - Opacity: 0 → 1
@@ -1021,6 +1099,7 @@ Glass effects are static visual styles, but blur can animate during transitions.
 **Easing:** ease-in
 
 **Animation:**
+
 - Opacity: 1 → 0
 - Scale: 1 → 0.95
 - No stagger on close (instant)
@@ -1037,6 +1116,7 @@ Glass effects are static visual styles, but blur can animate during transitions.
 **Easing:** ease-in-out
 
 **Animation:**
+
 - Gradient position: translateX(-100%) → translateX(100%)
 - Gradient: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent)
 - Continuous loop
@@ -1049,10 +1129,12 @@ Glass effects are static visual styles, but blur can animate during transitions.
 **Easing:** ease-elegant
 
 **Skeleton:**
+
 - Opacity: 1 → 0
 - Duration: 200ms
 
 **Content:**
+
 - Opacity: 0 → 1
 - TranslateY: 10px → 0
 - Scale: 0.98 → 1
@@ -1072,6 +1154,7 @@ Glass effects are static visual styles, but blur can animate during transitions.
 **Easing:** ease-elegant
 
 **Animation:**
+
 - Opacity: 0 → 1
 - TranslateY: 30px → 0
 - Scale: 0.95 → 1
@@ -1085,6 +1168,7 @@ Glass effects are static visual styles, but blur can animate during transitions.
 **Easing:** ease-smooth
 
 **Animation:**
+
 - Pulse glow: box-shadow glow-sm (0 → 1 → 0.5 → 1)
 - Updated value: scale 1 → 1.1 → 1, color shift to primary-400
 - Chart: smooth data transition (interpolate values)
@@ -1097,6 +1181,7 @@ Glass effects are static visual styles, but blur can animate during transitions.
 **Easing:** ease-smooth
 
 **Animation:**
+
 - Transform: translateY(0) → translateY(-3px)
 - Box-shadow: shadow-md → shadow-lg + glow-sm
 - Background: glass-background → glass-background-hover
@@ -1114,6 +1199,7 @@ Glass effects are static visual styles, but blur can animate during transitions.
 **Easing:** ease-out
 
 **Animation:**
+
 - Width: current% → new%
 - Gradient shifts: gradient position animates
 - Smooth interpolation
@@ -1127,6 +1213,7 @@ Glass effects are static visual styles, but blur can animate during transitions.
 **Easing:** ease-elegant
 
 **Animation:**
+
 - Stroke-dashoffset: animates based on percentage
 - Smooth circular fill
 - Center text: counts up with easing
@@ -1140,6 +1227,7 @@ Glass effects are static visual styles, but blur can animate during transitions.
 **Easing:** ease-bounce (subtle)
 
 **Completed Step:**
+
 - Circle background: neutral-800 → primary-500
 - Checkmark: scale 0 → 1, rotate -90deg → 0deg
 - Glow: glow-sm appears
@@ -1157,6 +1245,7 @@ Glass effects are static visual styles, but blur can animate during transitions.
 **Easing:** ease-elegant
 
 **Animation:**
+
 - Path: stroke-dasharray animates from 0 to full length
 - Points: appear sequentially with stagger-xs
 - Grid lines: fade in opacity 0 → 1 (400ms)
@@ -1172,6 +1261,7 @@ Glass effects are static visual styles, but blur can animate during transitions.
 **Easing:** ease-out
 
 **Animation:**
+
 - Height: 0 → full height
 - Opacity: 0 → 1
 - Transform origin: bottom
@@ -1185,6 +1275,7 @@ Glass effects are static visual styles, but blur can animate during transitions.
 **Easing:** ease-in-out
 
 **Animation:**
+
 - Segments: draw clockwise from top (12 o'clock)
 - Each segment: opacity 0 → 1 as it draws
 - Labels: fade in with stagger-sm after segments complete
@@ -1198,6 +1289,7 @@ Glass effects are static visual styles, but blur can animate during transitions.
 **Easing:** ease-out
 
 **Animation:**
+
 - Data point: scale 1 → 1.3
 - Tooltip: appears (see tooltip animations)
 - Other data points: opacity 1 → 0.4
@@ -1215,6 +1307,7 @@ Glass effects are static visual styles, but blur can animate during transitions.
 **Visual State:**
 
 **Style:**
+
 - Background: neutral-800
 - Border: 1px solid surface-border
 - Opacity: 0.5
@@ -1222,6 +1315,7 @@ Glass effects are static visual styles, but blur can animate during transitions.
 - Cursor: not-allowed
 
 **Hover (no animation):**
+
 - Tooltip appears explaining prerequisites
 
 ### 20.2 Available Node
@@ -1232,18 +1326,21 @@ Glass effects are static visual styles, but blur can animate during transitions.
 **Animation:** Pulse glow (2000ms loop)
 
 **Style:**
+
 - Background: glass-background
 - Border: 1px solid primary-500/30
 - Icon: Unlock icon, primary-400
 - Cursor: pointer
 
 **Pulse Animation:**
+
 - Box-shadow: glow-sm → glow-md → glow-sm
 - Duration: 2000ms
 - Easing: ease-in-out
 - Infinite loop
 
 **Hover:**
+
 - Transform: translateY(-3px)
 - Box-shadow: glow-md
 - Scale: 1.02
@@ -1256,18 +1353,21 @@ Glass effects are static visual styles, but blur can animate during transitions.
 **Duration:** Continuous pulse
 
 **Style:**
+
 - Background: gradient-primary-soft
 - Border: 2px solid primary-500
 - Icon: Progress spinner or active indicator
 - Glow: pulsing glow-purple-md
 
 **Pulse Glow Animation:**
+
 - Box-shadow: glow-purple-md → glow-purple-lg → glow-purple-md
 - Duration: 2500ms
 - Easing: ease-in-out
 - Infinite
 
 **Progress Ring (Optional):**
+
 - Circular progress around node
 - Stroke: primary-500
 - Animates as completion increases
@@ -1280,12 +1380,14 @@ Glass effects are static visual styles, but blur can animate during transitions.
 **Duration:** 1200ms (celebration), then static
 
 **Celebration Animation:**
+
 1. Checkmark appears: scale 0 → 1.3 → 1, rotate -90deg → 0deg (400ms)
 2. Success glow: glow-success-md pulses 3 times (300ms each)
 3. Confetti particles (optional): burst from center, fade and fall (800ms)
 4. Background shifts: neutral → success-500/10
 
 **Static Completed State:**
+
 - Background: success-500/10
 - Border: 1px solid success-500/30
 - Icon: Checkmark, success-400
@@ -1293,6 +1395,7 @@ Glass effects are static visual styles, but blur can animate during transitions.
 - Opacity: 0.8 (de-emphasize completed)
 
 **Hover:**
+
 - Opacity: 1
 - Glow: glow-success-md
 - Duration: 200ms
@@ -1306,6 +1409,7 @@ Glass effects are static visual styles, but blur can animate during transitions.
 **Easing:** ease-out
 
 **Draw-In Animation:**
+
 - Stroke-dasharray: animates from 0 to full length
 - Direction: from prerequisite to dependent node
 - Opacity: 0 → 1
@@ -1313,22 +1417,26 @@ Glass effects are static visual styles, but blur can animate during transitions.
 **Connection States:**
 
 **Locked Connection:**
+
 - Stroke: surface-border
 - Opacity: 0.3
 - Dash pattern: 5px 5px (dashed)
 
 **Available Connection:**
+
 - Stroke: primary-500/50
 - Opacity: 0.6
 - Solid line
 
 **Active Path (user's current progress):**
+
 - Stroke: primary-500
 - Opacity: 1
 - Glow: subtle drop-shadow
 - Animated flow: gradient moves along path (2s loop)
 
 **Completed Connection:**
+
 - Stroke: success-500
 - Opacity: 0.5
 - Checkmarks appear at intervals (optional)
@@ -1341,6 +1449,7 @@ Glass effects are static visual styles, but blur can animate during transitions.
 **Easing:** ease-bounce
 
 **Animation Sequence:**
+
 1. Lock icon: shakes (0-200ms)
 2. Lock icon: scale 1 → 0, rotate 0 → 180deg (200-400ms)
 3. Unlock icon: scale 0 → 1.2 → 1 (400-700ms)
@@ -1349,6 +1458,7 @@ Glass effects are static visual styles, but blur can animate during transitions.
 6. Background: shifts to glass-background (700-1000ms)
 
 **Particle Effect:**
+
 - Small particles burst from lock position
 - Fade and drift outward
 - Duration: 800ms
@@ -1365,6 +1475,7 @@ Glass effects are static visual styles, but blur can animate during transitions.
 **Duration:** Infinite loop until response
 
 **Animation:**
+
 - Three dots pulsing sequentially
 - Dot 1: scale 0.8 → 1 → 0.8 (1000ms)
 - Dot 2: same, delay 200ms
@@ -1372,6 +1483,7 @@ Glass effects are static visual styles, but blur can animate during transitions.
 - Container: subtle glow-primary-sm pulse
 
 **Alternative (Spinner):**
+
 - Rotating gradient ring
 - Duration: 1500ms per rotation
 - Easing: linear
@@ -1383,12 +1495,14 @@ Glass effects are static visual styles, but blur can animate during transitions.
 **Duration:** Real-time streaming
 
 **Animation:**
+
 - Text appears character by character or word by word
 - Cursor blinks at current position (500ms interval)
 - Smooth scroll to keep cursor visible
 - Slight fade-in per word: opacity 0.7 → 1 (100ms)
 
 **Cursor Animation:**
+
 ```
 Blink cycle: 1000ms
 0-500ms:   opacity 1
@@ -1396,6 +1510,7 @@ Blink cycle: 1000ms
 ```
 
 **Complete Signal:**
+
 - Cursor fades out (300ms)
 - Message container: subtle scale 1 → 1.01 → 1 (200ms)
 - Border: brief primary-500 highlight (300ms)
@@ -1407,6 +1522,7 @@ Blink cycle: 1000ms
 **Duration:** Appears after 500ms of typing, disappears 2s after last keystroke
 
 **Animation:**
+
 - Fade in: opacity 0 → 1 (200ms)
 - Three dots bounce sequentially
 - Dot animation: translateY(0 → -4px → 0), duration 600ms
@@ -1421,6 +1537,7 @@ Blink cycle: 1000ms
 **Easing:** ease-elegant
 
 **Animation:**
+
 - Recommendation card slides in: translateY(20px) → translateY(0)
 - Opacity: 0 → 1
 - Scale: 0.95 → 1
@@ -1429,6 +1546,7 @@ Blink cycle: 1000ms
 - Glow: glow-primary-sm fades in
 
 **Emphasis Animation (Important recommendations):**
+
 - After appearing, gentle pulse (once)
 - Scale: 1 → 1.03 → 1 (800ms)
 - Glow: glow-md → glow-lg → glow-md
@@ -1445,6 +1563,7 @@ Blink cycle: 1000ms
 **Easing:** ease-bounce
 
 **Animation:**
+
 - Circle background: scale 0 → 1.1 → 1 (300ms)
 - Circle: background success-500, glow-success-md
 - Checkmark path: draws from bottom-left to top-right
@@ -1460,6 +1579,7 @@ Blink cycle: 1000ms
 **Easing:** ease-out (gravity simulation)
 
 **Animation:**
+
 - 30-50 confetti particles
 - Colors: primary-400, secondary-400, success-400, warning-400
 - Initial velocity: random upward vectors
@@ -1469,6 +1589,7 @@ Blink cycle: 1000ms
 - Scale: 1 → 0.5 as they fade
 
 **Particle Physics:**
+
 - Initial Y velocity: -300px to -500px
 - Initial X velocity: -200px to 200px
 - Gravity: 800px/s²
@@ -1481,6 +1602,7 @@ Blink cycle: 1000ms
 **Duration:** 400ms appear, auto-dismiss after 4000ms
 
 **Animation:**
+
 - Toast slides in from top (see Toast animations)
 - Icon (checkmark): scale 0 → 1.2 → 1 (300ms, ease-bounce)
 - Icon rotates: -90deg → 0deg
@@ -1499,12 +1621,14 @@ Blink cycle: 1000ms
 **Easing:** ease-in-out
 
 **Animation:**
+
 - Shake pattern: translateX(0 → 10px → -10px → 8px → -8px → 4px → -4px → 0)
 - Error icon appears: scale 0 → 1.2 → 1
 - Background: flash error-500/10 (200ms)
 - Border: error-500 with glow
 
 **Keyframes:**
+
 ```
 0%:   translateX(0)
 15%:  translateX(10px)
@@ -1524,6 +1648,7 @@ Blink cycle: 1000ms
 **Easing:** ease-out
 
 **Animation:**
+
 - Icon (X or alert): scale 0 → 1.3 → 1
 - Rotation: 90deg → 0deg
 - Color: pulses error-500
@@ -1538,6 +1663,7 @@ Blink cycle: 1000ms
 **Easing:** ease-out
 
 **Animation:**
+
 - Height: 0 → auto (use max-height technique)
 - Opacity: 0 → 1
 - TranslateY: -10px → 0
@@ -1556,6 +1682,7 @@ Blink cycle: 1000ms
 **Easing:** ease-elegant
 
 **Animation:**
+
 - Illustration: scale 0.8 → 1, opacity 0 → 1
 - Float animation (continuous): translateY(0 → -10px → 0), duration 3000ms, ease-in-out, infinite
 - Heading: fade in with delay 200ms
@@ -1570,11 +1697,13 @@ Blink cycle: 1000ms
 **Easing:** ease-smooth
 
 **Empty State:**
+
 - Opacity: 1 → 0
 - Scale: 1 → 0.9
 - Duration: 300ms
 
 **Content:**
+
 - Opacity: 0 → 1
 - TranslateY: 20px → 0
 - Scale: 0.95 → 1
@@ -1593,17 +1722,20 @@ Blink cycle: 1000ms
 **Spring:** spring-responsive
 
 **Pull Animation:**
+
 - Content: translateY follows finger (0 to max 120px)
 - Resistance increases after 80px
 - Spinner rotates proportional to pull distance
 - Opacity increases: 0 → 1 as user pulls
 
 **Release (trigger refresh):**
+
 - Content: spring back to translateY(60px)
 - Spinner: full rotation animation begins
 - After refresh: content springs to translateY(0)
 
 **Release (cancel):**
+
 - Content: springs back to translateY(0)
 - Spinner: fades out
 - Duration: 300ms
@@ -1616,18 +1748,21 @@ Blink cycle: 1000ms
 **Easing:** ease-out
 
 **Swipe Animation:**
+
 - Item: translateX follows finger
 - Delete button reveals underneath
 - Background: shifts to error-500/20
 - Delete icon opacity increases with swipe distance
 
 **Confirm Delete:**
+
 - Item: translateX continues to -100% (400ms)
 - Opacity: 1 → 0
 - Height: collapses to 0 (300ms)
 - Items below: shift up smoothly
 
 **Cancel (incomplete swipe):**
+
 - Item: springs back to translateX(0)
 - Spring: spring-snappy
 - Duration: 300ms
@@ -1640,17 +1775,20 @@ Blink cycle: 1000ms
 **Easing:** ease-smooth
 
 **Gesture Animation:**
+
 - Current view: translateX follows finger
 - Next view: slides in from right/left
 - Parallax: next view moves slower (0.7x speed)
 - Opacity: current view fades slightly (1 → 0.8)
 
 **Snap to Next:**
+
 - Views: spring to final position
 - Duration: 350ms
 - Spring: spring-responsive
 
 **Snap Back:**
+
 - Views: return to original
 - Duration: 300ms
 
@@ -1662,17 +1800,20 @@ Blink cycle: 1000ms
 **Spring:** spring-gentle
 
 **Drag Animation:**
+
 - Sheet: translateY follows finger (with resistance)
 - Backdrop: opacity changes with position
 - Resistance: increases near boundaries
 
 **Snap Points:**
+
 - Collapsed: 80px from bottom
 - Half: 50% screen height
 - Full: 90% screen height
 - Dismissed: 100% (off-screen)
 
 **Snap Animation:**
+
 - Spring to nearest snap point
 - Duration: 400ms
 - Backdrop adjusts opacity
@@ -1686,6 +1827,7 @@ Blink cycle: 1000ms
 When user has enabled reduced motion preferences:
 
 **Disable Completely:**
+
 - All decorative animations (glows, particles, confetti)
 - Background animations and ambient effects
 - Continuous loops (pulses, spins >3s)
@@ -1693,18 +1835,21 @@ When user has enabled reduced motion preferences:
 - Automatic carousels
 
 **Reduce to Instant:**
+
 - Page transitions: 0ms (instant)
 - Modal open/close: 0ms
 - All hover states: 0ms
 - Tooltips: 0ms
 
 **Keep with Reduced Duration:**
+
 - Loading spinners: keep but reduce to 50ms (visible but brief)
 - Success/error feedback: 100ms (critical feedback preserved)
 - Focus indicators: 50ms (accessibility requirement)
 - Skeleton screens: crossfade only, 100ms
 
 **Implementation:**
+
 ```css
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -1715,9 +1860,9 @@ When user has enabled reduced motion preferences:
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  
+
   /* Preserve critical feedback */
-  [data-critical-animation="true"] {
+  [data-critical-animation='true'] {
     animation-duration: 100ms !important;
     transition-duration: 100ms !important;
   }
@@ -1732,12 +1877,14 @@ When user has enabled reduced motion preferences:
 **Easing:** ease-out
 
 **Animation:**
+
 - Outline appears: 2px solid primary-500
 - Outline offset: 2px
 - Box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2)
 - Scale: 1 → 1.02 (subtle)
 
 **Never animate out focus:**
+
 - Focus ring disappears instantly on blur (0ms)
 - Focus changes are instant between elements
 
@@ -1746,6 +1893,7 @@ When user has enabled reduced motion preferences:
 Allow users to disable animations via settings:
 
 **Settings Toggle:**
+
 ```typescript
 // User preference
 animationLevel: 'full' | 'reduced' | 'minimal'
@@ -1756,6 +1904,7 @@ minimal:  Only critical feedback (100ms max)
 ```
 
 **Apply Globally:**
+
 - Store in user preferences
 - Add data attribute to body: `data-animation-level="reduced"`
 - CSS and JS respect this setting
@@ -1767,6 +1916,7 @@ minimal:  Only critical feedback (100ms max)
 ### 27.1 GPU Acceleration
 
 **Always Use Transform and Opacity:**
+
 ```css
 /* ✅ Good - GPU accelerated */
 transform: translate3d(0, 10px, 0);
@@ -1781,6 +1931,7 @@ height: 100px;
 ```
 
 **Force GPU Layer:**
+
 ```css
 .animated-element {
   will-change: transform, opacity;
@@ -1793,6 +1944,7 @@ height: 100px;
 **Per-Frame Budget: 16.67ms (60fps)**
 
 **Budget Allocation:**
+
 - JavaScript: <3ms per frame
 - Style calculations: <2ms
 - Layout: <2ms (ideally 0 - avoid layout thrashing)
@@ -1800,6 +1952,7 @@ height: 100px;
 - Composite: <4ms
 
 **Limits:**
+
 - Maximum 5 complex animations simultaneously
 - Stagger limit: 50ms per item
 - Total stagger duration: <1000ms
@@ -1808,11 +1961,16 @@ height: 100px;
 ### 27.3 Optimize Techniques
 
 **Use CSS Animations for Loops:**
+
 ```css
 /* CSS is more efficient than JS for repeated animations */
 @keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .spinner {
@@ -1821,6 +1979,7 @@ height: 100px;
 ```
 
 **Use Framer Motion Optimization:**
+
 ```typescript
 // Optimize layout animations
 <motion.div
@@ -1830,13 +1989,14 @@ height: 100px;
 
 // Use hardware acceleration hint
 <motion.div
-  style={{ 
+  style={{
     transform: 'translateZ(0)',  // Force GPU layer
   }}
 />
 ```
 
 **Debounce Scroll Animations:**
+
 ```typescript
 // Don't animate every scroll event
 const handleScroll = debounce(() => {
@@ -1845,6 +2005,7 @@ const handleScroll = debounce(() => {
 ```
 
 **Lazy Load Animations:**
+
 ```typescript
 // Only animate elements in viewport
 const isInView = useInView(ref, { once: true });
@@ -1861,6 +2022,7 @@ return (
 ### 27.4 Performance Monitoring
 
 **Monitor Frame Rate:**
+
 ```typescript
 // Check if animations are causing drops
 const fps = useFPS();
@@ -1872,6 +2034,7 @@ if (fps < 45) {
 ```
 
 **Use Performance API:**
+
 ```typescript
 performance.mark('animation-start');
 // ... animation code
@@ -1880,6 +2043,7 @@ performance.measure('animation', 'animation-start', 'animation-end');
 ```
 
 **DevTools Profiling:**
+
 - Use Chrome DevTools Performance tab
 - Record during animations
 - Look for long tasks (>50ms)
@@ -1889,17 +2053,13 @@ performance.measure('animation', 'animation-start', 'animation-end');
 ### 27.5 Reduce Motion Automatically
 
 **Detect Device Capability:**
+
 ```typescript
-const prefersReducedMotion = window.matchMedia(
-  '(prefers-reduced-motion: reduce)'
-).matches;
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-const isLowPerformance = 
-  navigator.hardwareConcurrency <= 4 ||
-  navigator.deviceMemory <= 4;
+const isLowPerformance = navigator.hardwareConcurrency <= 4 || navigator.deviceMemory <= 4;
 
-const shouldReduceMotion = 
-  prefersReducedMotion || isLowPerformance;
+const shouldReduceMotion = prefersReducedMotion || isLowPerformance;
 ```
 
 ---
@@ -1909,101 +2069,108 @@ const shouldReduceMotion =
 ### Framer Motion Variant Patterns
 
 **Standard Fade In:**
+
 ```typescript
 const fadeIn = {
   initial: { opacity: 0 },
   animate: { opacity: 1 },
   exit: { opacity: 0 },
-  transition: { duration: 0.25, ease: [0, 0, 0.2, 1] }
+  transition: { duration: 0.25, ease: [0, 0, 0.2, 1] },
 };
 ```
 
 **Slide Up:**
+
 ```typescript
 const slideUp = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
   exit: { opacity: 0, y: -10 },
-  transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] }
+  transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] },
 };
 ```
 
 **Scale Bounce:**
+
 ```typescript
 const scaleBounce = {
   initial: { scale: 0, opacity: 0 },
-  animate: { 
-    scale: 1, 
+  animate: {
+    scale: 1,
     opacity: 1,
     transition: {
-      type: "spring",
+      type: 'spring',
       stiffness: 400,
-      damping: 15
-    }
+      damping: 15,
+    },
   },
-  exit: { scale: 0.9, opacity: 0 }
+  exit: { scale: 0.9, opacity: 0 },
 };
 ```
 
 **Stagger Container:**
+
 ```typescript
 const staggerContainer = {
   animate: {
     transition: {
       staggerChildren: 0.04,
-      delayChildren: 0.1
-    }
-  }
+      delayChildren: 0.1,
+    },
+  },
 };
 
 const staggerItem = {
   initial: { opacity: 0, y: 10 },
-  animate: { opacity: 1, y: 0 }
+  animate: { opacity: 1, y: 0 },
 };
 ```
 
 **Modal Variants:**
+
 ```typescript
 const modalBackdrop = {
-  initial: { opacity: 0, backdropFilter: "blur(0px)" },
-  animate: { 
-    opacity: 1, 
-    backdropFilter: "blur(20px)",
-    transition: { duration: 0.3 }
+  initial: { opacity: 0, backdropFilter: 'blur(0px)' },
+  animate: {
+    opacity: 1,
+    backdropFilter: 'blur(20px)',
+    transition: { duration: 0.3 },
   },
-  exit: { 
-    opacity: 0, 
-    backdropFilter: "blur(0px)",
-    transition: { duration: 0.2, delay: 0.1 }
-  }
+  exit: {
+    opacity: 0,
+    backdropFilter: 'blur(0px)',
+    transition: { duration: 0.2, delay: 0.1 },
+  },
 };
 
 const modalContent = {
   initial: { opacity: 0, scale: 0.9, y: 20 },
-  animate: { 
-    opacity: 1, 
-    scale: 1, 
+  animate: {
+    opacity: 1,
+    scale: 1,
     y: 0,
-    transition: { 
-      duration: 0.35, 
-      ease: [0.25, 0.1, 0.25, 1] 
-    }
+    transition: {
+      duration: 0.35,
+      ease: [0.25, 0.1, 0.25, 1],
+    },
   },
-  exit: { 
-    opacity: 0, 
-    scale: 0.95, 
+  exit: {
+    opacity: 0,
+    scale: 0.95,
     y: 10,
-    transition: { duration: 0.25 }
-  }
+    transition: { duration: 0.25 },
+  },
 };
 ```
 
 ### CSS Animation Patterns
 
 **Pulse Glow:**
+
 ```css
 @keyframes pulse-glow {
-  0%, 100% {
+  0%,
+  100% {
     box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
   }
   50% {
@@ -2017,6 +2184,7 @@ const modalContent = {
 ```
 
 **Shimmer Loading:**
+
 ```css
 @keyframes shimmer {
   0% {
@@ -2028,18 +2196,14 @@ const modalContent = {
 }
 
 .skeleton {
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.1),
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
   background-size: 1000px 100%;
   animation: shimmer 1.5s ease-in-out infinite;
 }
 ```
 
 **Spin:**
+
 ```css
 @keyframes spin {
   from {
@@ -2058,6 +2222,7 @@ const modalContent = {
 ### TypeScript Animation Utilities
 
 **Animation Configuration:**
+
 ```typescript
 // lib/animations/config.ts
 
@@ -2094,31 +2259,31 @@ export const EASING = {
 
 export const SPRING = {
   gentle: {
-    type: "spring" as const,
+    type: 'spring' as const,
     stiffness: 100,
     damping: 15,
     mass: 1,
   },
   responsive: {
-    type: "spring" as const,
+    type: 'spring' as const,
     stiffness: 300,
     damping: 25,
     mass: 0.5,
   },
   snappy: {
-    type: "spring" as const,
+    type: 'spring' as const,
     stiffness: 500,
     damping: 30,
     mass: 0.5,
   },
   bouncy: {
-    type: "spring" as const,
+    type: 'spring' as const,
     stiffness: 400,
     damping: 15,
     mass: 0.8,
   },
   elastic: {
-    type: "spring" as const,
+    type: 'spring' as const,
     stiffness: 200,
     damping: 12,
     mass: 1.2,
@@ -2127,6 +2292,7 @@ export const SPRING = {
 ```
 
 **Reusable Variants:**
+
 ```typescript
 // lib/animations/variants.ts
 
@@ -2135,64 +2301,65 @@ import { DURATION, EASING, STAGGER } from './config';
 
 export const fadeIn: Variants = {
   initial: { opacity: 0 },
-  animate: { 
+  animate: {
     opacity: 1,
-    transition: { duration: DURATION.normal / 1000, ease: EASING.easeOut }
+    transition: { duration: DURATION.normal / 1000, ease: EASING.easeOut },
   },
-  exit: { 
+  exit: {
     opacity: 0,
-    transition: { duration: DURATION.fast / 1000 }
-  }
+    transition: { duration: DURATION.fast / 1000 },
+  },
 };
 
 export const slideUp: Variants = {
   initial: { opacity: 0, y: 20 },
-  animate: { 
-    opacity: 1, 
+  animate: {
+    opacity: 1,
     y: 0,
-    transition: { duration: DURATION.comfortable / 1000, ease: EASING.elegant }
+    transition: { duration: DURATION.comfortable / 1000, ease: EASING.elegant },
   },
-  exit: { 
-    opacity: 0, 
+  exit: {
+    opacity: 0,
     y: -10,
-    transition: { duration: DURATION.normal / 1000 }
-  }
+    transition: { duration: DURATION.normal / 1000 },
+  },
 };
 
 export const scaleIn: Variants = {
   initial: { opacity: 0, scale: 0.95 },
-  animate: { 
-    opacity: 1, 
+  animate: {
+    opacity: 1,
     scale: 1,
-    transition: { duration: DURATION.normal / 1000, ease: EASING.smooth }
+    transition: { duration: DURATION.normal / 1000, ease: EASING.smooth },
   },
-  exit: { 
-    opacity: 0, 
+  exit: {
+    opacity: 0,
     scale: 0.9,
-    transition: { duration: DURATION.fast / 1000 }
-  }
+    transition: { duration: DURATION.fast / 1000 },
+  },
 };
 
 export const staggerContainer = (delayChildren = STAGGER.sm): Variants => ({
   animate: {
     transition: {
       staggerChildren: delayChildren / 1000,
-      delayChildren: 0.1
-    }
-  }
+      delayChildren: 0.1,
+    },
+  },
 });
 
 export const staggerItem: Variants = {
   initial: { opacity: 0, y: 10 },
-  animate: { 
-    opacity: 1, 
+  animate: {
+    opacity: 1,
     y: 0,
-    transition: { duration: DURATION.normal / 1000, ease: EASING.easeOut }
-  }
+    transition: { duration: DURATION.normal / 1000, ease: EASING.easeOut },
+  },
 };
 ```
 
 **Animation Hooks:**
+
 ```typescript
 // lib/hooks/use-animation-settings.ts
 
@@ -2202,37 +2369,38 @@ export type AnimationLevel = 'full' | 'reduced' | 'minimal';
 
 export function useAnimationSettings() {
   const [level, setLevel] = useState<AnimationLevel>('full');
-  
+
   useEffect(() => {
     // Check system preference
-    const prefersReduced = window.matchMedia(
-      '(prefers-reduced-motion: reduce)'
-    ).matches;
-    
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     if (prefersReduced) {
       setLevel('minimal');
     }
-    
+
     // Check user preference from localStorage/settings
     const userPref = localStorage.getItem('animationLevel') as AnimationLevel;
     if (userPref) {
       setLevel(userPref);
     }
   }, []);
-  
+
   const getDuration = (baseDuration: number): number => {
     switch (level) {
-      case 'minimal': return Math.min(baseDuration * 0.1, 100);
-      case 'reduced': return baseDuration * 0.5;
-      case 'full': return baseDuration;
+      case 'minimal':
+        return Math.min(baseDuration * 0.1, 100);
+      case 'reduced':
+        return baseDuration * 0.5;
+      case 'full':
+        return baseDuration;
     }
   };
-  
+
   const shouldAnimate = (type: 'decorative' | 'functional'): boolean => {
     if (level === 'minimal') return type === 'functional';
     return true;
   };
-  
+
   return { level, setLevel, getDuration, shouldAnimate };
 }
 ```
@@ -2245,12 +2413,12 @@ import { useRef } from 'react';
 
 export function useInViewAnimation(options = {}) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { 
-    once: true, 
+  const isInView = useInView(ref, {
+    once: true,
     amount: 0.3,
-    ...options 
+    ...options,
   });
-  
+
   return { ref, isInView };
 }
 ```
@@ -2262,12 +2430,14 @@ export function useInViewAnimation(options = {}) {
 Before implementing any animation, verify:
 
 ### Purpose & UX
+
 - [ ] Animation serves a clear functional purpose
 - [ ] Animation enhances user understanding
 - [ ] Animation doesn't block critical functionality
 - [ ] Animation duration feels appropriate for context
 
 ### Performance
+
 - [ ] Uses only transform and opacity (or filter for blur)
 - [ ] No layout-triggering properties (width, height, margin, top, left)
 - [ ] Tested on low-end devices
@@ -2275,6 +2445,7 @@ Before implementing any animation, verify:
 - [ ] No more than 5 complex animations simultaneous
 
 ### Accessibility
+
 - [ ] Respects prefers-reduced-motion
 - [ ] Critical information not communicated through motion alone
 - [ ] Animation can be disabled in settings
@@ -2282,12 +2453,14 @@ Before implementing any animation, verify:
 - [ ] Focus indicators remain clear
 
 ### Consistency
+
 - [ ] Uses motion tokens from this document
 - [ ] Follows established patterns for similar interactions
 - [ ] Easing curve appropriate for context
 - [ ] Duration matches similar animations in platform
 
 ### Code Quality
+
 - [ ] Animation is reusable (variant or utility)
 - [ ] TypeScript types are defined
 - [ ] Cleanup on unmount (cancel animations)
@@ -2299,6 +2472,7 @@ Before implementing any animation, verify:
 ## Version History
 
 **Version 1.0** - Initial release
+
 - Complete motion design system
 - All component animations defined
 - Performance and accessibility rules established
@@ -2309,6 +2483,7 @@ Before implementing any animation, verify:
 ## Maintenance
 
 This document should be updated when:
+
 - New animation patterns are needed
 - Performance benchmarks change
 - Accessibility requirements evolve
