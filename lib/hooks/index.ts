@@ -4,3 +4,5 @@
 
 export { useToast, ToastProvider } from './use-toast';
 export type { Toast, ToastVariant } from './use-toast';
+
+export { useAuth } from './use-auth';

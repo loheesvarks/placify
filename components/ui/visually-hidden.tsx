@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { cn } from '@/lib/utils/cn';
 
-export interface VisuallyHiddenProps extends React.HTMLAttributes<HTMLSpanElement> {
+export interface VisuallyHiddenProps {
   /**
    * Content to hide visually but keep accessible to screen readers
    */
@@ -11,6 +11,10 @@ export interface VisuallyHiddenProps extends React.HTMLAttributes<HTMLSpanElemen
    * @default 'span'
    */
   as?: 'span' | 'div';
+  /**
+   * Additional class names
+   */
+  className?: string;
 }
 
 /**
@@ -31,12 +35,14 @@ export interface VisuallyHiddenProps extends React.HTMLAttributes<HTMLSpanElemen
  *   <VisuallyHidden>Search</VisuallyHidden>
  * </button>
  */
-export const VisuallyHidden = React.forwardRef<HTMLSpanElement, VisuallyHiddenProps>(
-  ({ className, children, as: Component = 'span', ...props }, ref) => {
-    return (
-      <Component
-        ref={ref as any}
-        className={cn(
+export const VisuallyHidden: React.FC<VisuallyHiddenProps> = ({
+  className,
+  children,
+  as: Component = 'span',
+}) => {
+  return (
+    <Component
+      className={cn(
           // Position content off-screen
           'absolute',
           // Make it take no space
@@ -50,12 +56,8 @@ export const VisuallyHidden = React.forwardRef<HTMLSpanElement, VisuallyHiddenPr
           // Additional classNames
           className
         )}
-        {...props}
-      >
-        {children}
-      </Component>
-    );
-  }
-);
-
-VisuallyHidden.displayName = 'VisuallyHidden';
+    >
+      {children}
+    </Component>
+  );
+};

@@ -1,3 +1,6 @@
+// Force dynamic rendering to prevent build-time errors
+export const dynamic = 'force-dynamic';
+
 export default function HomePage() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-8 bg-gradient-ambient">
