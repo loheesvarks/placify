@@ -18,32 +18,38 @@ const variantConfig: Record<
     icon: React.ComponentType<{ className?: string }>;
     className: string;
     progressClassName: string;
+    iconWrapperClassName: string;
   }
 > = {
   success: {
     icon: CheckCircle2,
-    className: 'bg-success-500/10 border-success-500/20 text-success-400',
-    progressClassName: 'bg-success-500',
+    className: 'bg-gradient-to-br from-success-500/20 to-success-600/10 border-success-400/40 text-success-400 shadow-2xl shadow-success-500/30',
+    progressClassName: 'bg-gradient-to-r from-success-400 via-success-500 to-success-600 shadow-lg shadow-success-500/50',
+    iconWrapperClassName: 'bg-success-500/20 text-success-400',
   },
   error: {
     icon: XCircle,
-    className: 'bg-error-500/10 border-error-500/20 text-error-400',
-    progressClassName: 'bg-error-500',
+    className: 'bg-gradient-to-br from-red-500/20 via-orange-500/10 to-red-600/20 border-red-400/50 text-red-400 shadow-2xl shadow-red-500/40 backdrop-blur-2xl',
+    progressClassName: 'bg-gradient-to-r from-red-400 via-orange-500 to-red-600 shadow-lg shadow-red-500/50',
+    iconWrapperClassName: 'bg-red-500/20 text-red-400',
   },
   warning: {
     icon: AlertTriangle,
-    className: 'bg-warning-500/10 border-warning-500/20 text-warning-400',
-    progressClassName: 'bg-warning-500',
+    className: 'bg-gradient-to-br from-warning-500/20 to-warning-600/10 border-warning-400/40 text-warning-400 shadow-2xl shadow-warning-500/30',
+    progressClassName: 'bg-gradient-to-r from-warning-400 via-warning-500 to-warning-600 shadow-lg shadow-warning-500/50',
+    iconWrapperClassName: 'bg-warning-500/20 text-warning-400',
   },
   info: {
     icon: Info,
-    className: 'bg-info-500/10 border-info-500/20 text-info-400',
-    progressClassName: 'bg-info-500',
+    className: 'bg-gradient-to-br from-info-500/20 to-info-600/10 border-info-400/40 text-info-400 shadow-2xl shadow-info-500/30',
+    progressClassName: 'bg-gradient-to-r from-info-400 via-info-500 to-info-600 shadow-lg shadow-info-500/50',
+    iconWrapperClassName: 'bg-info-500/20 text-info-400',
   },
   loading: {
     icon: Loader2,
-    className: 'bg-primary-500/10 border-primary-500/20 text-primary-400',
-    progressClassName: 'bg-primary-500',
+    className: 'bg-gradient-to-br from-primary-500/20 to-primary-600/10 border-primary-400/40 text-primary-400 shadow-2xl shadow-primary-500/30',
+    progressClassName: 'bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 shadow-lg shadow-primary-500/50',
+    iconWrapperClassName: 'bg-primary-500/20 text-primary-400',
   },
 };
 
@@ -122,12 +128,11 @@ const ToastItem: React.FC<ToastItemProps> = ({ toast, onRemove }) => {
         damping: 25,
         mass: 0.5,
       }}
-      layout
       className={cn(
         'relative flex w-full items-start gap-3 overflow-hidden',
-        'rounded-lg border backdrop-blur-md',
-        'px-4 py-3',
-        'shadow-lg',
+        'rounded-xl border backdrop-blur-xl',
+        'px-4 py-4',
+        'shadow-2xl',
         'pointer-events-auto',
         config.className
       )}
@@ -136,29 +141,19 @@ const ToastItem: React.FC<ToastItemProps> = ({ toast, onRemove }) => {
       role="alert"
       aria-live={toast.variant === 'error' ? 'assertive' : 'polite'}
     >
-      <div className="flex-shrink-0 mt-0.5">
-        <Icon
-          className={cn(
-            'h-5 w-5',
-            toast.variant === 'loading' && 'animate-spin'
-          )}
-          aria-hidden="true"
-        />
-      </div>
-
       <div className="flex-1 min-w-0">
-        <p className="text-body-sm font-medium text-text-primary">
+        <p className="text-body-md font-semibold text-text-primary">
           {toast.title}
         </p>
         {toast.description && (
-          <p className="mt-1 text-body-xs text-text-secondary">
+          <p className="mt-1.5 text-body-sm text-text-secondary leading-relaxed">
             {toast.description}
           </p>
         )}
         {toast.action && (
           <button
             onClick={toast.action.onClick}
-            className="mt-2 text-body-xs font-medium hover:underline focus:outline-none focus:underline"
+            className="mt-3 text-body-sm font-medium hover:underline focus:outline-none focus:underline"
           >
             {toast.action.label}
           </button>
@@ -168,10 +163,10 @@ const ToastItem: React.FC<ToastItemProps> = ({ toast, onRemove }) => {
       <button
         onClick={handleDismiss}
         className={cn(
-          'flex-shrink-0 rounded p-1',
-          'text-text-secondary hover:text-text-primary',
-          'hover:bg-glass-background-hover',
-          'transition-colors duration-fast',
+          'flex-shrink-0 rounded-lg p-1.5',
+          'text-text-tertiary hover:text-text-primary',
+          'hover:bg-surface-elevated-2/50',
+          'transition-all duration-200',
           'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500'
         )}
         aria-label="Dismiss notification"
@@ -182,12 +177,14 @@ const ToastItem: React.FC<ToastItemProps> = ({ toast, onRemove }) => {
       {toast.duration && toast.duration > 0 && (
         <motion.div
           className={cn(
-            'absolute bottom-0 left-0 h-1',
+            'absolute bottom-0 left-0 h-1 rounded-full',
             config.progressClassName
           )}
+          style={{ width: `${progress}%` }}
           initial={{ width: '100%' }}
           animate={{ width: `${progress}%` }}
           transition={{ duration: 0, ease: 'linear' }}
+          aria-hidden="true"
         />
       )}
     </motion.div>

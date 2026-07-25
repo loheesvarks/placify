@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils/cn';
 
 const cardVariants = cva(
@@ -115,34 +114,16 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
     );
 
     if (animated) {
-      // Filter out HTML event props that conflict with Framer Motion
-      const {
-        onDrag: _onDrag,
-        onDragStart: _onDragStart,
-        onDragEnd: _onDragEnd,
-        onDragCapture: _onDragCapture,
-        onDragStartCapture: _onDragStartCapture,
-        onDragEndCapture: _onDragEndCapture,
-        onAnimationStart: _onAnimationStart,
-        onAnimationEnd: _onAnimationEnd,
-        onAnimationIteration: _onAnimationIteration,
-        onAnimationStartCapture: _onAnimationStartCapture,
-        onAnimationEndCapture: _onAnimationEndCapture,
-        onAnimationIterationCapture: _onAnimationIterationCapture,
-        ...safeProps
-      } = props;
-
+      // Use CSS animations instead of framer-motion to avoid compatibility issues
       return (
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          {...sharedProps}
-          {...safeProps}
+        <div 
+          ref={ref} 
+          {...sharedProps} 
+          {...props}
+          className={cn(cardClassName, 'animate-fade-in')}
         >
           {content}
-        </motion.div>
+        </div>
       );
     }
 

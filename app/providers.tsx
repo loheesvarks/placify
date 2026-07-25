@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { ToastProvider } from '@/lib/hooks';
+import { ToastContainer } from '@/components/ui/toast';
 import { AuthProvider } from '@/components/auth/auth-provider';
 
 /**
@@ -11,7 +12,10 @@ import { AuthProvider } from '@/components/auth/auth-provider';
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <ToastProvider>
-      <AuthProvider>{children}</AuthProvider>
+      <AuthProvider>
+        {children}
+        <ToastContainer position="top-right" />
+      </AuthProvider>
     </ToastProvider>
   );
 }

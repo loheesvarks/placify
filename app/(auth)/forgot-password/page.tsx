@@ -12,9 +12,18 @@ export const metadata: Metadata = {
   description: 'Reset your Placify password',
 };
 
-export default function ForgotPasswordPage() {
+export default function ForgotPasswordPage({
+  searchParams,
+}: {
+  searchParams: { error?: string };
+}) {
   return (
     <AuthCard title="Forgot password?">
+      {searchParams.error && (
+        <div className="mb-4 rounded-lg border border-error-500/20 bg-error-500/10 p-4">
+          <p className="text-body-sm text-error-500">{searchParams.error}</p>
+        </div>
+      )}
       <ForgotPasswordForm />
     </AuthCard>
   );

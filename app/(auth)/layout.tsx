@@ -24,40 +24,15 @@ export default function AuthLayout({
 
       {/* Logo */}
       <div className="relative z-10 mb-8">
-        <div className="flex items-center gap-3">
-          <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-primary shadow-glow-md">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-            >
-              <path
-                d="M12 2L2 7L12 12L22 7L12 2Z"
-                stroke="white"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M2 17L12 22L22 17"
-                stroke="white"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M2 12L12 17L22 12"
-                stroke="white"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+        <div className="flex items-center justify-center gap-3">
+          <div className="flex h-16 w-16 items-center justify-center">
+            <img 
+              src="/logo.png" 
+              alt="Placify Logo" 
+              className="h-full w-full rounded-2xl"
+            />
           </div>
-          <h1 className="bg-gradient-primary bg-clip-text text-2xl font-bold text-transparent">
+          <h1 className="bg-gradient-primary bg-clip-text text-3xl font-bold text-transparent">
             Placify
           </h1>
         </div>

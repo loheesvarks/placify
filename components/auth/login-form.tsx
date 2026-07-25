@@ -46,7 +46,12 @@ export function LoginForm() {
       });
 
       if (!result.success) {
-        showErrorToast('Authentication Failed', result.error || 'Invalid email or password');
+        console.error('Login failed:', result.error);
+        showErrorToast(
+          '🔒 Access Denied', 
+          'The email or password you entered is incorrect. Please try again.'
+        );
+        setIsSubmitting(false);
         return;
       }
 
@@ -58,14 +63,14 @@ export function LoginForm() {
         setSession(result.data.session);
       }
 
-      showSuccessToast('Welcome back!', 'You have successfully signed in.');
-
-      // Redirect to dashboard
+      showSuccessToast('🎉 Welcome Back!', 'You have successfully signed in to your account.');
+      
+      // Force a hard navigation to ensure cookies are properly set
+      router.refresh();
       router.push('/dashboard');
     } catch (error) {
       console.error('Login error:', error);
       showErrorToast('Error', 'An unexpected error occurred. Please try again.');
-    } finally {
       setIsSubmitting(false);
     }
   };

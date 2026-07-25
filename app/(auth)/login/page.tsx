@@ -12,12 +12,21 @@ export const metadata: Metadata = {
   description: 'Sign in to your Placify account',
 };
 
-export default function LoginPage() {
+export default function LoginPage({
+  searchParams,
+}: {
+  searchParams: { error?: string; redirect?: string };
+}) {
   return (
     <AuthCard
       title="Welcome back"
       description="Sign in to continue your placement preparation journey"
     >
+      {searchParams.error && (
+        <div className="mb-4 rounded-lg border border-error-500/20 bg-error-500/10 p-4">
+          <p className="text-body-sm text-error-500">{searchParams.error}</p>
+        </div>
+      )}
       <LoginForm />
     </AuthCard>
   );

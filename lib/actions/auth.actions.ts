@@ -53,18 +53,32 @@ export async function signIn(formData: {
 }): Promise<AuthResponse> {
   const supabase = await createClient();
 
+  console.log('Attempting sign in for:', formData.email);
+
   const { data, error } = await supabase.auth.signInWithPassword({
     email: formData.email,
     password: formData.password,
   });
 
   if (error) {
+    console.error('Sign in error:', error.message);
     return {
       success: false,
       error: error.message,
     };
   }
 
+  if (!data.session) {
+    console.error('Sign in failed: No session created');
+    return {
+      success: false,
+      error: 'No session created',
+    };
+  }
+
+  console.log('Sign in successful for:', data.user.email);
+
+  // Revalidate the root layout to update auth state
   revalidatePath('/', 'layout');
   
   return {
@@ -131,16 +145,23 @@ export async function signOut(): Promise<AuthResponse> {
 export async function resetPassword(email: string): Promise<AuthResponse> {
   const supabase = await createClient();
 
-  const { error } = await supabase.auth.resetPasswordForEmail(email, {
-    redirectTo: `${process.env.NEXT_PUBLIC_APP_URL}/auth/reset-password`,
+  const redirectUrl = `${process.env.NEXT_PUBLIC_APP_URL}/auth/callback?type=recovery`;
+  console.log('Sending password reset email to:', email);
+  console.log('Redirect URL:', redirectUrl);
+
+  const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: redirectUrl,
   });
 
   if (error) {
+    console.error('Password reset error:', error);
     return {
       success: false,
       error: error.message,
     };
   }
+
+  console.log('Password reset response:', data);
 
   return {
     success: true,

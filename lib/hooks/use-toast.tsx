@@ -39,12 +39,6 @@ const toastReducer = (state: ToastState, action: ToastActionType): ToastState =>
         ),
       };
     case 'DISMISS_TOAST':
-      return {
-        ...state,
-        toasts: state.toasts.map((t) =>
-          t.id === action.id ? { ...t, duration: 0 } : t
-        ),
-      };
     case 'REMOVE_TOAST':
       return {
         ...state,

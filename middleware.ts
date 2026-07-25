@@ -11,7 +11,7 @@ export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Define protected and public routes
-  const authRoutes = ['/login', '/register', '/forgot-password', '/reset-password', '/verify-email'];
+  const authRoutes = ['/login', '/register', '/forgot-password', '/verify-email'];
   const protectedRoutes = [
     '/dashboard',
     '/roadmap',
@@ -28,9 +28,13 @@ export async function middleware(request: NextRequest) {
 
   const isAuthRoute = authRoutes.some((route) => pathname.startsWith(route));
   const isProtectedRoute = protectedRoutes.some((route) => pathname.startsWith(route));
+  
+  // Allow /reset-password for both authenticated and unauthenticated users
+  // (authenticated users need it during password recovery flow)
+  const isResetPasswordPage = pathname.startsWith('/reset-password');
 
-  // Redirect authenticated users away from auth pages
-  if (user && isAuthRoute) {
+  // Redirect authenticated users away from auth pages (except reset password)
+  if (user && isAuthRoute && !isResetPasswordPage) {
     const url = request.nextUrl.clone();
     url.pathname = '/dashboard';
     return NextResponse.redirect(url);

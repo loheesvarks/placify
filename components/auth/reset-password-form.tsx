@@ -53,7 +53,7 @@ export function ResetPasswordForm() {
 
       // Redirect to login after a short delay
       setTimeout(() => {
-        router.push('/login');
+        window.location.href = '/login';
       }, 2000);
     } catch (error) {
       console.error('Reset password error:', error);

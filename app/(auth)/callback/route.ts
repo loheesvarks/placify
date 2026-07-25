@@ -9,15 +9,28 @@ export async function GET(request: NextRequest) {
   const requestUrl = new URL(request.url);
   const code = requestUrl.searchParams.get('code');
   const next = requestUrl.searchParams.get('next') || '/dashboard';
+  const error = requestUrl.searchParams.get('error');
+  const errorDescription = requestUrl.searchParams.get('error_description');
+
+  // Handle OAuth errors
+  if (error) {
+    console.error('OAuth error:', error, errorDescription);
+    return NextResponse.redirect(
+      new URL(
+        `/login?error=${encodeURIComponent(errorDescription || error)}`,
+        requestUrl.origin
+      )
+    );
+  }
 
   if (code) {
     const supabase = await createClient();
-    const { error } = await supabase.auth.exchangeCodeForSession(code);
+    const { error: exchangeError } = await supabase.auth.exchangeCodeForSession(code);
 
-    if (error) {
-      // Redirect to error page or login with error message
+    if (exchangeError) {
+      console.error('Code exchange error:', exchangeError);
       return NextResponse.redirect(
-        new URL(`/login?error=${encodeURIComponent(error.message)}`, requestUrl.origin)
+        new URL(`/login?error=${encodeURIComponent(exchangeError.message)}`, requestUrl.origin)
       );
     }
   }
@@ -25,3 +38,5 @@ export async function GET(request: NextRequest) {
   // Redirect to the next URL or dashboard
   return NextResponse.redirect(new URL(next, requestUrl.origin));
 }
+
+export const dynamic = 'force-dynamic';
