@@ -3,7 +3,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useRouter } from 'next/navigation';
+// import { useRouter } from 'next/navigation'; // TODO: Add redirect after successful password reset
 import { Lock, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -17,7 +17,7 @@ import { resetPasswordSchema, type ResetPasswordFormData } from '@/lib/validatio
  * Allows user to set a new password after clicking reset link
  */
 export function ResetPasswordForm() {
-  const router = useRouter();
+  // const router = useRouter(); // TODO: Add redirect after successful password reset
   const { error: showErrorToast, success: showSuccessToast } = useToast();
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [resetSuccess, setResetSuccess] = React.useState(false);

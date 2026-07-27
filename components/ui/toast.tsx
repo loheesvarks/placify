@@ -65,7 +65,6 @@ const ToastItem: React.FC<ToastItemProps> = ({ toast, onRemove }) => {
   const remainingTimeRef = React.useRef<number>(toast.duration || 0);
 
   const config = variantConfig[toast.variant];
-  const Icon = config.icon;
 
   const startTimer = React.useCallback(() => {
     if (!toast.duration || toast.duration === 0) return;

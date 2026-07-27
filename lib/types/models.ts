@@ -1,16 +1,15 @@
-import { User, Session } from '@supabase/supabase-js';
+/**
+ * Domain models and types
+ */
 
-export interface Profile {
-  id: string;
-  full_name: string;
-  avatar_url: string | null;
-  onboarding_completed: boolean;
-  theme_preference: 'dark' | 'light';
-  notification_preferences: NotificationPreferences;
-  created_at: string;
-  updated_at: string;
-}
+import type { Database } from './database.types';
 
+// User Profile
+export type Profile = Database['public']['Tables']['profiles']['Row'];
+export type ProfileInsert = Database['public']['Tables']['profiles']['Insert'];
+export type ProfileUpdate = Database['public']['Tables']['profiles']['Update'];
+
+// Notification Preferences
 export interface NotificationPreferences {
   email: boolean;
   inApp: boolean;
@@ -19,13 +18,25 @@ export interface NotificationPreferences {
   milestones: boolean;
 }
 
-export type AuthUser = User;
+// Auth types
+export interface AuthUser {
+  id: string;
+  email?: string;
+  full_name?: string;
+  avatar_url?: string;
+}
 
-export type AuthSession = Session;
-
-export interface AuthError {
-  message: string;
-  status?: number;
+export interface AuthSession {
+  access_token: string;
+  refresh_token: string;
+  expires_at?: number;
+  expires_in?: number;
+  token_type?: string;
+  user: {
+    id: string;
+    email?: string;
+    [key: string]: unknown;
+  };
 }
 
 export interface AuthResponse {

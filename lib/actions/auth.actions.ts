@@ -39,7 +39,18 @@ export async function signUp(formData: {
     success: true,
     data: {
       user: data.user ?? undefined,
-      session: data.session ?? undefined,
+      session: data.session ? {
+        access_token: data.session.access_token,
+        refresh_token: data.session.refresh_token,
+        expires_at: data.session.expires_at,
+        expires_in: data.session.expires_in,
+        token_type: data.session.token_type,
+        user: {
+          id: data.session.user.id,
+          email: data.session.user.email,
+          ...data.session.user.user_metadata,
+        },
+      } : undefined,
     },
   };
 }
@@ -85,7 +96,18 @@ export async function signIn(formData: {
     success: true,
     data: {
       user: data.user,
-      session: data.session,
+      session: {
+        access_token: data.session.access_token,
+        refresh_token: data.session.refresh_token,
+        expires_at: data.session.expires_at,
+        expires_in: data.session.expires_in,
+        token_type: data.session.token_type,
+        user: {
+          id: data.session.user.id,
+          email: data.session.user.email,
+          ...data.session.user.user_metadata,
+        },
+      },
     },
   };
 }

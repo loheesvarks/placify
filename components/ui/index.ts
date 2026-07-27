@@ -40,14 +40,8 @@ export {
 // Badge Components
 export {
   Badge,
-  CountBadge,
-  DotBadge,
   badgeVariants,
-  countBadgeVariants,
-  dotBadgeVariants,
   type BadgeProps,
-  type CountBadgeProps,
-  type DotBadgeProps,
 } from './badge';
 
 // Avatar Components
