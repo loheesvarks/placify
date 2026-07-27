@@ -52,24 +52,27 @@ export const careerGoalSchema = z.object({
 export type CareerGoalFormData = z.infer<typeof careerGoalSchema>;
 
 // Target Package Schema (Step 5)
-export const targetPackageSchema = z
-  .object({
-    targetPackageMin: z
-      .number()
-      .positive('Minimum package must be positive')
-      .min(1, 'Minimum package must be at least 1'),
-    targetPackageMax: z
-      .number()
-      .positive('Maximum package must be positive')
-      .min(1, 'Maximum package must be at least 1'),
-    currency: z
-      .string()
-      .min(1, 'Please select a currency'),
-  })
-  .refine((data) => data.targetPackageMax >= data.targetPackageMin, {
+export const targetPackageBaseSchema = z.object({
+  targetPackageMin: z
+    .number()
+    .positive('Minimum package must be positive')
+    .min(1, 'Minimum package must be at least 1'),
+  targetPackageMax: z
+    .number()
+    .positive('Maximum package must be positive')
+    .min(1, 'Maximum package must be at least 1'),
+  currency: z
+    .string()
+    .min(1, 'Please select a currency'),
+});
+
+export const targetPackageSchema = targetPackageBaseSchema.refine(
+  (data) => data.targetPackageMax >= data.targetPackageMin,
+  {
     message: 'Maximum package must be greater than or equal to minimum package',
     path: ['targetPackageMax'],
-  });
+  }
+);
 
 export type TargetPackageFormData = z.infer<typeof targetPackageSchema>;
 
@@ -122,10 +125,14 @@ export type LearningPreferencesFormData = z.infer<typeof learningPreferencesSche
 export const completeOnboardingSchema = personalInfoSchema
   .merge(educationSchema)
   .merge(careerGoalSchema)
-  .merge(targetPackageSchema)
+  .merge(targetPackageBaseSchema)
   .merge(technologyInterestsSchema)
   .merge(currentSkillsSchema)
-  .merge(learningPreferencesSchema);
+  .merge(learningPreferencesSchema)
+  .refine((data) => data.targetPackageMax >= data.targetPackageMin, {
+    message: 'Maximum package must be greater than or equal to minimum package',
+    path: ['targetPackageMax'],
+  });
 
 export type CompleteOnboardingData = z.infer<typeof completeOnboardingSchema>;
 

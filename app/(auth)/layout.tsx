@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -26,10 +27,13 @@ export default function AuthLayout({
       <div className="relative z-10 mb-8">
         <div className="flex items-center justify-center gap-3">
           <div className="flex h-16 w-16 items-center justify-center">
-            <img 
+            <Image 
               src="/logo.png" 
               alt="Placify Logo" 
+              width={64}
+              height={64}
               className="h-full w-full rounded-2xl"
+              priority
             />
           </div>
           <h1 className="bg-gradient-primary bg-clip-text text-3xl font-bold text-transparent">

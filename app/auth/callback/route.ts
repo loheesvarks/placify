@@ -15,12 +15,8 @@ export async function GET(request: NextRequest) {
   const errorDescription = requestUrl.searchParams.get('error_description');
   const type = requestUrl.searchParams.get('type');
 
-  console.log('Auth callback received:', { code: !!code, error, errorCode, type });
-
   // Handle OAuth/reset password errors
   if (error || errorCode) {
-    console.error('Auth callback error:', { error, errorCode, errorDescription });
-    
     // If it's a password reset with expired link, redirect to forgot password
     if (errorCode === 'otp_expired' || error === 'access_denied') {
       return NextResponse.redirect(
@@ -44,23 +40,18 @@ export async function GET(request: NextRequest) {
     const { error: exchangeError } = await supabase.auth.exchangeCodeForSession(code);
 
     if (exchangeError) {
-      console.error('Code exchange error:', exchangeError);
       return NextResponse.redirect(
         new URL(`/login?error=${encodeURIComponent(exchangeError.message)}`, requestUrl.origin)
       );
     }
     
-    console.log('Session exchanged successfully, type:', type);
-    
     // If type is recovery (password reset), redirect to reset password page
     if (type === 'recovery') {
-      console.log('Redirecting to reset password page');
       return NextResponse.redirect(new URL('/reset-password', requestUrl.origin));
     }
   }
 
   // Redirect to the next URL or dashboard
-  console.log('Redirecting to:', next);
   return NextResponse.redirect(new URL(next, requestUrl.origin));
 }
 

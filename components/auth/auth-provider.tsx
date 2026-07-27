@@ -2,8 +2,30 @@
 
 import React from 'react';
 import { useRouter } from 'next/navigation';
+import type { Session } from '@supabase/supabase-js';
 import { createClient } from '@/lib/supabase/client';
 import { useAuthStore } from '@/lib/stores/auth.store';
+import type { AuthSession } from '@/lib/types';
+
+/**
+ * Convert Supabase Session to AuthSession
+ */
+function convertToAuthSession(session: Session | null): AuthSession | null {
+  if (!session) return null;
+  
+  return {
+    access_token: session.access_token,
+    refresh_token: session.refresh_token,
+    expires_at: session.expires_at,
+    expires_in: session.expires_in,
+    token_type: session.token_type,
+    user: {
+      id: session.user.id,
+      email: session.user.email,
+      ...session.user.user_metadata,
+    },
+  };
+}
 
 /**
  * Auth provider component that syncs Supabase auth state with Zustand store
@@ -17,7 +39,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   React.useEffect(() => {
     // Get initial session
     supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session as any);
+      const authSession = convertToAuthSession(session);
+      setSession(authSession);
       setUser(session?.user ?? null);
       setLoading(false);
     });
@@ -26,7 +49,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange(async (event, session) => {
-      setSession(session as any);
+      const authSession = convertToAuthSession(session);
+      setSession(authSession);
       setUser(session?.user ?? null);
       setLoading(false);
 

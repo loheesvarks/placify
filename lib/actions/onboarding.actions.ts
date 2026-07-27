@@ -4,6 +4,7 @@ import { revalidatePath } from 'next/cache';
 import { createClient } from '@/lib/supabase/server';
 import type { CompleteOnboardingData } from '@/lib/validations/onboarding';
 import { completeOnboardingSchema } from '@/lib/validations/onboarding';
+import type { Database } from '@/lib/types/database.types';
 
 interface ActionResponse {
   success: boolean;
@@ -47,7 +48,9 @@ export async function completeOnboarding(
 
     // Start transaction-like operations
     // 1. Update profile with personal info and mark onboarding as complete
-    const { error: profileError } = await (supabase.from('profiles') as any)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { error: profileError } = await (supabase as any)
+      .from('profiles')
       .update({
         full_name: validData.fullName,
         onboarding_completed: true,
@@ -55,7 +58,6 @@ export async function completeOnboarding(
       .eq('id', user.id);
 
     if (profileError) {
-      console.error('Profile update error:', profileError);
       return {
         success: false,
         error: 'Failed to update profile',
@@ -63,24 +65,27 @@ export async function completeOnboarding(
     }
 
     // 2. Create or update target profile
-    const { error: targetProfileError } = await (supabase.from('target_profiles') as any)
-      .upsert({
-        user_id: user.id,
-        target_role: validData.preferredRole,
-        target_package_min: validData.targetPackageMin,
-        target_package_max: validData.targetPackageMax,
-        currency: validData.currency,
-        target_companies: [], // Will be updated later
-        available_hours_per_day: validData.weeklyStudyHours / 7, // Convert weekly to daily
-        timeline_weeks: 16, // Default 16 weeks
-        start_date: new Date().toISOString().split('T')[0],
-        expected_end_date: new Date(Date.now() + 16 * 7 * 24 * 60 * 60 * 1000)
-          .toISOString()
-          .split('T')[0],
-      });
+    const targetProfileData: Database['public']['Tables']['target_profiles']['Insert'] = {
+      user_id: user.id,
+      target_role: validData.preferredRole,
+      target_package_min: validData.targetPackageMin,
+      target_package_max: validData.targetPackageMax,
+      currency: validData.currency,
+      target_companies: [], // Will be updated later
+      available_hours_per_day: validData.weeklyStudyHours / 7, // Convert weekly to daily
+      timeline_weeks: 16, // Default 16 weeks
+      start_date: new Date().toISOString().split('T')[0],
+      expected_end_date: new Date(Date.now() + 16 * 7 * 24 * 60 * 60 * 1000)
+        .toISOString()
+        .split('T')[0],
+    };
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { error: targetProfileError } = await (supabase as any)
+      .from('target_profiles')
+      .upsert(targetProfileData);
 
     if (targetProfileError) {
-      console.error('Target profile error:', targetProfileError);
       return {
         success: false,
         error: 'Failed to save career goals',
@@ -89,20 +94,22 @@ export async function completeOnboarding(
 
     // 3. Save skills
     if (validData.currentSkills.length > 0) {
-      const skillsToInsert = validData.currentSkills.map((skill) => ({
-        user_id: user.id,
-        skill_name: skill.name,
-        proficiency_level: skill.proficiency,
-        category: skill.category,
-      }));
+      const skillsToInsert: Database['public']['Tables']['skills']['Insert'][] = 
+        validData.currentSkills.map((skill) => ({
+          user_id: user.id,
+          skill_name: skill.name,
+          proficiency_level: skill.proficiency,
+          category: skill.category,
+        }));
 
-      const { error: skillsError } = await (supabase.from('skills') as any)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const { error: skillsError } = await (supabase as any)
+        .from('skills')
         .upsert(skillsToInsert, {
           onConflict: 'user_id,skill_name',
         });
 
       if (skillsError) {
-        console.error('Skills insert error:', skillsError);
         return {
           success: false,
           error: 'Failed to save skills',
@@ -111,16 +118,16 @@ export async function completeOnboarding(
     }
 
     // 4. Store additional onboarding metadata in profiles as JSONB
-    const { error: metadataError } = await (supabase.from('profiles') as any)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    await (supabase as any)
+      .from('profiles')
       .update({
         notification_preferences: {
-          ...{
-            email: true,
-            inApp: true,
-            reminders: true,
-            weeklyReview: true,
-            milestones: true,
-          },
+          email: true,
+          inApp: true,
+          reminders: true,
+          weeklyReview: true,
+          milestones: true,
           onboarding_metadata: {
             college: validData.college,
             degree: validData.degree,
@@ -136,11 +143,6 @@ export async function completeOnboarding(
       })
       .eq('id', user.id);
 
-    if (metadataError) {
-      console.error('Metadata update error:', metadataError);
-      // Non-critical, continue
-    }
-
     revalidatePath('/', 'layout');
 
     return {
@@ -149,8 +151,7 @@ export async function completeOnboarding(
         message: 'Onboarding completed successfully',
       },
     };
-  } catch (error) {
-    console.error('Complete onboarding error:', error);
+  } catch {
     return {
       success: false,
       error: 'An unexpected error occurred',
@@ -177,7 +178,9 @@ export async function checkOnboardingStatus(): Promise<{
       return { completed: false };
     }
 
-    const { data: profile, error: profileError } = await (supabase.from('profiles') as any)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { data: profile, error: profileError} = await (supabase as any)
+      .from('profiles')
       .select('onboarding_completed, full_name')
       .eq('id', user.id)
       .single();
@@ -190,8 +193,7 @@ export async function checkOnboardingStatus(): Promise<{
       completed: profile.onboarding_completed,
       profile,
     };
-  } catch (error) {
-    console.error('Check onboarding status error:', error);
+  } catch {
     return { completed: false };
   }
 }
@@ -215,7 +217,9 @@ export async function skipOnboarding(): Promise<ActionResponse> {
       };
     }
 
-    const { error: profileError } = await (supabase.from('profiles') as any)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { error: profileError } = await (supabase as any)
+      .from('profiles')
       .update({
         onboarding_completed: true,
       })
@@ -233,8 +237,7 @@ export async function skipOnboarding(): Promise<ActionResponse> {
     return {
       success: true,
     };
-  } catch (error) {
-    console.error('Skip onboarding error:', error);
+  } catch {
     return {
       success: false,
       error: 'An unexpected error occurred',

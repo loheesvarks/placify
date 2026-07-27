@@ -2,6 +2,7 @@ import React from 'react';
 import type { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { getUser } from '@/lib/actions/auth.actions';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -30,9 +31,11 @@ export default async function DashboardPage() {
         <div className="mx-auto flex max-w-7xl items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center">
-              <img 
+              <Image 
                 src="/logo.png" 
                 alt="Placify Logo" 
+                width={40}
+                height={40}
                 className="h-full w-full rounded-xl"
               />
             </div>

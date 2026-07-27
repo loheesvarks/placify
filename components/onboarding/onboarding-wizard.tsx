@@ -126,7 +126,6 @@ export function OnboardingWizard() {
         throw new Error(result.error || 'Failed to complete onboarding');
       }
     } catch (error) {
-      console.error('Onboarding completion error:', error);
       toast({
         title: 'Error',
         description:

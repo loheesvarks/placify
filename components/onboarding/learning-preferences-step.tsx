@@ -81,6 +81,8 @@ export function LearningPreferencesStep({
             render={({ field }) => (
               <div className="space-y-4">
                 <input
+                  id="weeklyStudyHours"
+                  aria-label="Weekly study hours"
                   type="range"
                   min="1"
                   max="70"
