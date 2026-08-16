@@ -7,6 +7,8 @@ import { getUser } from '@/lib/actions/auth.actions';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { LogoutButton } from '@/components/auth/logout-button';
+import { ROUTES } from '@/lib/constants';
+import { SITE_CONFIG } from '@/lib/config';
 import { ArrowLeft } from 'lucide-react';
 
 // Force dynamic rendering - this page requires authentication check
@@ -21,7 +23,7 @@ export default async function DashboardPage() {
   const user = await getUser();
 
   if (!user) {
-    redirect('/login');
+    redirect(ROUTES.LOGIN);
   }
 
   return (
@@ -40,7 +42,7 @@ export default async function DashboardPage() {
               />
             </div>
             <h1 className="bg-gradient-primary bg-clip-text text-xl font-bold text-transparent">
-              Placify
+              {SITE_CONFIG.name}
             </h1>
           </div>
 
@@ -60,7 +62,7 @@ export default async function DashboardPage() {
       <main className="flex flex-1 items-center justify-center p-8">
         <div className="max-w-2xl space-y-6 text-center">
           <h1 className="bg-gradient-primary bg-clip-text text-4xl font-bold text-transparent">
-            Welcome to Placify!
+            Welcome to {SITE_CONFIG.name}!
           </h1>
           <p className="text-body-lg text-text-secondary">
             You&apos;re successfully authenticated as{' '}
@@ -93,7 +95,7 @@ export default async function DashboardPage() {
               </div>
 
               <div className="flex gap-3 pt-2">
-                <Link href="/login" className="flex-1">
+                <Link href={ROUTES.LOGIN} className="flex-1">
                   <Button
                     variant="secondary"
                     size="md"
@@ -112,7 +114,7 @@ export default async function DashboardPage() {
       {/* Footer */}
       <footer className="border-t border-surface-border px-6 py-4 text-center">
         <p className="text-body-xs text-text-tertiary">
-          &copy; {new Date().getFullYear()} Placify. All rights reserved.
+          &copy; {new Date().getFullYear()} {SITE_CONFIG.name}. All rights reserved.
         </p>
       </footer>
     </div>

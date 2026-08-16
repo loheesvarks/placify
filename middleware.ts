@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { updateSession } from '@/lib/supabase/middleware';
+import { ROUTES } from '@/lib/constants';
 
 /**
  * Next.js Middleware for authentication and route protection
@@ -11,9 +12,9 @@ export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Define protected and public routes
-  const authRoutes = ['/login', '/register', '/forgot-password', '/verify-email'];
+  const authRoutes = [ROUTES.LOGIN, ROUTES.REGISTER, ROUTES.FORGOT_PASSWORD, ROUTES.VERIFY_EMAIL];
   const protectedRoutes = [
-    '/dashboard',
+    ROUTES.DASHBOARD,
     '/roadmap',
     '/mentor',
     '/interview',
@@ -23,7 +24,7 @@ export async function middleware(request: NextRequest) {
     '/companies',
     '/projects',
     '/settings',
-    '/onboarding',
+    ROUTES.ONBOARDING,
   ];
 
   const isAuthRoute = authRoutes.some((route) => pathname.startsWith(route));
@@ -31,28 +32,28 @@ export async function middleware(request: NextRequest) {
   
   // Allow /reset-password for both authenticated and unauthenticated users
   // (authenticated users need it during password recovery flow)
-  const isResetPasswordPage = pathname.startsWith('/reset-password');
+  const isResetPasswordPage = pathname.startsWith(ROUTES.RESET_PASSWORD);
 
   // Redirect authenticated users away from auth pages (except reset password)
   if (user && isAuthRoute && !isResetPasswordPage) {
     const url = request.nextUrl.clone();
-    url.pathname = '/dashboard';
+    url.pathname = ROUTES.DASHBOARD;
     return NextResponse.redirect(url);
   }
 
   // Redirect unauthenticated users to login
   if (!user && isProtectedRoute) {
     const url = request.nextUrl.clone();
-    url.pathname = '/login';
+    url.pathname = ROUTES.LOGIN;
     url.searchParams.set('redirect', pathname);
     return NextResponse.redirect(url);
   }
 
   // TODO: Add onboarding check when profile table is available
   // Check if user has completed onboarding
-  // if (user && !user.onboarding_completed && pathname !== '/onboarding') {
+  // if (user && !user.onboarding_completed && pathname !== ROUTES.ONBOARDING) {
   //   const url = request.nextUrl.clone();
-  //   url.pathname = '/onboarding';
+  //   url.pathname = ROUTES.ONBOARDING;
   //   return NextResponse.redirect(url);
   // }
 

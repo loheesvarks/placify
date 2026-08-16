@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Mail, ArrowRight } from 'lucide-react';
 import { AuthCard } from '@/components/auth/auth-card';
 import { Button } from '@/components/ui/button';
+import { ROUTES } from '@/lib/constants';
 
 // Force dynamic rendering to prevent build-time errors with Supabase client
 export const dynamic = 'force-dynamic';
@@ -53,7 +54,7 @@ export default function VerifyEmailPage() {
         </div>
 
         <div className="pt-4">
-          <Link href="/dashboard">
+          <Link href={ROUTES.DASHBOARD}>
             <Button variant="primary" size="lg" fullWidth rightIcon={<ArrowRight className="h-4 w-4" />}>
               Continue to Dashboard
             </Button>

@@ -13,6 +13,7 @@ import { PasswordStrengthIndicator } from './password-strength-indicator';
 import { signUp } from '@/lib/actions/auth.actions';
 import { useAuthStore } from '@/lib/stores/auth.store';
 import { useToast } from '@/lib/hooks';
+import { ROUTES } from '@/lib/constants';
 import { registerSchema, type RegisterFormData } from '@/lib/validations/schemas';
 
 /**
@@ -193,7 +194,7 @@ export function RegisterForm() {
       <p className="text-center text-body-sm text-text-secondary">
         Already have an account?{' '}
         <Link
-          href="/login"
+          href={ROUTES.LOGIN}
           className="font-medium text-primary-400 transition-colors hover:text-primary-300"
         >
           Sign in

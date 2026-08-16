@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { resetPassword } from '@/lib/actions/auth.actions';
 import { useToast } from '@/lib/hooks';
+import { ROUTES } from '@/lib/constants';
 import { forgotPasswordSchema, type ForgotPasswordFormData } from '@/lib/validations/schemas';
 
 /**
@@ -88,7 +89,7 @@ export function ForgotPasswordForm() {
         </div>
 
         <Link
-          href="/login"
+          href={ROUTES.LOGIN}
           className="inline-flex items-center gap-2 text-body-sm text-primary-400 transition-colors hover:text-primary-300"
         >
           <ArrowLeft className="h-4 w-4" />
@@ -133,7 +134,7 @@ export function ForgotPasswordForm() {
       </form>
 
       <Link
-        href="/login"
+        href={ROUTES.LOGIN}
         className="flex items-center justify-center gap-2 text-body-sm text-primary-400 transition-colors hover:text-primary-300"
       >
         <ArrowLeft className="h-4 w-4" />

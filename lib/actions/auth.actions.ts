@@ -3,6 +3,7 @@
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
+import { ROUTES } from '@/lib/constants';
 import type { AuthResponse } from '@/lib/types';
 
 /**
@@ -22,7 +23,7 @@ export async function signUp(formData: {
       data: {
         full_name: formData.fullName,
       },
-      emailRedirectTo: `${process.env.NEXT_PUBLIC_APP_URL}/auth/callback`,
+      emailRedirectTo: `${process.env.NEXT_PUBLIC_APP_URL}${ROUTES.AUTH_CALLBACK}`,
     },
   });
 
@@ -125,7 +126,7 @@ export async function signInWithOAuth(provider: 'google' | 'github') {
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider,
     options: {
-      redirectTo: `${process.env.NEXT_PUBLIC_APP_URL}/auth/callback`,
+      redirectTo: `${process.env.NEXT_PUBLIC_APP_URL}${ROUTES.AUTH_CALLBACK}`,
     },
   });
 
@@ -162,7 +163,7 @@ export async function signOut(): Promise<AuthResponse> {
   }
 
   revalidatePath('/', 'layout');
-  redirect('/login');
+  redirect(ROUTES.LOGIN);
 }
 
 /**
@@ -171,7 +172,7 @@ export async function signOut(): Promise<AuthResponse> {
 export async function resetPassword(email: string): Promise<AuthResponse> {
   const supabase = await createClient();
 
-  const redirectUrl = `${process.env.NEXT_PUBLIC_APP_URL}/auth/callback?type=recovery`;
+  const redirectUrl = `${process.env.NEXT_PUBLIC_APP_URL}${ROUTES.AUTH_CALLBACK}?type=recovery`;
 
   const { error } = await supabase.auth.resetPasswordForEmail(email, {
     redirectTo: redirectUrl,

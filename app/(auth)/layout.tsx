@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import type { Metadata } from 'next';
+import { SITE_CONFIG } from '@/lib/config';
 
 export const metadata: Metadata = {
   title: 'Authentication | Placify',
@@ -37,7 +38,7 @@ export default function AuthLayout({
             />
           </div>
           <h1 className="bg-gradient-primary bg-clip-text text-3xl font-bold text-transparent">
-            Placify
+            {SITE_CONFIG.name}
           </h1>
         </div>
       </div>
@@ -48,7 +49,7 @@ export default function AuthLayout({
       {/* Footer */}
       <footer className="relative z-10 mt-8 text-center text-body-sm text-text-tertiary">
         <p>
-          &copy; {new Date().getFullYear()} Placify. All rights reserved.
+          &copy; {new Date().getFullYear()} {SITE_CONFIG.name}. All rights reserved.
         </p>
       </footer>
     </div>

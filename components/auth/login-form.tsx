@@ -12,6 +12,7 @@ import { OAuthButtons } from './oauth-buttons';
 import { signIn } from '@/lib/actions/auth.actions';
 import { useAuthStore } from '@/lib/stores/auth.store';
 import { useToast } from '@/lib/hooks';
+import { ROUTES } from '@/lib/constants';
 import { loginSchema, type LoginFormData } from '@/lib/validations/schemas';
 
 /**
@@ -127,7 +128,7 @@ export function LoginForm() {
           </label>
 
           <Link
-            href="/forgot-password"
+            href={ROUTES.FORGOT_PASSWORD}
             className="text-body-sm text-primary-400 transition-colors hover:text-primary-300"
           >
             Forgot password?
@@ -150,7 +151,7 @@ export function LoginForm() {
       <p className="text-center text-body-sm text-text-secondary">
         Don&apos;t have an account?{' '}
         <Link
-          href="/register"
+          href={ROUTES.REGISTER}
           className="font-medium text-primary-400 transition-colors hover:text-primary-300"
         >
           Sign up
