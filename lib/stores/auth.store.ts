@@ -2,14 +2,14 @@ import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import type { AuthUser, AuthSession } from '@/lib/types';
 
-interface AuthState {
+export interface AuthState {
   user: AuthUser | null;
   session: AuthSession | null;
   isLoading: boolean;
   isAuthenticated: boolean;
 }
 
-interface AuthActions {
+export interface AuthActions {
   setUser: (user: AuthUser | null) => void;
   setSession: (session: AuthSession | null) => void;
   setLoading: (loading: boolean) => void;
@@ -17,7 +17,7 @@ interface AuthActions {
   refreshSession: (session: AuthSession | null) => void;
 }
 
-type AuthStore = AuthState & AuthActions;
+export type AuthStore = AuthState & AuthActions;
 
 const initialState: AuthState = {
   user: null,

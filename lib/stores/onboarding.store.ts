@@ -2,13 +2,13 @@ import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import type { OnboardingData, OnboardingStepId } from '@/lib/types/onboarding';
 
-interface OnboardingState {
+export interface OnboardingState {
   currentStep: OnboardingStepId;
   data: Partial<OnboardingData>;
   isCompleted: boolean;
 }
 
-interface OnboardingActions {
+export interface OnboardingActions {
   setCurrentStep: (step: OnboardingStepId) => void;
   updateData: (data: Partial<OnboardingData>) => void;
   nextStep: () => void;
@@ -17,7 +17,7 @@ interface OnboardingActions {
   markCompleted: () => void;
 }
 
-type OnboardingStore = OnboardingState & OnboardingActions;
+export type OnboardingStore = OnboardingState & OnboardingActions;
 
 const initialState: OnboardingState = {
   currentStep: 1,
