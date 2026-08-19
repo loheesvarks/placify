@@ -58,18 +58,20 @@ export function RegisterForm() {
         return;
       }
 
-      // Update auth store
+      // Update auth store if we have user/session data
       if (result.data?.user) {
         setUser(result.data.user);
       }
       if (result.data?.session) {
         setSession(result.data.session);
+        // If we have a session, redirect to dashboard
+        showSuccessToast('Welcome!', 'Your account has been created successfully.');
+        router.push(ROUTES.DASHBOARD);
+      } else {
+        // No session means email confirmation required
+        showSuccessToast('Account Created!', 'Please check your email to verify your account.');
+        router.push(ROUTES.VERIFY_EMAIL);
       }
-
-      showSuccessToast('Account Created!', 'Please check your email to verify your account.');
-
-      // Redirect to verify email page or onboarding
-      router.push('/verify-email');
     } catch (error) {
       console.error('Registration error:', error);
       showErrorToast('Error', 'An unexpected error occurred. Please try again.');

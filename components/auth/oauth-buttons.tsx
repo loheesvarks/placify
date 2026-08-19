@@ -17,12 +17,19 @@ export function OAuthButtons() {
       setIsLoading(provider);
       const result = await signInWithOAuth(provider);
       
-      if (!result.success && result.error) {
+      if (result.error) {
         showErrorToast('Authentication Error', result.error);
+        setIsLoading(null);
+      } else if (result.url) {
+        // Redirect on client side
+        window.location.href = result.url;
+      } else {
+        showErrorToast('Error', 'Unable to initiate authentication');
+        setIsLoading(null);
       }
-    } catch {
+    } catch (error) {
+      console.error('OAuth error:', error);
       showErrorToast('Error', 'An unexpected error occurred. Please try again.');
-    } finally {
       setIsLoading(null);
     }
   };

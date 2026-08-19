@@ -10,3 +10,4 @@ export { ForgotPasswordForm } from './forgot-password-form';
 export { ResetPasswordForm } from './reset-password-form';
 export { OAuthButtons } from './oauth-buttons';
 export { PasswordStrengthIndicator } from './password-strength-indicator';
+export { LogoutButton } from './logout-button';

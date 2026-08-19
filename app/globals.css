@@ -4,7 +4,7 @@
 
 /* ============================================
    PLACIFY DESIGN SYSTEM - GLOBAL STYLES
-   Version: 1.0
+   Version: 2.0 - PLAC-012 Enhanced
    ============================================ */
 
 /* ============================================
@@ -12,11 +12,11 @@
    ============================================ */
 @layer base {
   :root {
-    /* Colors - Surface (Dark Theme as Default) */
-    --surface-background: #0a0e1a;
-    --surface-elevated-1: #111827;
-    --surface-elevated-2: #1f2937;
-    --surface-elevated-3: #374151;
+    /* Colors - Surface (Deep Cosmic Theme) */
+    --surface-background: #0a0d1f;
+    --surface-elevated-1: rgba(15, 18, 35, 0.6);
+    --surface-elevated-2: rgba(20, 24, 45, 0.7);
+    --surface-elevated-3: rgba(25, 30, 55, 0.8);
     --surface-border: rgba(255, 255, 255, 0.1);
     --surface-border-soft: rgba(255, 255, 255, 0.05);
     --surface-border-bold: rgba(255, 255, 255, 0.2);
@@ -122,15 +122,15 @@
   }
 
   ::-webkit-scrollbar-track {
-    @apply bg-surface-elevated-1;
+    @apply bg-transparent;
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-neutral-700 rounded-full;
+    @apply bg-white/10 rounded-full;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-neutral-600;
+    @apply bg-white/20;
   }
 }
 
@@ -257,7 +257,7 @@
   }
 
   .container-content {
-    @apply mx-auto max-w-container px-4 md:px-8 lg:px-12;
+    @apply mx-auto max-w-7xl px-6;
   }
 
   /* Interactive State Utilities */
@@ -291,7 +291,7 @@
 
   /* Skeleton Loading */
   .skeleton {
-    @apply animate-pulse bg-neutral-800 rounded;
+    @apply animate-pulse bg-white/10 rounded;
   }
 
   /* Card Hover Effect */
