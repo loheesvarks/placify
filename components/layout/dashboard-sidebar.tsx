@@ -78,7 +78,7 @@ export function DashboardSidebar({ collapsed = false, onCollapse }: DashboardSid
       className={cn(
         'fixed left-0 top-0 z-40 h-screen flex-col border-r border-white/10 transition-all duration-300',
         'bg-[#0a0d1f]/80 backdrop-blur-xl',
-        collapsed ? 'w-20' : 'w-64',
+        collapsed ? 'w-20' : 'w-56',
         'flex'
       )}
     >

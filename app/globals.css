@@ -257,7 +257,7 @@
   }
 
   .container-content {
-    @apply mx-auto max-w-7xl px-6;
+    @apply w-full px-6 lg:px-8;
   }
 
   /* Interactive State Utilities */

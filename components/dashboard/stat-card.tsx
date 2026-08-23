@@ -5,16 +5,24 @@
  */
 
 import React from 'react';
-import { LucideIcon } from 'lucide-react';
+import { 
+  LucideIcon, 
+  Clock, 
+  TrendingUp, 
+  Target, 
+  Sparkles, 
+  Flame 
+} from 'lucide-react';
 import { GlassCard } from '@/components/ui/glass-card';
 import { cn } from '@/lib/utils';
 
 interface StatCardProps {
-  icon: LucideIcon;
+  icon: LucideIcon | 'clock' | 'trending-up' | 'target' | 'sparkles' | 'flame';
   iconColor?: string;
   title: string;
   value: string | number;
   subtitle?: string;
+  description?: string;
   progress?: number;
   progressLabel?: string;
   trend?: {
@@ -22,51 +30,69 @@ interface StatCardProps {
     label: string;
     direction: 'up' | 'down';
   };
+  chart?: boolean;
   className?: string;
 }
 
+const iconMap = {
+  clock: Clock,
+  'trending-up': TrendingUp,
+  target: Target,
+  sparkles: Sparkles,
+  flame: Flame,
+};
+
 export function StatCard({
-  icon: Icon,
+  icon,
   iconColor = 'text-primary-400',
   title,
   value,
   subtitle,
+  description,
   progress,
   progressLabel,
   trend,
+  chart,
   className,
 }: StatCardProps) {
+  const Icon = typeof icon === 'string' ? iconMap[icon] : icon;
+
   return (
     <GlassCard
       variant="elevated"
-      padding="lg"
+      padding="none"
       hover
-      className={cn('group', className)}
+      className={cn('group p-6', className)}
     >
-      {/* Header with Icon */}
-      <div className="mb-4 flex items-center justify-between">
-        <div className="flex items-center gap-2">
+      {/* Header with Icon and Title */}
+      <div className="mb-5 flex items-start justify-between">
+        <div className="flex items-center gap-3">
           <div
             className={cn(
-              'flex h-8 w-8 items-center justify-center rounded-lg',
+              'flex h-10 w-10 items-center justify-center rounded-lg',
               'bg-white/5 transition-colors group-hover:bg-white/10'
             )}
           >
-            <Icon className={cn('h-4 w-4', iconColor)} />
+            <Icon className={cn('h-5 w-5', iconColor)} />
           </div>
           <span className="text-sm font-medium text-white/70">{title}</span>
         </div>
       </div>
 
       {/* Main Value */}
-      <div className="mb-2">
+      <div className="mb-3">
         <div className="flex items-baseline gap-2">
-          <span className="text-3xl font-bold text-white">{value}</span>
+          <span className="text-4xl font-bold text-white tabular-nums">{value}</span>
           {subtitle && (
-            <span className="text-sm text-white/50">{subtitle}</span>
+            <span className="text-base text-white/50">{subtitle}</span>
           )}
         </div>
       </div>
+
+      {/* Description */}
+      {description && (
+        <p className="text-xs text-white/50 mb-3">{description}</p>
+      )}
 
       {/* Progress Bar */}
       {progress !== undefined && (
@@ -80,7 +106,6 @@ export function StatCard({
           {progressLabel && (
             <div className="flex items-center justify-between text-xs">
               <span className="text-white/50">{progressLabel}</span>
-              <span className="font-medium text-white/70">{progress}%</span>
             </div>
           )}
         </div>
@@ -100,6 +125,29 @@ export function StatCard({
           <span className="text-xs text-white/50">{trend.label}</span>
         </div>
       )}
+
+      {/* Mini Chart */}
+      {chart && (
+        <div className="mt-3 h-12 relative">
+          <svg className="w-full h-full" viewBox="0 0 100 40" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id={`chart-gradient-${title}`} x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#a855f7" />
+                <stop offset="50%" stopColor="#3b82f6" />
+                <stop offset="100%" stopColor="#06b6d4" />
+              </linearGradient>
+            </defs>
+            <path
+              d="M 0 30 L 20 25 L 40 28 L 60 20 L 80 22 L 100 15"
+              fill="none"
+              stroke={`url(#chart-gradient-${title})`}
+              strokeWidth="2"
+              strokeLinecap="round"
+            />
+          </svg>
+        </div>
+      )}
     </GlassCard>
   );
 }
+

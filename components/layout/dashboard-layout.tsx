@@ -39,7 +39,7 @@ export function DashboardLayout({ children, user }: DashboardLayoutProps) {
       <div
         className={cn(
           'flex min-h-screen flex-col transition-all duration-300',
-          sidebarCollapsed ? 'pl-20' : 'pl-64'
+          sidebarCollapsed ? 'pl-20' : 'pl-56'
         )}
       >
         {/* Topbar */}
