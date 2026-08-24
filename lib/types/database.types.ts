@@ -1016,6 +1016,134 @@ export type Database = {
         }
         Relationships: []
       }
+      project_skills: {
+        Row: {
+          created_at: string | null
+          id: string
+          project_id: string
+          skill_id: string
+          skill_level_demonstrated: string | null
+          usage_notes: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          project_id: string
+          skill_id: string
+          skill_level_demonstrated?: string | null
+          usage_notes?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          project_id?: string
+          skill_id?: string
+          skill_level_demonstrated?: string | null
+          usage_notes?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "project_skills_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "project_skills_skill_id_fkey"
+            columns: ["skill_id"]
+            isOneToOne: false
+            referencedRelation: "skills"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      project_technologies: {
+        Row: {
+          category: string | null
+          created_at: string | null
+          id: string
+          project_id: string
+          technology_name: string
+        }
+        Insert: {
+          category?: string | null
+          created_at?: string | null
+          id?: string
+          project_id: string
+          technology_name: string
+        }
+        Update: {
+          category?: string | null
+          created_at?: string | null
+          id?: string
+          project_id?: string
+          technology_name?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "project_technologies_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      projects: {
+        Row: {
+          completion_date: string | null
+          contribution_role: string | null
+          created_at: string | null
+          demo_url: string | null
+          description: string | null
+          id: string
+          is_public: boolean | null
+          outcomes: string | null
+          repository_url: string | null
+          start_date: string | null
+          status: string
+          team_size: number | null
+          title: string
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          completion_date?: string | null
+          contribution_role?: string | null
+          created_at?: string | null
+          demo_url?: string | null
+          description?: string | null
+          id?: string
+          is_public?: boolean | null
+          outcomes?: string | null
+          repository_url?: string | null
+          start_date?: string | null
+          status?: string
+          team_size?: number | null
+          title: string
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          completion_date?: string | null
+          contribution_role?: string | null
+          created_at?: string | null
+          demo_url?: string | null
+          description?: string | null
+          id?: string
+          is_public?: boolean | null
+          outcomes?: string | null
+          repository_url?: string | null
+          start_date?: string | null
+          status?: string
+          team_size?: number | null
+          title?: string
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
       user_progress: {
         Row: {
           current_streak: number | null
